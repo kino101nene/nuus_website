@@ -1,11 +1,256 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
+// @ts-ignore
+import heroImageMobile from "../assets/home/hero-image-mobile.webp";
+// @ts-ignore
+import homeVideoMobile from "../assets/home/home-video-mobile.gif";
+// @ts-ignore
+import alien1 from "../assets/home/alien_languages_png/alien_languages1.png";
+// @ts-ignore
+import alien2 from "../assets/home/alien_languages_png/alien_languages2.png";
+// @ts-ignore
+import alien3 from "../assets/home/alien_languages_png/alien_languages3.png";
+// @ts-ignore
+import alien4 from "../assets/home/alien_languages_png/alien_languages4.png";
+// @ts-ignore
+import alien5 from "../assets/home/alien_languages_png/alien_languages5.png";
+// @ts-ignore
+import alien6 from "../assets/home/alien_languages_png/alien_languages6.png";
+// @ts-ignore
+import alien7 from "../assets/home/alien_languages_png/alien_languages7.png";
+// @ts-ignore
+import alien8 from "../assets/home/alien_languages_png/alien_languages8.png";
+// @ts-ignore
+import alien9 from "../assets/home/alien_languages_png/alien_languages9.png";
+// @ts-ignore
+import alien10 from "../assets/home/alien_languages_png/alien_languages10.png";
+// @ts-ignore
+import alien11 from "../assets/home/alien_languages_png/alien_languages11.png";
+// @ts-ignore
+import alien12 from "../assets/home/alien_languages_png/alien_languages12.png";
+// @ts-ignore
+import homeVideo from "../assets/home/home-video.mp4";
+import "../styles/home.css";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout bodyClass="overlay-header" title="Nuus" description="Nuus — creative group." current="home">
+  <style>
+    /* Translucent full-screen overlay to indicate site is under construction */
+    #site-overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(255,255,255,0.86);
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:auto;
+    }
+
+    #site-overlay .overlay-content{
+      text-align:center;
+      color:#111;
+      max-width:720px;
+      padding:2rem 2.5rem;
+      backdrop-filter: blur(4px);
+    }
+
+    #site-overlay h2{margin:0 0 .5rem;font-size:1.5rem}
+    #site-overlay p{margin:0;opacity:.85}
+      #site-overlay a{
+        color: #0a66c2;
+        text-decoration: underline;
+        font-weight:600;
+        display:inline-block;
+        margin-top:0.75rem;
+        pointer-events:auto;
+      }
+
+    @media (max-width:600px){
+      #site-overlay .overlay-content{padding:1rem 1.25rem}
+      #site-overlay h2{font-size:1.1rem}
+    }
+  </style>
+
+  <div id="site-overlay" role="dialog" aria-modal="true" tabindex="-1">
+    <div class="overlay-content">
+      <p>現在このウェブサイトは改修中です</p>
+      <p>お問合せの際は<a href="https://www.instagram.com/nuus___/reels/" >Instagram</a>のDMにてお願いします</p>
+    </div>
+  </div>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-video" role="region" aria-label="Intro video banner">
+        <!-- Desktop video -->
+        <video 
+          id="heroVideo"
+          class="hero-media hero-media-desktop" 
+          autoplay 
+          muted 
+          playsinline 
+          preload="auto"
+          webkit-playsinline
+        >
+          <source src={homeVideo} type="video/mp4" />
+        </video>
+
+        <!-- Mobile hero stack -->
+        <div class="mobile-hero-media">
+          <OptimizedImage
+            src={heroImageMobile}
+            alt="Hero top"
+            class="hero-media hero-media-mobile hero-media-bw"
+            loading="eager"
+            fetchpriority="high"
+          />
+          
+          <OptimizedImage
+            src={homeVideoMobile}
+            alt="Hero animation"
+            class="hero-media hero-media-mobile"
+            loading="eager"
+          />
+          
+          <OptimizedImage
+            src={heroImageMobile}
+            alt="Hero bottom"
+            class="hero-media hero-media-mobile hero-media-bw"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="mobile-hero-frame" aria-hidden="true"></div>
+
+        <nav class="mobile-hero-nav" aria-label="Primary navigation (mobile hero)">
+          <a class="mobile-hero-nav-item" href="/what">具現化したアイデア</a>
+          <a class="mobile-hero-nav-item" href="/who">脳</a>
+          <a class="mobile-hero-nav-item" href="/when">今考えてること</a>
+        </nav>
+
+        <div
+          class="glitch-stage glitch-stage--hero"
+          id="glitchStageHero"
+          aria-hidden="true"
+        ></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alien-section">
+    <div class="container">
+      <div class="alien-grid" id="alienGrid" aria-label="Alien language images">
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien1}
+            alt="Alien language 1"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 1</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien2}
+            alt="Alien language 2"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 2</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien3}
+            alt="Alien language 3"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 3</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien4}
+            alt="Alien language 4"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 4</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien5}
+            alt="Alien language 5"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 5</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien6}
+            alt="Alien language 6"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 6</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien7}
+            alt="Alien language 7"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 7</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien8}
+            alt="Alien language 8"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 8</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien9}
+            alt="Alien language 9"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 9</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien10}
+            alt="Alien language 10"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 10</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien11}
+            alt="Alien language 11"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 11</figcaption>
+        </figure>
+
+        <figure class="alien-item">
+          <OptimizedImage
+            src={alien12}
+            alt="Alien language 12"
+            loading="lazy"
+          />
+          <figcaption class="alien-meta">Meta text for 12</figcaption>
+        </figure>
+      </div>
+
+      <div class="glitch-stage" id="glitchStageAlien" aria-hidden="true"></div>
+    </div>
+  </section>
+  <script src="/js/home.js" defer></script>
+</BaseLayout>
