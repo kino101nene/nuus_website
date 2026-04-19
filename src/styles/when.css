@@ -1,0 +1,132 @@
+.collection {
+  padding: clamp(28px, 4vw, 56px) 0;
+}
+
+.collection-head {
+  padding: 10px 0 18px;
+}
+
+.collection-title {
+  margin: 0 0 8px;
+  font-size: clamp(26px, 3.6vw, 40px);
+  letter-spacing: -0.02em;
+}
+
+.collection-subtitle {
+  margin: 0;
+  max-width: 68ch;
+}
+
+.collection-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2.4vw, 18px);
+}
+
+/* Card */
+.project-card {
+  border: 1px solid var(--line);
+  overflow: hidden;
+
+  /* subtle vertical presence */
+  min-height: clamp(140px, 22vw, 220px);
+}
+.project-link {
+  display: flex;
+  gap: clamp(14px, 2vw, 22px);
+  padding: clamp(14px, 2.2vw, 22px);
+  align-items: stretch;
+}
+
+.project-thumb {
+  width: clamp(120px, 22vw, 220px);
+
+  /* height scales automatically */
+  aspect-ratio: 16 / 10;
+
+  min-height: clamp(80px, 14vw, 140px);
+
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(120, 150, 255, 0.15),
+      rgba(255, 120, 210, 0.12)
+    ),
+    rgba(255, 255, 255, 0.6);
+
+  flex: 0 0 auto;
+}
+
+.project-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* lets content decide height */
+  justify-content: center;
+}
+
+.project-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.project-desc {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Tags */
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.03);
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+/* Hover */
+.project-card:hover {
+  transform: translateY(-1px);
+}
+
+.project-card,
+.project-card * {
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.project-card:hover .project-thumb {
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 640px) {
+  .project-link {
+    flex-direction: column;
+  }
+
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    min-height: 180px;
+  }
+
+  .project-card {
+    min-height: unset; /* let content fully define height */
+  }
+}

@@ -1,0 +1,512 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OptimizedImage from "../../components/OptimizedImage.astro";
+import Rabbit from "./rabbit.astro";
+// @ts-ignore
+import boxingImg from "../../assets/jijitsu/contents/ciriminal-posters/boxing.jpg";
+// @ts-ignore
+import galleryImg from "../../assets/jijitsu/contents/ciriminal-posters/gallery.jpg";
+// @ts-ignore
+import hiringImg from "../../assets/jijitsu/contents/ciriminal-posters/hiring.jpg";
+// @ts-ignore
+import jazzConcertImg from "../../assets/jijitsu/contents/ciriminal-posters/jazz-concert.jpg";
+// @ts-ignore
+import margotImg from "../../assets/jijitsu/contents/ciriminal-posters/margot.jpg";
+// @ts-ignore
+import mathTutorImg from "../../assets/jijitsu/contents/ciriminal-posters/math-tutor.jpg";
+// @ts-ignore
+import partyImg from "../../assets/jijitsu/contents/ciriminal-posters/party.jpg";
+// @ts-ignore
+import shopliftersImg from "../../assets/jijitsu/contents/ciriminal-posters/shoplifters.jpg";
+// @ts-ignore
+import missingImg from "../../assets/jijitsu/contents/ciriminal-posters/missing.jpg";
+// @ts-ignore
+import lettersImg from "../../assets/jijitsu/contents/dream-mapping/letters.jpg";
+// @ts-ignore
+import mapImg from "../../assets/jijitsu/contents/dream-mapping/map.jpg";
+// @ts-ignore
+import orangeDogImg from "../../assets/jijitsu/contents/dream-mapping/orange-dog.JPG";
+// @ts-ignore
+import soilImg from "../../assets/jijitsu/contents/dream-mapping/soil.jpg";
+// @ts-ignore
+import visitorGif from "../../assets/jijitsu/contents/room/GIF/visitor1.gif";
+// @ts-ignore
+import thumbnailImg from "../../assets/jijitsu/thumbnails/IMG_3734.jpg";
+import "../../styles/main.css";
+import "../../styles/projects/jijitsu.css";
+
+const criminalPoster = [
+  boxingImg,
+  galleryImg,
+  hiringImg,
+  jazzConcertImg,
+  margotImg,
+  mathTutorImg,
+  partyImg,
+  shopliftersImg,
+  missingImg,
+];
+
+const dreamMapping = [
+  lettersImg,
+  mapImg,
+  orangeDogImg,
+  soilImg,
+];
+
+const gifSrc = visitorGif;
+const title = "JIJITSU";
+---
+
+<BaseLayout title={`${title} — Nuus`} description="Project page" current="what">
+  <main class="project project--wide" id="top">
+    <!-- Back to Top Button -->
+    <a href="#top" class="back-to-top" id="back-to-top" aria-label="Back to top">
+      <span class="back-to-top-text">TOP</span>
+      <img src="/assets/what/jijitsu/contents/arrow.svg" alt="Back to top" class="back-to-top-arrow" />
+    </a>
+    
+    <!-- Main grid wrapper containing title column + all content -->
+    <div class="page-grid">
+      <!-- LEFT: Sticky vertical title that spans all sections -->
+      <div class="hero-title">
+        <h1 class="title-vertical" id="page-title">{title}</h1>
+      </div>
+
+      <!-- RIGHT: All content sections -->
+      <div class="page-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <div class="gif-wrap">
+            <OptimizedImage
+              class="gif"
+              src={gifSrc}
+              alt="Jijitsu animation"
+              loading="eager"
+            />
+          </div>
+
+           <div class="desc">
+          <div class="desc-dropdown">
+            <div class="desc-dropdown-header">
+              <span class="desc-dropdown-icon">+</span>
+              <span class="desc-dropdown-title">体験</span>
+            </div>
+            <div class="desc-dropdown-content">
+              <p class="desc-lead">
+                このこじんまりとした空間には、キッチン、トイレ、ロフトが備わり、一見すると誰でも住めそうなアパートの一室のように見える。 しかし、部屋の半分には白い布で覆われた土台のようなものが佇み、まず座る場所が見当たらない。​
+床には土ごと置かれた植物、牛乳らしきものが入った瓶、彫刻のように形作られた粘土が点在し、生活感がありながらも、どこか異様な気配が漂う。
+              </p>
+            </div>
+          </div>
+
+          <div class="desc-dropdown">
+            <div class="desc-dropdown-header">
+              <span class="desc-dropdown-icon">+</span>
+              <span class="desc-dropdown-title">展開</span>
+            </div>
+            <div class="desc-dropdown-content">
+              <p class="desc-lead">
+                来場者には、「かつてUSAGIたちという存在が住処としていたとされる空間の痕跡」が再構築されたものであると説明される。
+
+
+そして、こう問いかけられる。
+
+​
+
+「もし、あなたがここに住むとしたら？ ここを自分なりに快適に過ごすとしたら、何をするか？」
+
+USAGIたちが残した"らしき"ものの用途や意味は明かされず、それらはただ、そこにある。
+
+   </p>
+            </div>
+          </div>
+
+          <div class="desc-dropdown">
+            <div class="desc-dropdown-header">
+              <span class="desc-dropdown-icon">+</span>
+              <span class="desc-dropdown-title">コンセプト</span>
+            </div>
+            <div class="desc-dropdown-content">
+              <p class="desc-lead">
+                来場者は、その空間にあるものを観察し、触れ、試しながら、自分なりの解釈や物語を生み出していく。
+
+​
+
+ここにあるものは、かつて存在したものなのか、それとも今ここで生まれたものなのか。
+その答えを決めるのは、ここにいる一人ひとりの視点と体験である。
+
+​
+
+フィクションとは、再構築された現実であり、そこに触れることで生まれる新たな認識こそが、自分自身の「自実（Self-reality）」となる。 </p>
+            </div>
+          </div>
+        </div>
+
+          <div class="desc-meta">
+            <p><span>Year</span> 2026</p>
+            <p><span>Type</span> Installation / Prototype</p>
+            <p><span>Role</span> Concept, Dev, Design</p>
+          </div>
+        </section>
+
+        <!-- PROJECT SECTIONS -->
+        <div class="projects-container">
+          <!-- WANTED CRIMINALS PROJECT -->
+          <article class="project-section" data-project="criminals">
+            <button class="project-header" aria-expanded="false">
+              <h2 class="project-title">Wanted Criminals</h2>
+              <span class="project-toggle">+</span>
+            </button>
+            
+            <div class="project-content">
+              <div class="project-intro">
+                <div class="intro-thumbnail">
+                  <OptimizedImage
+                    src={thumbnailImg}
+                    alt="Wanted Criminals thumbnail"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="intro-text">
+                  <p class="section-desc">
+                   「Wanted Criminals」 は、指名手配写真のもつフィクション性を再解釈し、デジタル処理を施して新たな文脈に置き換えたポスターシリーズである。
+
+
+本作では、犯罪者の「像」として機能する指名手配写真をデータとして分解し、ランダムな改変を加えることで、視覚的な明確さを揺るがし、写真が持つ意味や役割を変容させている。
+
+​
+
+こうして再構築されたポスターは、求人広告やプロモーションビジュアルといった異なるフォーマットへと組み替えられ、元の写真が持っていた機能や権威を逸脱していく。
+
+
+情報がどのように操作され、異なる文脈の中で受容されるのか——本作は、視覚的な信頼性とその流動性を探る試みである。
+                  </p>
+                </div>
+              </div>
+
+              <div class="project-gallery criminal-gallery">
+                {criminalPoster.map((src, index) => (
+                  <figure class="gallery-item">
+                    <OptimizedImage
+                      src={src}
+                      alt="Jijitsu documentation"
+                      loading="lazy"
+                    />
+                  </figure>
+                ))}
+              </div>
+              <div class="gallery-scroll-indicator">
+                <div class="gallery-scroll-track"></div>
+                <div class="gallery-scroll-slider"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- DREAM MAPPING PROJECT -->
+          <article class="project-section" data-project="dream">
+            <button class="project-header" aria-expanded="false">
+              <h2 class="project-title">Dream Mapping</h2>
+              <span class="project-toggle">+</span>
+            </button>
+            
+            <div class="project-content">
+              <div class="project-intro">
+                <div class="intro-text full-width">
+                  <p class="section-desc">
+                    USAGIたちが記録していたとされる「夢の地図」。それは言葉と図形が交錯し、論理的な説明を拒む断片的な記録である。
+                    
+                    ここに描かれているのは、場所なのか、記憶なのか、それとも誰かの想像の産物なのか。見る者は、その解釈を委ねられ、自らの物語を紡ぐことになる。
+                    
+                    夢とは、語られることで形を成し、共有されることで新たな意味を持つ——「Dream Mapping」は、その流動性を可視化する試みである。
+                  </p>
+                </div>
+              </div>
+
+              <div class="project-gallery dream-gallery">
+                    <div class="dream-slides slides-scroller">
+                  {dreamMapping.map((src, index) => (
+                    <div class="dream-slide" data-index={index}>
+                      <OptimizedImage
+                        src={src}
+                        alt={`Dream mapping ${index + 1}`}
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div class="gallery-scroll-indicator">
+                  <div class="gallery-scroll-track"></div>
+                  <div class="gallery-scroll-slider"></div>
+                </div>
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- RABBIT, HABIT, KUBID SECTION -->
+        <Rabbit />
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Dropdown functionality - toggle on click (matches real-copy behavior)
+    const dropdowns = document.querySelectorAll('.desc-dropdown');
+    dropdowns.forEach((dropdown) => {
+      const header = dropdown.querySelector('.desc-dropdown-header');
+      const icon = dropdown.querySelector('.desc-dropdown-icon');
+      const toggleDropdown = () => {
+        const isOpen = dropdown.classList.toggle('is-open');
+        if (icon) icon.textContent = isOpen ? '•' : '+';
+      };
+      header?.addEventListener('click', toggleDropdown);
+    });
+
+    // Project Section Toggle
+    const projectSections = document.querySelectorAll('.project-section');
+    
+    projectSections.forEach(section => {
+      const header = section.querySelector('.project-header');
+      const toggle = section.querySelector('.project-toggle');
+      
+      header?.addEventListener('click', () => {
+        const isExpanded = header.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle current section
+        header.setAttribute('aria-expanded', String(!isExpanded));
+        section.classList.toggle('expanded', !isExpanded);
+        
+        if (toggle) {
+          toggle.textContent = isExpanded ? '+' : '−';
+        }
+        
+        // Smooth scroll to section when opening
+        if (!isExpanded) {
+          setTimeout(() => {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      });
+    });
+
+    // Dream Mapping Auto-Slide Gallery
+    const dreamSlides = document.querySelectorAll('.dream-slide');
+    const scrollerMode = document.querySelector('.dream-slides.slides-scroller');
+    if (!scrollerMode && dreamSlides.length > 0) {
+      // Query nav elements only when slideshow mode is active
+      const dreamIndicators = document.querySelectorAll('.dream-indicator');
+      const dreamPrev = document.querySelector('.dream-prev');
+      const dreamNext = document.querySelector('.dream-next');
+      let currentSlide = 0;
+      let autoSlideInterval: ReturnType<typeof setInterval>;
+      
+      const showSlide = (index: number) => {
+        dreamSlides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        dreamIndicators.forEach((indicator, i) => {
+          indicator.classList.toggle('active', i === index);
+        });
+      };
+      
+      const nextSlide = () => {
+        currentSlide = (currentSlide + 1) % dreamSlides.length;
+        showSlide(currentSlide);
+      };
+      
+      const prevSlide = () => {
+        currentSlide = (currentSlide - 1 + dreamSlides.length) % dreamSlides.length;
+        showSlide(currentSlide);
+      };
+      
+      const goToSlide = (index: number) => {
+        currentSlide = index;
+        showSlide(currentSlide);
+      };
+      
+      const startAutoSlide = () => {
+        autoSlideInterval = setInterval(nextSlide, 4000);
+      };
+      
+      const stopAutoSlide = () => {
+        clearInterval(autoSlideInterval);
+      };
+      
+      // Initialize
+      showSlide(currentSlide);
+      startAutoSlide();
+      
+      // Event listeners
+      dreamNext?.addEventListener('click', () => {
+        stopAutoSlide();
+        nextSlide();
+        startAutoSlide();
+      });
+      
+      dreamPrev?.addEventListener('click', () => {
+        stopAutoSlide();
+        prevSlide();
+        startAutoSlide();
+      });
+      
+      dreamIndicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          stopAutoSlide();
+          goToSlide(index);
+          startAutoSlide();
+        });
+      });
+      
+      // Pause on hover
+      const dreamGallery = document.querySelector('.dream-gallery');
+      dreamGallery?.addEventListener('mouseenter', stopAutoSlide);
+      dreamGallery?.addEventListener('mouseleave', startAutoSlide);
+    }
+    // if scrollerMode is active, we treat dream-gallery as horizontal scroller (no auto slideshow)
+
+    // Gallery scroll indicator logic for any horizontally-scrollable gallery
+    const projectGalleries = document.querySelectorAll('.project-gallery');
+    projectGalleries.forEach((gallery) => {
+      const indicator = gallery.nextElementSibling;
+      if (!indicator || !indicator.classList.contains('gallery-scroll-indicator')) return;
+
+      const slider = indicator.querySelector('.gallery-scroll-slider');
+      const track = indicator.querySelector('.gallery-scroll-track');
+      // Ensure we have HTMLElements for style access
+      if (!(indicator instanceof HTMLElement) || !(track instanceof Element) || !(slider instanceof Element)) return;
+      const indicatorEl = indicator as HTMLElement;
+      const trackEl = track as HTMLElement;
+      const sliderEl = slider as HTMLElement;
+
+      // Size and align the indicator to the gallery's visible width (column constrained)
+      function updateIndicatorSize() {
+        const galleryRect = gallery.getBoundingClientRect();
+        const parentRect = gallery.parentElement ? gallery.parentElement.getBoundingClientRect() : galleryRect;
+        const offsetLeft = galleryRect.left - parentRect.left;
+        // set indicator width to gallery's visible width
+        indicatorEl.style.width = `${Math.round(galleryRect.width)}px`;
+        // align indicator under the gallery within its parent
+        indicatorEl.style.marginLeft = `${Math.round(offsetLeft)}px`;
+        trackEl.style.width = '100%';
+      }
+
+      let isDragging = false;
+      let startX = 0;
+      let startScrollLeft = 0;
+
+      function getSize(el: Element | null): number {
+        if (!el) return 0;
+        if (el instanceof HTMLElement) return el.offsetWidth || el.getBoundingClientRect().width || 0;
+        return el.getBoundingClientRect().width || 0;
+      }
+
+      function updateSlider() {
+        const scrollWidth = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+        const scrollLeft = gallery.scrollLeft;
+        const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
+
+        // Ensure indicator matches gallery width before computing sizes
+        updateIndicatorSize();
+        const trackWidth = getSize(trackEl);
+        // compute slider width proportional to visible area
+        const sliderWidth = trackWidth > 0 ? (scrollWidth > 0 ? Math.max(40, Math.round((gallery.clientWidth / gallery.scrollWidth) * trackWidth)) : Math.round(trackWidth / 3)) : 0;
+        if (sliderWidth) sliderEl.style.width = `${sliderWidth}px`;
+        const maxMove = Math.max(0, trackWidth - sliderWidth);
+        sliderEl.style.transform = `translateX(${progress * maxMove}px) translateY(-50%)`;
+      }
+
+      function onMouseDown(e: MouseEvent) {
+        isDragging = true;
+        startX = e.clientX;
+        startScrollLeft = gallery.scrollLeft;
+        sliderEl.style.cursor = 'grabbing';
+        e.preventDefault();
+      }
+
+      function onMouseMove(e: MouseEvent) {
+        if (!isDragging) return;
+        const trackWidth = getSize(trackEl);
+        const sliderWidth = getSize(sliderEl);
+        const maxMove = Math.max(0, trackWidth - sliderWidth);
+        const scrollWidth = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+
+        const deltaX = e.clientX - startX;
+        const scrollRatio = scrollWidth / Math.max(1, maxMove);
+        gallery.scrollLeft = startScrollLeft + deltaX * scrollRatio;
+      }
+
+      function onMouseUp(): void {
+        isDragging = false;
+        sliderEl.style.cursor = 'grab';
+      }
+
+      function onTrackClick(e: MouseEvent) {
+        if (e.target === sliderEl) return;
+        const trackRect = trackEl.getBoundingClientRect();
+        const clickX = e.clientX - trackRect.left;
+        const sliderWidth = getSize(sliderEl);
+        const trackWidth = getSize(trackEl);
+        const maxMove = Math.max(0, trackWidth - sliderWidth);
+        const scrollWidth = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+        const targetPos = Math.max(0, Math.min(clickX - sliderWidth / 2, maxMove));
+        const progress = targetPos / Math.max(1, maxMove);
+        gallery.scrollLeft = progress * scrollWidth;
+      }
+
+      // Use wrappers to satisfy TypeScript's EventListener typing
+      sliderEl.addEventListener('mousedown', (e: Event) => onMouseDown(e as MouseEvent));
+      document.addEventListener('mousemove', (e: Event) => onMouseMove(e as MouseEvent));
+      document.addEventListener('mouseup', () => onMouseUp());
+      indicatorEl.addEventListener('click', (e: Event) => onTrackClick(e as MouseEvent));
+
+      // Touch support
+      sliderEl.addEventListener('touchstart', (e: TouchEvent) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startScrollLeft = gallery.scrollLeft;
+      }, { passive: true });
+
+      document.addEventListener('touchmove', (e: TouchEvent) => {
+        if (!isDragging) return;
+        const trackWidth = getSize(trackEl);
+        const sliderWidth = getSize(sliderEl);
+        const maxMove = Math.max(0, trackWidth - sliderWidth);
+        const scrollWidth = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+        const deltaX = e.touches[0].clientX - startX;
+        const scrollRatio = scrollWidth / Math.max(1, maxMove);
+        gallery.scrollLeft = startScrollLeft + deltaX * scrollRatio;
+      }, { passive: true });
+
+      document.addEventListener('touchend', () => { isDragging = false; });
+
+      gallery.addEventListener('scroll', updateSlider, { passive: true });
+      window.addEventListener('resize', () => { updateIndicatorSize(); updateSlider(); });
+      updateIndicatorSize();
+      updateSlider();
+    });
+
+    // Dynamic Title Change and Dark Theme for Rabbit section moved to rabbit.astro
+
+    // Hide header on scroll (20% viewport)
+    const siteHeader = document.querySelector('.site-header');
+    
+    if (siteHeader) {
+      const handleHeaderScroll = () => {
+        const scrollThreshold = window.innerHeight * 0.2;
+        
+        if (window.scrollY > scrollThreshold) {
+          siteHeader.classList.add('header-hidden');
+        } else {
+          siteHeader.classList.remove('header-hidden');
+        }
+      };
+      
+      window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+      handleHeaderScroll(); // Initial check
+    }
+  });
+</script>

@@ -1,0 +1,185 @@
+/* -------------------------
+   RABBIT, HABIT, KUBID SECTION
+   ------------------------- */
+
+.rabbit-section {
+  padding: calc(var(--pad) * 3) 0 calc(var(--pad) * 2);
+  border-top: 2px solid var(--line);
+  margin-top: calc(var(--pad) * 2);
+  transition: border-color 0.6s ease;
+}
+
+.project.dark-theme .rabbit-section {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project.dark-theme .first-text p,
+.project.dark-theme .text-item p,
+.project.dark-theme .rabbit-film .desc p {
+  color: white;
+}
+
+.project.dark-theme .gif-item img,
+.project.dark-theme .rabbit-film-item img {
+  /* keep images visible in dark theme but remove hard borders */
+  border: none;
+  box-shadow: none;
+}
+
+.rabbit-desc-wrapper {
+  max-width: 1400px;
+  margin: 0 auto calc(var(--pad) * 2);
+}
+
+.first-text {
+  text-align: center;
+  margin-bottom: calc(var(--pad) * 3);
+}
+
+.first-text p {
+  margin: 0.5em 0;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.7;
+  color: var(--text);
+  transition: color 0.6s ease;
+}
+
+.grid-text {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+}
+
+.grid-item {
+  box-sizing: border-box;
+}
+
+.text-item p {
+  margin: 0;
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.8;
+  color: var(--muted);
+  transition: color 0.6s ease;
+}
+
+.gif-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;
+  box-shadow: none;
+}
+
+/* -------------------------
+   RABBIT FILM SECTION
+   ------------------------- */
+
+.rabbit-film {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: calc(var(--pad) * 2) 0;
+  overflow-x: hidden;
+}
+
+.rabbit-film .desc {
+  max-width: 800px;
+  margin: 0 auto calc(var(--pad) * 2);
+  padding: 0 clamp(18px, 4vw, 44px);
+}
+
+.rabbit-film .desc p {
+  font-size: clamp(14px, 1.8vw, 18px);
+  line-height: 1.6;
+  margin-bottom: 1em;
+}
+
+.rabbit-film-gallery {
+  display: flex;
+  gap: 0; /* one image per view, no gap */
+  overflow: hidden; /* hide offscreen items */
+  padding: 0;
+  will-change: transform;
+  transition: transform 0.35s ease-in-out;
+}
+
+/* rabbit-behind should layer above the gallery */
+.rabbit-film-gallery {
+  position: relative;
+  z-index: 1;
+}
+
+.rabbit-behind {
+  position: relative;
+  z-index: 20;
+  /* reduce space between gallery and rabbit-behind */
+  margin: calc(var(--pad) * 0.25) auto 0; /* smaller vertical gap, remove bottom margin */
+  max-width: 600px; /* 1.5x smaller than previous 900px */
+  box-sizing: border-box;
+}
+
+.rabbit-behind img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* nudge up slightly to reduce gap with gallery */
+  transform: translateY(-8px);
+}
+
+.rabbit-film-item {
+  flex: 0 0 100%; /* occupy full viewport width of the container */
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center image horizontally */
+}
+
+.rabbit-film-item img {
+  /* scale down images to ~1.5x smaller */
+  height: clamp(267px, 33.3vh, 400px);
+  width: auto;
+  display: block;
+  border: none;
+  box-shadow: none;
+  transition: none;
+}
+
+/* -------------------------
+   RESPONSIVE
+   ------------------------- */
+
+@media (max-width: 900px) {
+  .rabbit-section {
+    padding: calc(var(--pad) * 2) 0 calc(var(--pad) * 1.5);
+  }
+
+  .rabbit-title {
+    font-size: clamp(28px, 7vw, 42px);
+  }
+
+  .first-text {
+    margin-bottom: calc(var(--pad) * 2);
+  }
+
+  .first-text p {
+    font-size: clamp(14px, 3vw, 18px);
+  }
+
+  .grid-text {
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 24px);
+  }
+
+  .rabbit-film-gallery {
+    gap: clamp(16px, 3vw, 24px);
+  }
+
+  .rabbit-film-item img {
+    /* responsive: also scale down roughly 1.5x */
+    height: clamp(200px, 26.7vh, 333px);
+  }
+}

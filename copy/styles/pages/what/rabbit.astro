@@ -1,0 +1,161 @@
+---
+import "../../styles/projects/rabbit.css";
+
+const visitorGifs = [
+  "/assets/what/rabbit/visitor1.gif",
+  "/assets/what/rabbit/visitor2.gif",
+  "/assets/what/rabbit/visitor3.gif",
+  "/assets/what/rabbit/visitor4.gif",
+];
+const filmGifs = [
+  "/assets/what/rabbit/rabbit1.gif",
+  "/assets/what/rabbit/rabbit2.gif",
+  "/assets/what/rabbit/rabbit3.gif",
+  "/assets/what/rabbit/rabbit4.gif",
+  "/assets/what/rabbit/rabbit5.gif",
+  "/assets/what/rabbit/rabbit6.gif",
+  "/assets/what/rabbit/rabbit7.gif",
+];
+---
+
+<section class="rabbit-section" id="rabbit-section">
+
+  <div class="rabbit-desc-wrapper">  
+    <div class="first-text">
+      <p>この空間は</p>
+      <p>USAGIたちの映画 「Rabbit, Habbit, Kubid」 に登場する場所であり</p>
+      <p>彼らの棲家である。</p>
+    </div>
+
+    <div class="grid-text">
+      <div class="grid-item text-item" style="padding: 20px 10px;">
+        <p>
+          来場者がこの空間に足を踏み入れ、展示作品——すなわち彼らの持ち物と関わることで、
+          その様子は知らぬ間に映画の世界の一部として記録され、再構築されていく。
+        </p>
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 40px 15px 10px;">
+        <img src={visitorGifs[0]} alt="Visitor 1" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 10px 20px 35px;">
+        <img src={visitorGifs[1]} alt="Visitor 2" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="grid-item text-item" style="padding: 35px 5px 15px;">
+        <p>
+          しかし、来場者はここが映画の一部であることを知らない。
+        </p>
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 15px 10px 40px;">
+        <img src={visitorGifs[2]} alt="Visitor 3" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="grid-item text-item" style="padding: 25px 15px 20px;">
+        <p>
+          ここでの体験は、映画のストーリーに影響を与え、
+          「見る」存在でありながら、いつの間にか「見られる」存在となる。
+        </p>
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 5px 25px 15px;">
+        <img src={visitorGifs[3]} alt="Visitor 4" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rabbit-film">
+  <div class="desc">
+    <p>映画「rabbit, habid, kubid」 は、うさぎたちが言語を通じて世界を構築し、変容させていく物語 である。</p>
+    <p>彼らにとって、言葉は単なるコミュニケーションではなく、世界そのものを形づくる枠組み である。</p>
+    <p>しかし、うさぎの母親の死をきっかけに、その哲学は揺らぎ、彼らの思考の変化とともに、彼らの見る世界も変わっていく。</p>
+    <p>空間、行動、映像の表現がその変化を反映し、言語＝世界の再構築 のプロセスが描かれる。</p>
+  </div>
+  <div class="rabbit-film-gallery">
+    {filmGifs.map((src, index) => (
+      <figure class="rabbit-film-item">
+        <img
+          src={src}
+          alt={`Rabbit film ${index + 1}`}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Horizontal Slide on Vertical Scroll for Film Gallery with Viewport Lock
+    const filmGallery = document.querySelector('.rabbit-film-gallery') as HTMLElement;
+    const filmSection = document.querySelector('.rabbit-film') as HTMLElement;
+    
+    if (filmGallery && filmSection) {
+      let horizontalProgress = 0;
+      let isInScrollZone = false;
+      
+      const updateGalleryPosition = () => {
+        const galleryWidth = filmGallery.scrollWidth;
+        const visibleWidth = filmGallery.offsetWidth;
+        const maxScroll = galleryWidth - visibleWidth;
+        
+        const translateX = -(horizontalProgress * maxScroll);
+        filmGallery.style.transform = `translateX(${translateX}px)`;
+      };
+      
+      const checkScrollZone = () => {
+        const galleryRect = filmGallery.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const centerPoint = windowHeight / 2;
+        
+        // Check if gallery is in the active zone (center of viewport)
+        isInScrollZone = galleryRect.top <= centerPoint && galleryRect.bottom >= centerPoint;
+        
+        // Reset progress if scrolled away before completing
+        if (galleryRect.top > centerPoint && horizontalProgress > 0) {
+          horizontalProgress = 0;
+          updateGalleryPosition();
+        }
+      };
+      
+      const handleWheel = (e: WheelEvent) => {
+        checkScrollZone();
+        
+        if (isInScrollZone) {
+          const isScrollingDown = e.deltaY > 0;
+          const isScrollingUp = e.deltaY < 0;
+          
+          // Prevent default scroll only when:
+          // - Scrolling down and haven't reached end (progress < 1)
+          // - Scrolling up and haven't reached start (progress > 0)
+          if ((isScrollingDown && horizontalProgress < 1) || (isScrollingUp && horizontalProgress > 0)) {
+            e.preventDefault();
+            
+            // Update horizontal progress based on scroll delta
+            // Adjust sensitivity: smaller divisor = faster scroll
+            const scrollSensitivity = 4000;
+            horizontalProgress += e.deltaY / scrollSensitivity;
+            horizontalProgress = Math.max(0, Math.min(1, horizontalProgress));
+            
+            updateGalleryPosition();
+          }
+          // Allow normal scroll when:
+          // - Scrolling up and at start (progress = 0) - can go back up
+          // - Scrolling down and at end (progress = 1) - can continue down
+        }
+      };
+      
+      // Use wheel event for scroll control
+      window.addEventListener('wheel', handleWheel, { passive: false });
+      
+      // Check zone on regular scroll (for initial positioning)
+      window.addEventListener('scroll', checkScrollZone, { passive: true });
+      
+      checkScrollZone();
+    }
+  });
+</script>

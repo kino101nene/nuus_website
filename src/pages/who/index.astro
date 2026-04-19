@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OptimizedImage from "../../components/OptimizedImage.astro";
+// @ts-ignore
+import nuusDiagram from "../../assets/who/nuus_diagram.png";
+// @ts-ignore
+import seiyaIcon from "../../assets/who/profiles/seiya-icon.JPG";
+// @ts-ignore
+import aiIcon from "../../assets/who/profiles/ai-icon.gif";
+// @ts-ignore
+import neneIcon from "../../assets/who/profiles/nene-icon.JPG";
+import "../../styles/who.css";
+---
+
+<BaseLayout
+  title="Who — Nuus"
+  description="Project collection"
+  current="who"
+>
+
+      <div class="container">
+        <div class="mono-card">
+          <OptimizedImage
+            class="lede-overlay"
+            src={nuusDiagram}
+            alt="Overlay graphic"
+          />
+          
+          <div class="who-layout">
+            <div class="profile">
+              <div class="profile-item">
+                <OptimizedImage
+                  class="profile-img"
+                  src={seiyaIcon}
+                  alt="Profile 1"
+                />
+                <p class="profile-text">Profile 1</p>
+              </div>
+              <div class="profile-item">
+                <OptimizedImage
+                  class="profile-img"
+                  src={aiIcon}
+                  alt="Profile 2"
+                />
+                <p class="profile-text">Profile 2</p>
+              </div>
+              <div class="profile-item">
+                <OptimizedImage
+                  class="profile-img"
+                  src={neneIcon}
+                  alt="Profile 3"
+                />
+                <p class="profile-text">Profile 3</p>
+              </div>
+            </div>
+
+            <div class="lede-wrapper">
+              <p class="lede">
+               ヌースは</p>
+              <p> 本質(X軸)と現象(Ｙ軸)に</p>
+              <p>N軸をもって</p>
+              <p>作品を作る</p>
+               <p> クリエイティブ集団
+              </p>
+            </div>
+          </div>
+
+         
+        </div>
+      </div>
+</BaseLayout>

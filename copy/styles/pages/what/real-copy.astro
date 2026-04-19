@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/projects/real-copy.css";
+
+const gallery = [
+  "/assets/what/real-copy/contents/IMG_1652.JPG",
+  "/assets/what/real-copy/contents/IMG_8360.JPG",
+  "/assets/what/real-copy/contents/IMG_8375.JPG",
+  "/assets/what/real-copy/contents/IMG_8407.JPG",
+];
+
+const videoSrc = "/assets/what/real-copy/contents/real_copy_compare.mp4";
+const title = "Real_Copy";
+---
+
+<BaseLayout title={`${title} — Nuus`} description="Project page" current="what">
+  <main class="project project--wide" id="top">
+    <section class="hero-grid">
+      <!-- LEFT: vertical title -->
+      <div class="hero-title">
+        <h1 class="title-vertical">{title}</h1>
+      </div>
+
+      <!-- RIGHT: video + description -->
+      <div class="hero-main">
+        <div class="video-wrap">
+          <video
+            class="video"
+            src={videoSrc}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
+        </div>
+
+        <div class="desc">
+          <p class="desc-lead">
+           来場者は、作品を見ずに所定の位置まで誘導され、VRゴーグルを装着する。
+       
+目の前に広がるのは、木の壁、枯山水の庭、テーブルと椅子—— そして巨大な木の箱。
+          </p>
+          <p class="desc-lead">
+やがて、観客はその箱の中へと誘導される。箱の中では、壁一面に映像が流れ、中央の箱の穴を覗くと、さらに別の映像が見える。
+   
+VRを外すと、そこには実際には存在しないはずのVRの世界の痕跡 が残されている。床には木屑や設計図、バーコードのような白黒の紙が散らばり、テーブルにはVRの中と同じ皿、フォーク、バナナが置かれている。
+
+          </p>
+          <div class="mobile-desc-colapse is-open">
+            <p class="desc-lead">
+REAL_copy. は、VRが「リアルのモデル」として現実に重なることで、現実とは何か？という問いを観客に投げかけるインスタレーションである。
+       
+VRと現実が共存することで、視覚だけでなく、触覚・嗅覚・聴覚といった感覚までもが共有され、両者の境界が揺らぎ、観客のリアルに対する認識が変容していく。
+       
+現実空間には、VR内で見たものと対応する「机」「椅子」「コップ」「壁」が配置されているが、VRと現実での見た目や存在感は意図的にズレている。
+     
+これにより、「現実はリアルであるべき」「VRは非現実的であるべき」という固定概念が揺さぶられ、観客は無意識のうちに「リアル（アクチュアル）」と「リアル（本質）」を再考させられる。
+            </p>
+          </div>
+          <button class="mobile-desc-toggle" type="button">Read more</button>
+        </div>
+
+        <div class="desc-meta">
+          <p><span>展示時期</span> 2022年　8月</p>
+          <p><span>場所</span> 表参道, 東京</p>
+          <p><span>Role</span> Concept, Dev, Design</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY UNDER ALL -->
+   <section class="gallery" aria-label="Gallery">
+  {gallery.map((src) => (
+    <figure class="shot">
+      <div class="shot-frame">
+        <img
+          class="shot-img"
+          src={src}
+          alt="Real Copy documentation"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </figure>
+  ))}
+</section>
+
+  </main>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hide header on scroll only on desktop (no hide on mobile)
+    const siteHeader = document.querySelector('.site-header');
+    const mqDesktop = window.matchMedia('(min-width: 601px)');
+
+    if (siteHeader && mqDesktop.matches) {
+      const handleHeaderScroll = () => {
+        const scrollThreshold = window.innerHeight * 0.2;
+
+        if (window.scrollY > scrollThreshold) {
+          siteHeader.classList.add('header-hidden');
+        } else {
+          siteHeader.classList.remove('header-hidden');
+        }
+      };
+
+      window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+      handleHeaderScroll(); // Initial check
+    }
+
+    // Mobile description collapse
+    const mobileDesc = document.querySelector('.mobile-desc-colapse');
+    const toggleButton = document.querySelector('.mobile-desc-toggle');
+
+    if (mobileDesc && toggleButton) {
+      const mq = window.matchMedia('(max-width: 600px)');
+
+      const applyState = () => {
+        if (mq.matches) {
+          mobileDesc.classList.remove('is-open');
+          toggleButton.style.display = 'inline-flex';
+          toggleButton.textContent = 'Read more';
+        } else {
+          mobileDesc.classList.add('is-open');
+          toggleButton.style.display = 'none';
+        }
+      };
+
+      applyState();
+      if (mq.addEventListener) {
+        mq.addEventListener('change', applyState);
+      } else if (mq.addListener) {
+        mq.addListener(applyState);
+      }
+
+      toggleButton.addEventListener('click', () => {
+        const isOpen = mobileDesc.classList.toggle('is-open');
+        toggleButton.textContent = isOpen ? 'Read less' : 'Read more';
+      });
+    }
+  });
+</script>

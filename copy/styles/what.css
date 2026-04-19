@@ -1,0 +1,318 @@
+@import "./main.css";
+
+/* =========================================================
+   WHAT page — sticky stacking cards (no nav dots)
+   - Mobile: normal scroll list
+   - Desktop: sticky stack + staggered sticky-top
+   - Visual: minimal borders, strong grid rhythm, calm hover
+   ========================================================= */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Sticky Settings */
+  --sticky-top: 10vh;
+  --card-height: 65vh;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: auto; /* keep crisp; no nav dots now */
+}
+
+body {
+  margin: 0 var(--body-margin-x);
+  background: var(--bg);
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial,
+    "Apple Color Emoji",
+    "Segoe UI Emoji";
+  color: var(--text);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================================
+   Header / Intro
+   ========================================================= */
+.collection {
+  padding: clamp(32px, 5vw, 72px) 0;
+}
+
+.collection-head {
+  padding: 18px 0;
+}
+
+.collection-title {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.02em;
+}
+
+.collection-subtitle {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--muted);
+}
+
+/* =========================================================
+   List / Cards
+   ========================================================= */
+.collection-list {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: none;
+  margin: 0 auto;
+
+  /* Gives breathing room after last sticky card */
+  padding-bottom: 50vh;
+}
+
+/* Card shell */
+.project-card {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-left: 0;
+  background: transparent;
+}
+
+.project-card:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+}
+
+/* The actual card surface */
+.project-inner {
+  background: transparent;
+
+  /* default layout: vertical */
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+
+  /* consistent internal spacing */
+  padding: 2.25rem 1.5rem;
+
+  /* animation prep */
+  opacity: 1;
+  transform: translateY(0);
+
+  will-change: transform, box-shadow;
+}
+
+/* Per-card blue-scale backgrounds */
+#proj-1 .project-inner {
+  background: transparent;
+}
+
+#proj-2 .project-inner {
+  background: transparent;
+}
+
+#proj-3 .project-inner {
+  background: transparent;
+}
+
+/* Titlebar line as a design element */
+.project-titlebar {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 14px;
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.project-title {
+  font-size: 1.8rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.project-desc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 1.25rem 0;
+}
+
+/* Thumbnails: strict 16:9 */
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.001);
+  filter: contrast(1.02) saturate(0.95);
+  transition:
+    transform 400ms ease,
+    filter 400ms ease;
+}
+
+/* Actions */
+.project-actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+  text-decoration: none;
+  padding: 0.85rem 1.4rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.btn-primary {
+  background-color: rgba(0, 0, 0, 0.92);
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.92);
+}
+
+.btn-primary:hover {
+  background-color: rgba(0, 0, 0, 0.78);
+  border-color: rgba(0, 0, 0, 0.78);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.84);
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Hover polish: calm lift */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-inner {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
+  }
+
+  .project-card:hover .project-thumb img {
+    transform: scale(1.03);
+    filter: contrast(1.05) saturate(1);
+  }
+}
+
+/* =========================================================
+   Desktop: sticky stacking
+   ========================================================= */
+@media (min-width: 768px) {
+  .collection-list {
+    padding-left: 0;
+  }
+
+  .project-card {
+    position: sticky;
+    top: var(--sticky-top);
+    height: var(--card-height);
+
+    /* No big vertical padding here; inner handles it */
+    padding: 0;
+    border-top: none; /* grid lines handled by spacing */
+  }
+
+  /* Layering: earlier cards sit above later cards */
+  #proj-1 {
+    z-index: 1;
+  }
+  #proj-2 {
+    z-index: 2;
+  }
+  #proj-3 {
+    z-index: 3;
+  }
+
+  /* Stagger sticky tops for a subtle stack reveal */
+  #proj-1 {
+    top: 10vh;
+  }
+  #proj-2 {
+    top: 12vh;
+  }
+  #proj-3 {
+    top: 14vh;
+  }
+
+  /* Center the inner card inside the sticky viewport */
+  .project-inner {
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    /* Replace vertical stack with 2-lane grid */
+    display: grid;
+    grid-template-columns: 1fr 600px;
+    gap: clamp(28px, 3vw, 56px);
+    align-items: center;
+
+    padding: 0 clamp(26px, 4vw, 64px);
+  }
+
+  /* Responsive tweak for smaller laptops */
+  @media (max-width: 1300px) {
+    .project-inner {
+      grid-template-columns: 1fr 450px;
+    }
+  }
+
+  .project-title {
+    font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+  }
+}
+
+/* =========================================================
+   Mobile: spacing polish
+   ========================================================= */
+@media (max-width: 520px) {
+  .project-inner {
+    padding: 1.75rem 1.1rem;
+    border-radius: 12px;
+  }
+
+  .project-title {
+    font-size: 1.55rem;
+  }
+}

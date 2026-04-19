@@ -1,0 +1,803 @@
+:root {
+  --max: 1100px;
+  --pad: clamp(18px, 4vw, 44px);
+  --gap: clamp(14px, 2.6vw, 24px);
+
+  --text: rgba(0, 0, 0, 0.9);
+  --muted: rgba(0, 0, 0, 0.62);
+
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Ensure gallery slidebar matches real-copy color and is visible above content */
+.gallery-scroll-indicator {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  margin-top: var(--gap);
+  cursor: pointer;
+  z-index: 60;
+}
+
+.gallery-scroll-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line);
+  transform: translateY(-50%);
+  z-index: 60;
+}
+
+.gallery-scroll-slider {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 10px;
+  background: var(--line);
+  border-radius: 20px;
+  transform: translateY(-50%);
+  transition: transform 0.1s ease-out;
+  cursor: grab;
+  user-select: none;
+  z-index: 61;
+}
+
+/* Hide header on scroll */
+.site-header {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.site-header.header-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project {
+  max-width: 1400px; /* or even 1600px if you like */
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 48px);
+  color: var(--text);
+  background: white;
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease;
+}
+
+.project.dark-theme {
+  background: black;
+  color: white;
+}
+
+.project.dark-theme .title-vertical {
+  color: white;
+}
+
+/* Page-level modifier: allow content to span the full viewport
+   while preserving side margins via the existing padding variable. */
+.project.project--wide {
+  max-width: none;
+  width: 100%;
+  margin: 0; /* keep flush but padding creates the visual margin */
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+  box-sizing: border-box;
+}
+
+/* -------------------------
+   PAGE GRID (MAIN WRAPPER)
+   ------------------------- */
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: calc(var(--gap) * 1.2);
+  align-items: start;
+  overflow: visible;
+}
+
+/* -------------------------
+   HERO SECTION
+   ------------------------- */
+
+.hero-section {
+  padding-bottom: calc(var(--pad) * 0.9);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.6s ease;
+
+  /* Use grid so desc-meta, gif, and desc align exactly as in Real_Copy */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: calc(var(--gap) * 1.2);
+}
+
+.hero-title {
+  /* keeps the vertical title aligned nicely */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 6px;
+  grid-column: 1;
+  grid-row: 1;
+  overflow: visible;
+  position: sticky;
+  top: var(--pad);
+  z-index: 100;
+  height: fit-content;
+}
+
+.page-content {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-x: hidden;
+}
+
+/* Vertical title (cleaner than rotate transforms) */
+.title-vertical {
+  margin: 0;
+  font-size: clamp(84px, 12vw, 140px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: hidden;
+  /* vertical writing */
+  writing-mode: vertical-rl;
+
+  /* makes it read top-to-bottom on the left side */
+  transform: rotate(180deg);
+
+  /* optional: subtle spacing */
+  padding: 10px;
+  .gallery-scroll-indicator {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin-top: var(--gap);
+    cursor: pointer;
+  }
+
+  .gallery-scroll-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--line);
+    transform: translateY(-50%);
+    color: var(--line);
+  }
+
+  .gallery-scroll-slider {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 10px;
+    background: var(--line);
+    border-radius: 20px;
+    transform: translateY(-50%);
+    transition: transform 0.1s ease-out;
+    cursor: grab;
+    user-select: none;
+    /* default initial width to match real-copy visual */
+    width: calc(33.333% - var(--gap) * 2 / 3);
+  }
+
+  .gallery-scroll-slider:active {
+    cursor: grabbing;
+  }
+
+  /* smooth transitions */
+  opacity: 1;
+  transition:
+    opacity 0.4s ease-in-out,
+    color 0.6s ease;
+}
+
+.title-vertical.fade-out {
+  opacity: 0;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  top: var(--pad);
+  right: var(--pad);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s ease-in-out,
+    visibility 0.4s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  opacity: 0.7;
+}
+
+.back-to-top-text {
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.back-to-top-arrow {
+  width: clamp(42px, 5.4vw, 54px);
+  height: clamp(42px, 5.4vw, 54px);
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Right side: video + description stacked */
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap) * 1.2);
+}
+
+/* Video/GIF container */
+.video-wrap,
+.gif-wrap {
+  overflow: hidden;
+}
+
+.video,
+.gif {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+/* Description under video */
+.desc {
+  display: grid;
+  gap: 10px;
+}
+.desc {
+  grid-row: 3;
+}
+
+/* Make dropdown + meta styles match Real Copy page */
+.desc-dropdown {
+  position: relative;
+}
+
+.desc-dropdown-header {
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s ease;
+  width: 40%;
+}
+
+.desc-dropdown.is-open .desc-dropdown-header {
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+}
+
+.desc-dropdown-icon {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--line);
+  line-height: 1;
+}
+
+.desc-dropdown-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.desc-dropdown.is-open .desc-dropdown-title {
+  color: var(--text);
+}
+
+.desc-dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    padding 0.3s ease;
+  padding: 0 0;
+}
+
+.desc-dropdown.is-open .desc-dropdown-content {
+  max-height: 600px;
+  padding: 16px 0;
+}
+
+.desc-lead {
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 0;
+}
+
+.desc-meta {
+  /* place in grid row 1 and match Real_Copy spread by centering within content width */
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 2fr));
+  gap: 10px;
+  padding: 12px 16px;
+  justify-self: center;
+  align-self: start;
+  width: 100%;
+  max-width: 1400px; /* match Real_Copy content max width */
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.desc-meta p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.desc-meta span {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.55);
+  text-decoration: underline;
+  margin-bottom: 6px;
+  transition: color 0.6s ease;
+}
+
+/* Dropdown component styles (match Real Copy) */
+.desc-dropdown {
+  position: relative;
+}
+
+.desc-dropdown-header {
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s ease;
+  width: 40%;
+}
+
+.desc-dropdown.is-open .desc-dropdown-header {
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+}
+
+.desc-dropdown-icon {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--line);
+  line-height: 1;
+}
+
+.desc-dropdown-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.desc-dropdown.is-open .desc-dropdown-title {
+  color: var(--text);
+}
+
+.desc-dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    padding 0.3s ease;
+  padding: 0 0;
+}
+
+.desc-dropdown.is-open .desc-dropdown-content {
+  max-height: 600px;
+  padding: 16px 0;
+}
+
+.desc-lead {
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 0;
+  transition: color 0.6s ease;
+}
+
+.desc-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 2fr));
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.desc-meta p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+  transition: color 0.6s ease;
+}
+
+.desc-meta span {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.55);
+  text-decoration: underline;
+  margin-bottom: 6px;
+  transition: color 0.6s ease;
+}
+
+/* -------------------------
+   PROJECT SECTIONS (COLLAPSIBLE)
+   ------------------------- */
+
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: calc(var(--pad) * 1);
+}
+
+.project-section {
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.6s ease;
+}
+
+.project-header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: calc(var(--pad) * 0.8) 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  transition:
+    background 0.2s ease,
+    color 0.6s ease;
+}
+
+.project-header:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.project-title {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  transition: color 0.6s ease;
+}
+
+.project-toggle {
+  font-size: 32px;
+  line-height: 1;
+  color: var(--text);
+  transition:
+    transform 0.3s ease,
+    color 0.6s ease;
+  min-width: 32px;
+  text-align: center;
+}
+
+.project-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.project-section.expanded .project-content {
+  max-height: 10000px;
+  padding-bottom: calc(var(--pad) * 2);
+}
+
+.project-intro {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: calc(var(--gap) * 2);
+  max-width: 1000px;
+  margin: 0 auto calc(var(--pad) * 1.5);
+  align-items: start;
+}
+
+.intro-thumbnail {
+  width: 100%;
+}
+
+.intro-thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;
+  box-shadow: none;
+}
+
+.intro-text {
+  text-align: left;
+}
+
+.intro-text.full-width {
+  grid-column: 1 / -1;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-desc {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+  transition: color 0.6s ease;
+}
+
+/* -------------------------
+   PROJECT GALLERIES
+   ------------------------- */
+
+.project-gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Criminal Posters - horizontal scroller showing 3 images at once */
+.criminal-gallery {
+  display: flex;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.criminal-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  margin: 0;
+  flex: 0 0 calc(33.333% - var(--gap));
+  min-width: 220px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1.414;
+  object-fit: cover;
+  display: block;
+  border: none;
+  box-shadow: none;
+}
+
+/* Dream Mapping Slideshow Gallery */
+.dream-gallery {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.dream-slides {
+  width: 100%;
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dream-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.dream-slide {
+  flex: 0 0 calc(50% - var(--gap) / 2);
+  min-width: 300px;
+  display: block;
+}
+
+.dream-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.dream-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.dream-nav {
+  background: transparent;
+  border: 1px solid var(--line);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.dream-nav:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: var(--text);
+}
+
+.dream-indicators {
+  display: flex;
+  gap: 10px;
+}
+
+.dream-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.dream-indicator.active {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.dream-indicator:hover {
+  border-color: var(--text);
+}
+
+/* -------------------------
+  RESPONSIVE
+  ------------------------- */
+
+@media (max-width: 600px) {
+  /* Two-column hero layout on mobile: meta (row 1 full), title + gif (row 2), desc (row 3 full) */
+  .page-grid {
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: calc(var(--gap) * 1.2);
+    align-items: stretch;
+  }
+
+  /* Title in row 2, first column; no sticky, low z-index */
+  .hero-title {
+    grid-column: 1;
+    grid-row: 2;
+    position: static;
+    top: auto;
+    z-index: 1;
+    padding-top: 0;
+  }
+
+  /* Let hero children participate directly in the page grid */
+  .page-content {
+    grid-row: auto;
+    grid-column: 1 / span 2;
+    display: contents;
+  }
+
+  .project-title {
+    font-size: clamp(24px, 5vw, 32px);
+  }
+
+  .project-intro {
+    grid-template-columns: 1fr;
+    gap: calc(var(--gap) * 1.5);
+  }
+
+  .intro-thumbnail {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .intro-text {
+    text-align: center;
+  }
+
+  .intro-text.full-width {
+    text-align: center;
+  }
+
+  .criminal-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(16px, 3vw, 24px);
+  }
+
+  .title-vertical {
+    /* keep vertical orientation on mobile as well */
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: clamp(36px, 8vw, 56px);
+    line-height: 1.1;
+  }
+
+  /* Position hero elements within the mobile grid */
+  .hero-section {
+    display: contents;
+  }
+
+  /* desc-meta: row 1, spans both columns */
+  .desc-meta {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-bottom: 1px solid var(--line);
+    position: static; /* ensure normal flow on mobile */
+  }
+
+  /* GIF: row 2, second column */
+  .gif-wrap {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  /* Description: row 3, spans both columns */
+  .desc {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+  }
+
+  /* Match Real_Copy mobile meta sizing */
+  .desc-meta p {
+    font-size: 12px;
+  }
+
+  .desc-meta span {
+    font-size: 10px;
+  }
+
+  .dream-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}

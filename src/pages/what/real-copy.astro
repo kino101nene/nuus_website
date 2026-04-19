@@ -1,0 +1,272 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OptimizedImage from "../../components/OptimizedImage.astro";
+// @ts-ignore
+import img1 from "../../assets/real-copy/contents/IMG_1652.JPG";
+// @ts-ignore
+import img2 from "../../assets/real-copy/contents/IMG_8360.JPG";
+// @ts-ignore
+import img3 from "../../assets/real-copy/contents/IMG_8375.JPG";
+// @ts-ignore
+import img4 from "../../assets/real-copy/contents/IMG_8407.JPG";
+// @ts-ignore
+import videoSrc from "../../assets/real-copy/contents/real_copy_compare.mp4";
+import "../../styles/projects/real-copy.css";
+
+const gallery = [
+  img1,
+  img2,
+  img3,
+  img4,
+];
+
+const title = "Real_Copy";
+---
+
+<BaseLayout title={`${title} — Nuus`} description="Project page" current="what">
+  <main class="project project--wide" id="top">
+    <section class="hero-grid">
+      <!-- LEFT: vertical title -->
+      <div class="hero-title">
+        <h1 class="title-vertical">{title}</h1>
+      </div>
+
+      <!-- RIGHT: video + description -->
+      <div class="hero-main">
+        <div class="video-wrap">
+          <video
+            class="video"
+            src={videoSrc}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
+        </div>
+
+        <div class="desc">
+          <div class="desc-dropdown">
+            <div class="desc-dropdown-header">
+              <span class="desc-dropdown-icon">+</span>
+              <span class="desc-dropdown-title">体験</span>
+            </div>
+            <div class="desc-dropdown-content">
+              <p class="desc-lead">
+                来場者は、作品を見ずに所定の位置まで誘導され、VRゴーグルを装着する。
+                目の前に広がるのは、木の壁、枯山水の庭、テーブルと椅子—— そして巨大な木の箱。
+              </p>
+            </div>
+          </div>
+
+          <div class="desc-dropdown">
+            <div class="desc-dropdown-header">
+              <span class="desc-dropdown-icon">+</span>
+              <span class="desc-dropdown-title">展開</span>
+            </div>
+            <div class="desc-dropdown-content">
+              <p class="desc-lead">
+                やがて、観客はその箱の中へと誘導される。箱の中では、壁一面に映像が流れ、中央の箱の穴を覗くと、さらに別の映像が見える。
+                VRを外すと、そこには実際には存在しないはずのVRの世界の痕跡 が残されている。床には木屑や設計図、バーコードのような白黒の紙が散らばり、テーブルにはVRの中と同じ皿、フォーク、バナナが置かれている。
+              </p>
+            </div>
+          </div>
+
+          <div class="desc-dropdown">
+            <div class="desc-dropdown-header">
+              <span class="desc-dropdown-icon">+</span>
+              <span class="desc-dropdown-title">コンセプト</span>
+            </div>
+            <div class="desc-dropdown-content">
+              <p class="desc-lead">
+                REAL_copy. は、VRが「リアルのモデル」として現実に重なることで、現実とは何か？という問いを観客に投げかけるインスタレーションである。
+                VRと現実が共存することで、視覚だけでなく、触覚・嗅覚・聴覚といった感覚までもが共有され、両者の境界が揺らぎ、観客のリアルに対する認識が変容していく。
+                現実空間には、VR内で見たものと対応する「机」「椅子」「コップ」「壁」が配置されているが、VRと現実での見た目や存在感は意図的にズレている。
+                これにより、「現実はリアルであるべき」「VRは非現実的であるべき」という固定概念が揺さぶられ、観客は無意識のうちに「リアル（アクチュアル）」と「リアル（本質）」を再考させられる。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc-meta">
+          <p><span>展示時期</span> 2022年　8月</p>
+          <p><span>場所</span> 表参道, 東京</p>
+          <p><span>Role</span> Concept, Dev, Design</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY UNDER ALL -->
+   <section class="gallery" aria-label="Gallery">
+  {gallery.map((src) => (
+    <figure class="shot">
+      <div class="shot-frame">
+        <OptimizedImage
+          class="shot-img"
+          src={src}
+          alt="Real Copy documentation"
+          loading="lazy"
+        />
+      </div>
+    </figure>
+  ))}
+</section>
+
+    <div class="gallery-scroll-indicator">
+      <div class="gallery-scroll-track"></div>
+      <div class="gallery-scroll-slider"></div>
+    </div>
+
+  </main>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hide header on scroll only on desktop (no hide on mobile)
+    const siteHeader = document.querySelector('.site-header');
+    const mqDesktop = window.matchMedia('(min-width: 601px)');
+
+    if (siteHeader && mqDesktop.matches) {
+      const handleHeaderScroll = () => {
+        const scrollThreshold = window.innerHeight * 0.2;
+
+        if (window.scrollY > scrollThreshold) {
+          siteHeader.classList.add('header-hidden');
+        } else {
+          siteHeader.classList.remove('header-hidden');
+        }
+      };
+
+      window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+      handleHeaderScroll(); // Initial check
+    }
+
+    // Dropdown functionality - toggle on hover (desktop) or click (mobile)
+    const dropdowns = document.querySelectorAll('.desc-dropdown');
+    const isMobile = window.matchMedia('(max-width: 600px)');
+
+    dropdowns.forEach((dropdown) => {
+      const header = dropdown.querySelector('.desc-dropdown-header');
+      const icon = dropdown.querySelector('.desc-dropdown-icon');
+      
+      const toggleDropdown = () => {
+        const isOpen = dropdown.classList.toggle('is-open');
+        if (icon) icon.textContent = isOpen ? '•' : '+';
+      };
+
+      header?.addEventListener('click', toggleDropdown);
+    });
+
+    // Custom gallery scroll indicator
+    const gallery = document.querySelector('.gallery') as HTMLElement;
+    const slider = document.querySelector('.gallery-scroll-slider') as HTMLElement;
+    const track = document.querySelector('.gallery-scroll-track') as HTMLElement;
+    const indicator = document.querySelector('.gallery-scroll-indicator') as HTMLElement;
+
+    if (gallery && slider && track && indicator) {
+      let isDragging = false;
+      let startX = 0;
+      let startScrollLeft = 0;
+
+      const updateSlider = () => {
+        if (isDragging) return;
+        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
+        const scrollLeft = gallery.scrollLeft;
+        const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
+        
+        const sliderWidth = slider.offsetWidth;
+        const trackWidth = track.offsetWidth;
+        const maxMove = trackWidth - sliderWidth;
+        
+        slider.style.transform = `translateX(${progress * maxMove}px) translateY(-50%)`;
+      };
+
+      // Drag to scroll
+      const onMouseDown = (e: MouseEvent) => {
+        isDragging = true;
+        startX = e.clientX;
+        startScrollLeft = gallery.scrollLeft;
+        slider.style.cursor = 'grabbing';
+        e.preventDefault();
+      };
+
+      const onMouseMove = (e: MouseEvent) => {
+        if (!isDragging) return;
+        
+        const sliderWidth = slider.offsetWidth;
+        const trackWidth = track.offsetWidth;
+        const maxMove = trackWidth - sliderWidth;
+        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
+        
+        const deltaX = e.clientX - startX;
+        const scrollRatio = scrollWidth / maxMove;
+        
+        gallery.scrollLeft = startScrollLeft + deltaX * scrollRatio;
+        
+        // Update slider position while dragging
+        const progress = scrollWidth > 0 ? gallery.scrollLeft / scrollWidth : 0;
+        slider.style.transform = `translateX(${progress * maxMove}px) translateY(-50%)`;
+      };
+
+      const onMouseUp = () => {
+        isDragging = false;
+        slider.style.cursor = 'grab';
+      };
+
+      // Click on track to jump
+      const onTrackClick = (e: MouseEvent) => {
+        if (e.target === slider) return;
+        
+        const trackRect = track.getBoundingClientRect();
+        const clickX = e.clientX - trackRect.left;
+        const sliderWidth = slider.offsetWidth;
+        const trackWidth = track.offsetWidth;
+        const maxMove = trackWidth - sliderWidth;
+        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
+        
+        // Center slider on click position
+        const targetPos = Math.max(0, Math.min(clickX - sliderWidth / 2, maxMove));
+        const progress = targetPos / maxMove;
+        
+        gallery.scrollLeft = progress * scrollWidth;
+      };
+
+      slider.addEventListener('mousedown', onMouseDown);
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+      indicator.addEventListener('click', onTrackClick);
+
+      // Touch support
+      slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startScrollLeft = gallery.scrollLeft;
+      }, { passive: true });
+
+      document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        const sliderWidth = slider.offsetWidth;
+        const trackWidth = track.offsetWidth;
+        const maxMove = trackWidth - sliderWidth;
+        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
+        
+        const deltaX = e.touches[0].clientX - startX;
+        const scrollRatio = scrollWidth / maxMove;
+        
+        gallery.scrollLeft = startScrollLeft + deltaX * scrollRatio;
+        
+        const progress = scrollWidth > 0 ? gallery.scrollLeft / scrollWidth : 0;
+        slider.style.transform = `translateX(${progress * maxMove}px) translateY(-50%)`;
+      }, { passive: true });
+
+      document.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+
+      gallery.addEventListener('scroll', updateSlider, { passive: true });
+      window.addEventListener('resize', updateSlider);
+      updateSlider();
+    }
+  });
+</script>

@@ -1,0 +1,365 @@
+:root {
+  --max: 1100px;
+  --pad: clamp(18px, 4vw, 44px);
+  --gap: clamp(14px, 2.6vw, 24px);
+
+  --text: rgba(0, 0, 0, 0.9);
+  --muted: rgba(0, 0, 0, 0.62);
+  --line: rgba(0, 0, 0, 0.14);
+
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Hide header on scroll */
+.site-header {
+  transition: opacity 0.15s ease-in-out;
+}
+
+.site-header.header-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project {
+  max-width: 1400px; /* or even 1600px if you like */
+  margin: 0 auto;
+  padding: clamp(16px, 3vw, 48px);
+  color: var(--text);
+}
+
+/* Page-level modifier: allow content to span the full viewport
+   while preserving side margins via the existing padding variable. */
+.project.project--wide {
+  max-width: none;
+  width: 100%;
+  margin: 0; /* keep flush but padding creates the visual margin */
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+  box-sizing: border-box;
+}
+
+/* -------------------------
+   HERO GRID
+   ------------------------- */
+
+/*
+  Interpreting your layout:
+  - Title column: 1fr (left)
+  - Main content: takes the rest (video + description stacked)
+  - Then gallery spans full width below
+*/
+.hero-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto auto auto;
+  gap: calc(var(--gap) * 1.2);
+  align-items: start;
+  padding-bottom: calc(var(--pad) * 0.9);
+  border-bottom: 1px solid var(--line);
+  overflow: visible;
+}
+
+.hero-title {
+  /* keeps the vertical title aligned nicely */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 6px;
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  overflow: visible;
+  position: sticky;
+  top: var(--pad);
+  z-index: 10;
+}
+
+/* Vertical title (cleaner than rotate transforms) */
+.title-vertical {
+  margin: 0;
+  font-size: clamp(84px, 12vw, 140px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: hidden;
+  /* vertical writing */
+  writing-mode: vertical-rl;
+
+  /* makes it read top-to-bottom on the left side */
+  transform: rotate(180deg);
+
+  /* optional: subtle spacing */
+  padding: 10px;
+}
+
+/* Right side: video + description stacked */
+.hero-main {
+  display: contents;
+}
+
+/* Video container */
+.video-wrap {
+  overflow: hidden;
+  grid-row: 2;
+  grid-column: 2;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: var(--line);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+/* Description under video */
+.desc {
+  display: grid;
+  gap: 10px;
+  grid-row: 3;
+  grid-column: 2;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: var(--line);
+  padding: 12px 0;
+}
+
+.desc-lead {
+  margin: 0;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 5px 20px 5px 20px;
+}
+
+.mobile-desc-colapse {
+  display: block;
+}
+
+.mobile-desc-toggle {
+  display: none;
+  margin: 6px 20px 0 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.desc-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 2fr));
+  gap: 10px;
+  padding: 12px 16px;
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.desc-meta p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.desc-meta span {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.55);
+  text-decoration: underline;
+  margin-bottom: 6px;
+}
+
+/* -------------------------
+   GALLERY (tiles)
+   ------------------------- */
+
+.gallery {
+  padding-top: calc(var(--pad) * 0.9);
+  /* horizontal, responsive row — keeps image aspect ratios and allows scrolling */
+  display: flex;
+  gap: var(--gap);
+  align-items: start;
+  overflow-x: auto;
+  padding-bottom: calc(var(--gap) / 2);
+  /* enable momentum scrolling on touch devices */
+  -webkit-overflow-scrolling: touch;
+  /* ensure items can shrink to fit the viewport instead of causing page overflow */
+  flex-wrap: nowrap;
+}
+
+/* Each tile item */
+.shot {
+  margin: 0;
+  /* allow shots to shrink/grow so the whole gallery fits the viewport */
+  flex: 1 1 0;
+  min-width: 0; /* allow children to shrink below content size */
+}
+
+/* Wide rectangle tile */
+.shot-frame {
+  position: relative;
+  width: 100%;
+
+  /* aspect ratio 4:3 */
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  /* deep blue, borderline black */
+  background: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  display: grid;
+  place-items: center;
+}
+
+/* Image: centered, preserves ratio, scales on interaction */
+.shot-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  /* constrain to frame, prevent overflow */
+  max-width: 100%;
+  max-height: 100%;
+
+  /* start smaller, transform from center */
+  transform: scale(0.5);
+  transform-origin: center center;
+  transition: transform 260ms ease;
+  will-change: transform;
+}
+
+/* Hover zooms OUT (image grows) */
+.shot-frame:hover .shot-img {
+  transform: scale(0.9);
+}
+
+/* Nice: keyboard focus support if you later wrap with <a> */
+.shot-frame:focus-within .shot-img {
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .shot-frame {
+    aspect-ratio: 4 / 3; /* slightly taller on mobile */
+  }
+
+  .shot {
+    /* wide cards so next slide peeks in */
+    flex: 0 0 80%;
+    max-width: none;
+  }
+
+  /* On mobile, don't shrink gallery images */
+  .shot-img {
+    transform: scale(1);
+  }
+
+  .shot-frame:hover .shot-img,
+  .shot-frame:focus-within .shot-img {
+    transform: scale(1);
+  }
+}
+
+/* -------------------------
+   RESPONSIVE
+   ------------------------- */
+
+@media (max-width: 600px) {
+  .gallery {
+    /* keep horizontal strip on mobile */
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  /* Two-column hero on mobile: title (small col) + video/content */
+  .hero-grid {
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: auto auto auto;
+    row-gap: calc(var(--gap) * 1.2);
+    align-items: stretch;
+  }
+
+  .hero-title {
+    position: static;
+    top: auto;
+    padding-top: 0;
+    grid-column: 1;
+    grid-row: 2; /* below meta strip on mobile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* keep below fixed header on mobile */
+  }
+
+  .title-vertical {
+    /* Vertical text in narrow left column */
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: clamp(28px, 6vw, 40px);
+    line-height: 1;
+    padding: 0;
+  }
+
+  .video-wrap {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+  }
+
+  .desc {
+    grid-column: 1 / span 2; /* span both columns */
+    grid-row: 3; /* below title+video */
+  }
+
+  .desc-lead {
+    font-size: 13px;
+  }
+
+  .desc-meta {
+    grid-column: 1 / span 2; /* full-width strip on top */
+    grid-row: 1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-bottom: 1px solid var(--line);
+  }
+
+  .mobile-desc-colapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 200ms ease;
+  }
+
+  .mobile-desc-colapse.is-open {
+    max-height: 1000px; /* large enough to show all content */
+  }
+
+  .mobile-desc-toggle {
+    display: inline-flex;
+  }
+
+  .shot {
+    /* ensure horizontal scrolling cards */
+    flex: 0 0 80%;
+  }
+
+  /* Compact meta text so all items fit in one row */
+  .desc-meta p {
+    font-size: 12px;
+  }
+
+  .desc-meta span {
+    font-size: 10px;
+  }
+}

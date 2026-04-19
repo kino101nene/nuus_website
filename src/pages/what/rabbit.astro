@@ -1,0 +1,232 @@
+---
+import "../../styles/projects/rabbit.css";
+import OptimizedImage from "../../components/OptimizedImage.astro";
+// @ts-ignore
+import visitor1 from "../../assets/rabbit/visitor1.gif";
+// @ts-ignore
+import visitor2 from "../../assets/rabbit/visitor2.gif";
+// @ts-ignore
+import visitor3 from "../../assets/rabbit/visitor3.gif";
+// @ts-ignore
+import visitor4 from "../../assets/rabbit/visitor4.gif";
+// @ts-ignore
+import rabbit1 from "../../assets/rabbit/rabbit1.gif";
+// @ts-ignore
+import rabbit2 from "../../assets/rabbit/rabbit2.gif";
+// @ts-ignore
+import rabbit3 from "../../assets/rabbit/rabbit3.gif";
+// @ts-ignore
+import rabbit4 from "../../assets/rabbit/rabbit4.gif";
+// @ts-ignore
+import rabbit5 from "../../assets/rabbit/rabbit5.gif";
+// @ts-ignore
+import rabbit6 from "../../assets/rabbit/rabbit6.gif";
+// @ts-ignore
+import rabbit7 from "../../assets/rabbit/rabbit7.gif";
+// @ts-ignore
+import rabbitBehind from "../../assets/rabbit/rabbit_behind.png";
+
+const visitorGifs = [
+  visitor1,
+  visitor2,
+  visitor3,
+  visitor4,
+];
+const filmGifs = [
+  rabbit1,
+  rabbit2,
+  rabbit3,
+  rabbit4,
+  rabbit5,
+  rabbit6,
+  rabbit7,
+];
+---
+
+<section class="rabbit-section" id="rabbit-section">
+
+  <div class="rabbit-desc-wrapper">  
+    <div class="first-text">
+      <p>この空間は</p>
+      <p>USAGIたちの映画 「Rabbit, Habbit, Kubid」 に登場する場所であり</p>
+      <p>彼らの棲家である。</p>
+    </div>
+
+    <div class="grid-text">
+      <div class="grid-item text-item" style="padding: 20px 10px;">
+        <p>
+          来場者がこの空間に足を踏み入れ、展示作品——すなわち彼らの持ち物と関わることで、
+          その様子は知らぬ間に映画の世界の一部として記録され、再構築されていく。
+        </p>
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 40px 15px 10px;">
+        <OptimizedImage src={visitorGifs[0]} alt="Visitor 1" loading="lazy" />
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 10px 20px 35px;">
+        <OptimizedImage src={visitorGifs[1]} alt="Visitor 2" loading="lazy" />
+      </div>
+
+      <div class="grid-item text-item" style="padding: 35px 5px 15px;">
+        <p>
+          しかし、来場者はここが映画の一部であることを知らない。
+        </p>
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 15px 10px 40px;">
+        <OptimizedImage src={visitorGifs[2]} alt="Visitor 3" loading="lazy" />
+      </div>
+
+      <div class="grid-item text-item" style="padding: 25px 15px 20px;">
+        <p>
+          ここでの体験は、映画のストーリーに影響を与え、
+          「見る」存在でありながら、いつの間にか「見られる」存在となる。
+        </p>
+      </div>
+
+      <div class="grid-item gif-item" style="padding: 5px 25px 15px;">
+        <OptimizedImage src={visitorGifs[3]} alt="Visitor 4" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rabbit-film">
+  <div class="desc">
+    <p>映画「rabbit, habid, kubid」 は、うさぎたちが言語を通じて世界を構築し、変容させていく物語 である。</p>
+    <p>彼らにとって、言葉は単なるコミュニケーションではなく、世界そのものを形づくる枠組み である。</p>
+    <p>しかし、うさぎの母親の死をきっかけに、その哲学は揺らぎ、彼らの思考の変化とともに、彼らの見る世界も変わっていく。</p>
+    <p>空間、行動、映像の表現がその変化を反映し、言語＝世界の再構築 のプロセスが描かれる。</p>
+  </div>
+  <div class="rabbit-film-gallery">
+    {filmGifs.map((src, index) => (
+      <figure class="rabbit-film-item">
+        <OptimizedImage
+          src={src}
+          alt={`Rabbit film ${index + 1}`}
+          loading="lazy"
+        />
+      </figure>
+    ))}
+  </div>
+  <div class="rabbit-behind">
+    <OptimizedImage src={rabbitBehind} alt="Rabbit behind" loading="lazy" />
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // filmGallery carousel logic removed — gallery will be static/horizontal-scroller
+    const filmGallery = document.querySelector('.rabbit-film-gallery') as HTMLElement | null;
+    const filmSection = document.querySelector('.rabbit-film') as HTMLElement | null;
+
+    // Dynamic Title Change and Dark Theme based on Rabbit Film Section
+    const pageTitle = document.getElementById('page-title') as HTMLElement | null;
+    const backToTop = document.getElementById('back-to-top') as HTMLElement | null;
+    const projectMain = document.querySelector('.project') as HTMLElement | null;
+
+    const setupRabbitObserver = (rabbitEl: HTMLElement) => {
+      console.log('[rabbit] setupRabbitObserver called', { rabbitEl });
+      if (!pageTitle || !backToTop || !projectMain || !rabbitEl) {
+        console.log('[rabbit] setupRabbitObserver missing elements', { pageTitle, backToTop, projectMain, rabbitEl });
+        return;
+      }
+
+      let isInRabbitFilm = false;
+
+      const changeTitle = (newTitle: string) => {
+        pageTitle.classList.add('fade-out');
+        setTimeout(() => {
+          pageTitle.textContent = newTitle;
+          pageTitle.classList.remove('fade-out');
+        }, 200);
+      };
+
+      const onEnter = () => {
+        if (isInRabbitFilm) return;
+        isInRabbitFilm = true;
+        console.log('[rabbit] entering rabbit film - enabling dark theme');
+        changeTitle('Rabbit, habit, kubid');
+        projectMain.classList.add('dark-theme');
+        backToTop.classList.add('visible');
+      };
+
+      const onLeave = () => {
+        if (!isInRabbitFilm) return;
+        isInRabbitFilm = false;
+        console.log('[rabbit] leaving rabbit film - disabling dark theme');
+        changeTitle('JIJITSU');
+        projectMain.classList.remove('dark-theme');
+        backToTop.classList.remove('visible');
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            onEnter();
+          } else {
+            // Only remove dark-theme when the section has moved below the viewport
+            // (user scrolled up past it). If the section left by moving above
+            // the viewport (user scrolled down past it), keep the dark-theme.
+            try {
+              const r = rabbitEl.getBoundingClientRect();
+              if (r.top > window.innerHeight) {
+                onLeave();
+              } else {
+                // left because it moved above viewport (scrolled down past it) -> keep dark
+                console.log('[rabbit] observer left but section above viewport; preserving dark theme');
+              }
+            } catch (err) {
+              // fallback to leaving if anything goes wrong
+              onLeave();
+            }
+          }
+        });
+      }, { threshold: 0.3, rootMargin: '-100px 0px -100px 0px' });
+
+      observer.observe(rabbitEl);
+
+      // Fallback in case IntersectionObserver misses intersections due to transforms/overflow
+      const computeVisibility = () => {
+        try {
+          const rect = rabbitEl.getBoundingClientRect();
+          const center = window.innerHeight / 2;
+          const visible = rect.top <= center && rect.bottom >= center;
+          if (visible) {
+            onEnter();
+          } else {
+            // Only remove dark-theme when the section is below the viewport
+            // (user scrolled up past it). If it's above the viewport (user
+            // scrolled down past it), preserve dark-theme.
+            if (rect.top > window.innerHeight) {
+              onLeave();
+            } else {
+              console.log('[rabbit] computeVisibility: section above viewport; preserving dark theme');
+            }
+          }
+        } catch (err) {
+          console.log('[rabbit] computeVisibility error', err);
+        }
+      };
+
+      window.addEventListener('scroll', computeVisibility, { passive: true });
+      window.addEventListener('resize', computeVisibility);
+      computeVisibility();
+    };
+
+    // Attach observer if section exists now, otherwise wait for it
+    if (filmSection) {
+      setupRabbitObserver(filmSection);
+    } else {
+      const mo = new MutationObserver((mutations, obs) => {
+        const el = document.querySelector('.rabbit-film') as HTMLElement | null;
+        if (el) {
+          obs.disconnect();
+          setupRabbitObserver(el);
+        }
+      });
+      mo.observe(document.body, { childList: true, subtree: true });
+    }
+  });
+</script>

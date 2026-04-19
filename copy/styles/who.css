@@ -1,0 +1,178 @@
+/* Custom font for who page */
+@font-face {
+  font-family: "WhoFont";
+  src: url("/assets/who/cpfont_ote/CP\ Font.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply custom font to who page body content only, not header */
+.site-header,
+.site-header * {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Apply custom font only to main content container, not footer */
+main .container {
+  font-family:
+    "WhoFont",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  max-width: none;
+  width: 100%;
+  padding: 0 calc(16px + 5vw);
+}
+
+/* Reset footer to use default font */
+.footer,
+.footer *,
+.footer .container,
+.footer .container * {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.mono-card {
+  position: relative;
+}
+
+.lede-wrapper {
+  position: sticky;
+  top: calc(var(--header-h, 108px) + 16px);
+  flex: 1;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(40px, 8vw, 120px);
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.lede,
+.lede-wrapper > p {
+  font-size: clamp(32px, 8vw, 120px);
+  line-height: 1.2;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  background-image: url("/assets/what/rabbit/thumbnails/scene8_5_bed.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Random sizing and indentation for each paragraph */
+.lede-wrapper > p:nth-child(1) {
+  font-size: clamp(40px, 10vw, 140px);
+  padding-left: 5%;
+}
+
+.lede-wrapper > p:nth-child(2) {
+  font-size: clamp(28px, 6vw, 90px);
+  padding-left: 15%;
+}
+
+.lede-wrapper > p:nth-child(3) {
+  font-size: clamp(35px, 8.5vw, 110px);
+  padding-left: 25%;
+}
+
+.lede-wrapper > p:nth-child(4) {
+  font-size: clamp(30px, 7vw, 100px);
+  padding-left: 8%;
+}
+
+.lede-wrapper > p:nth-child(5) {
+  font-size: clamp(38px, 9vw, 130px);
+  padding-left: 18%;
+}
+
+.lede-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  max-width: 1200px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.who-layout {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-top: 16px;
+  min-height: 200vh;
+  align-items: flex-start;
+}
+
+.profile {
+  position: sticky;
+  top: calc(var(--header-h, 108px) + 16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(15px, 2vw, 20px);
+  width: 10vw;
+  max-height: calc(100vh - var(--header-h, 108px) - 80px);
+  z-index: 3;
+}
+
+.profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg, 16px);
+  border: 1px solid var(--line, rgba(0, 0, 0, 0.1));
+  background: transparent;
+}
+
+.profile-text {
+  margin: 0;
+  font-size: clamp(10px, 0.8vw, 14px);
+  line-height: 1.4;
+  color: var(--text, #333);
+}
+
+@media (max-width: 900px) {
+  .who-layout {
+    flex-direction: column;
+  }
+
+  .profile {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .lede-wrapper {
+    margin-left: 0;
+    position: relative;
+    top: auto;
+  }
+}

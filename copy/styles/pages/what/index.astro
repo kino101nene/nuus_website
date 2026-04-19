@@ -1,0 +1,147 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/what.css";
+---
+
+<BaseLayout title="What — Nuus" description="Project collection" current="what">
+  <section class="collection">
+
+    
+
+    <div class="collection-list">
+     <article class="project-card" id="proj-1">
+        <div class="project-inner">
+          <div class="project-body">
+          <div class="project-titlebar">
+            <h2 class="project-title">Real_copy</h2>
+            </div>
+            <p class="project-desc">
+              VRと会場を一体化させた今までにない体験型展示
+            </p>
+            <div class="project-actions">
+           <a href="/what/real-copy" class="btn-primary">このページで見る</a>
+
+              <a
+                href="/what/real-copy"
+                target="_blank"
+                class="btn-secondary"
+                >新しいタブで見る ↗</a
+              >
+            </div>
+          </div>
+          <div class="project-thumb">
+            <img
+              src="/assets/what/real-copy/thumbnails/IMG_8366.JPG"
+              alt="Real Copy"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </article>
+ <article class="project-card" id="proj-2">
+        <div class="project-inner">
+          <div class="project-body">
+        <div class="project-titlebar">
+            <h2 class="project-title">JIJITSU</h2>
+            </div>
+            <p class="project-desc">
+              「USAGIの住処」という名の展示会場で来場者に遊んでもらうことを目的とした展示会
+            </p>
+            <div class="project-actions">
+              <a href="/what/jijitsu" class="btn-primary"
+                >このページで見る</a
+              >
+              <a
+                href="/what/jijitsu"
+                target="_blank"
+                class="btn-secondary"
+                >新しいタブで見る ↗</a
+              >
+            </div>
+          </div>
+          <div class="project-thumb">
+            <img
+              src="/assets/what/jijitsu/thumbnails/IMG_3734.jpg"
+              alt="Jijitsu"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </article>
+ <article class="project-card" id="proj-3">
+        <div class="project-inner">
+          <div class="project-body">
+          <div class="project-titlebar">
+            <h2 class="project-title">rabbit,habit,kubid</h2>
+            </div>
+            <p class="project-desc">
+              展示会JIJITSUのドキュメンタリー映像と自主制作映像
+            </p>
+            <div class="project-actions">
+              <a href="/what/jijitsu#rabbit-section" class="btn-primary"
+                >このページで見る</a
+              >
+              <a
+                href="/what/jijitsu#rabbit-section"
+                target="_blank"
+                class="btn-secondary"
+                >新しいタブで見る ↗</a
+              >
+            </div>
+          </div>
+          <div class="project-thumb">
+            <img
+              src="/assets/what/rabbit/thumbnails/scene8_5_bed.jpg"
+              alt="Rabbit"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </article>
+    </div>
+<script is:inline>
+  const lastCard = document.querySelector("#proj-3");
+  let maxY = null;
+
+  function isDesktop() {
+    return window.matchMedia("(min-width: 768px)").matches;
+  }
+
+  function getStickyTopPx() {
+    const v = getComputedStyle(document.documentElement).getPropertyValue("--sticky-top").trim();
+    if (v.endsWith("vh")) return (parseFloat(v) / 100) * window.innerHeight;
+    if (v.endsWith("px")) return parseFloat(v);
+    return 0;
+  }
+
+  function computeMaxY() {
+    if (!lastCard) return;
+    const stickyTop = getStickyTopPx();
+
+    // doc position where the last card's top would sit at stickyTop
+    const topDoc = window.scrollY + lastCard.getBoundingClientRect().top;
+    maxY = Math.max(0, topDoc - stickyTop);
+  }
+
+  function clampWheel(e) {
+    if (!isDesktop()) return;
+    if (maxY == null) computeMaxY();
+
+    const goingDown = e.deltaY > 0;
+    const atOrPast = window.scrollY >= (maxY - 1);
+
+    if (goingDown && atOrPast) {
+      e.preventDefault();
+      window.scrollTo({ top: maxY, behavior: "auto" });
+    }
+  }
+
+  window.addEventListener("load", computeMaxY);
+  window.addEventListener("resize", computeMaxY);
+  window.addEventListener("wheel", clampWheel, { passive: false });
+</script>
+
+
+
+  </section>
+</BaseLayout>

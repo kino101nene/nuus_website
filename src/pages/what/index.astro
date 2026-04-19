@@ -1,0 +1,244 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OptimizedImage from "../../components/OptimizedImage.astro";
+import realCopyImg1 from "../../assets/real-copy/thumbnails/IMG_8348.JPG";
+import realCopyImg2 from "../../assets/real-copy/thumbnails/IMG_8366.JPG";
+import jijitsuImg1 from "../../assets/jijitsu/thumbnails/IMG_3734.jpg";
+import jijitsuImg2 from "../../assets/jijitsu/thumbnails/IMG_8570.JPG";
+import rabbitImg1 from "../../assets/rabbit/thumbnails/scene8_5_bed.jpg";
+import rabbitImg2 from "../../assets/rabbit/thumbnails/scene16_last.jpg";
+
+import "../../styles/main.css";
+import "../../styles/what.css";
+import "../../styles/projects/real-copy-thumbs.css";
+---
+
+<BaseLayout title="What — Nuus" description="Project collection" current="what">
+  <section class="collection">
+    <div class="collection-list">
+      <article class="project-card" id="proj-1">
+
+        <div class="project-inner">
+          <div class="project-body">
+            <div class="project-titlebar">
+              <h2 class="project-title">
+                  <a href="/what/real-copy" class="project-link">
+                  Real_copy
+                </a>
+              </h2>
+            </div>
+            <p class="project-desc">
+              VRと会場を一体化させた今までにない体験型展示
+            </p>
+            <div class="project-actions">
+              <a href="/what/real-copy" class="btn-primary">このページで見る</a>
+              <a href="/what/real-copy" target="_blank" class="btn-secondary">新しいタブで見る ↗</a>
+            </div>
+          </div>
+          <a href="/what/real-copy" class="project-thumb realcopy-thumb" style="display:block;">
+            <div class="thumb-hover-swap">
+              <OptimizedImage
+                src={realCopyImg1}
+                alt="Real Copy Thumbnail 1"
+              />
+              <OptimizedImage
+                src={realCopyImg2}
+                alt="Real Copy Thumbnail 2"
+              />
+            </div>
+            <OptimizedImage
+              src={realCopyImg2}
+              alt="Real Copy Thumbnail 2"
+            />
+          </a>
+        </div>
+      </article>
+      <article class="project-card" id="proj-2">
+
+        <div class="project-inner">
+          <div class="project-body">
+            <div class="project-titlebar">
+              <h2 class="project-title">
+                  <a href="/what/jijitsu" class="project-link">
+                  JIJITSU
+                </a>
+              </h2>
+            </div>
+            <p class="project-desc">
+              「USAGIの住処」という名の展示会場で来場者に遊んでもらうことを目的とした展示会
+            </p>
+            <div class="project-actions">
+              <a href="/what/jijitsu" class="btn-primary">このページで見る</a>
+              <a href="/what/jijitsu" target="_blank" class="btn-secondary">新しいタブで見る ↗</a>
+            </div>
+          </div>
+          <a href="/what/jijitsu" class="project-thumb jijitsu-thumb" style="display:block;">
+            <div class="thumb-hover-swap">
+              <OptimizedImage
+                src={jijitsuImg1}
+                alt="Jijitsu Thumbnail 1"
+              />
+              <OptimizedImage
+                src={jijitsuImg2}
+                alt="Jijitsu Thumbnail 2"
+              />
+            </div>
+            <OptimizedImage
+              src={jijitsuImg2}
+              alt="Jijitsu Thumbnail 2"
+            />
+          </a>
+        </div>
+      </article>
+      <article class="project-card" id="proj-3">
+
+        <div class="project-inner">
+          <div class="project-body">
+            <div class="project-titlebar">
+              <h2 class="project-title">
+                  <a href="/what/jijitsu#rabbit-section" class="project-link">
+                  rabbit,habit,kubid
+                </a>
+              </h2>
+            </div>
+            <p class="project-desc">
+              展示会JIJITSUのドキュメンタリー映像と自主制作映像
+            </p>
+            <div class="project-actions">
+              <a href="/what/jijitsu#rabbit-section" class="btn-primary">このページで見る</a>
+              <a href="/what/jijitsu#rabbit-section" target="_blank" class="btn-secondary">新しいタブで見る ↗</a>
+            </div>
+          </div>
+          <a href="/what/jijitsu#rabbit-section" class="project-thumb rabbit-thumb" style="display:block;">
+            <div class="thumb-hover-swap">
+              <OptimizedImage
+                src={rabbitImg1}
+                alt="Rabbit Thumbnail 1"
+              />
+              <OptimizedImage
+                src={rabbitImg2}
+                alt="Rabbit Thumbnail 2"
+              />
+            </div>
+            <OptimizedImage
+              src={rabbitImg2}
+              alt="Rabbit Thumbnail 2"
+            />
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+  <script is:inline>
+    // Blur effect based on scroll position
+    const cards = document.querySelectorAll('.project-card');
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+    const isMobile = window.innerWidth < 768;
+    const scrambleIntervals = new Map(); // Track intervals per card
+    let isScrolling = false;
+    let scrollTimeout;
+
+    function scrambleText(text, maxLength = null) {
+      const len = maxLength ? Math.min(text.length, maxLength) : text.length;
+      return text.split('').map((_, i) => i < len ? chars[Math.floor(Math.random() * chars.length)] : '').join('');
+    }
+
+    function startScrambling(card, index) {
+      if (scrambleIntervals.has(card)) return; // Already scrambling
+      const interval = setInterval(() => {
+        const titleLink = card.querySelector('.project-title .project-link');
+        const desc = card.querySelector('.project-desc');
+        const isThird = index === 2;
+        if (titleLink && titleLink.dataset.original) {
+          titleLink.textContent = scrambleText(titleLink.dataset.original, isThird ? 15 : (isMobile ? 10 : null));
+        }
+        if (desc && desc.dataset.original && !isMobile) {
+          desc.textContent = scrambleText(desc.dataset.original, isThird ? 30 : null);
+        }
+      }, 100); // Scramble every 100ms
+      scrambleIntervals.set(card, interval);
+    }
+
+    function stopScrambling(card) {
+      const interval = scrambleIntervals.get(card);
+      if (interval) {
+        clearInterval(interval);
+        scrambleIntervals.delete(card);
+      }
+    }
+
+    function restoreText(card) {
+      const titleLink = card.querySelector('.project-title .project-link');
+      const title = card.querySelector('.project-title');
+      const desc = card.querySelector('.project-desc');
+      if (titleLink) {
+        titleLink.textContent = titleLink.dataset.original || titleLink.textContent;
+      } else if (title) {
+        title.textContent = title.dataset.original || title.textContent;
+      }
+      if (desc) desc.textContent = desc.dataset.original || desc.textContent;
+    }
+
+    let ticking = false;
+    function updateBlur() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const viewportCenter = window.innerHeight / 2;
+          cards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.top + rect.height / 2;
+            const distance = Math.abs(cardCenter - viewportCenter);
+            const isBlured = distance >= 200;
+
+            // Always apply blur based on distance
+            if (isBlured) {
+              card.style.filter = 'blur(5px)';
+              card.classList.add('blurred');
+              if (isScrolling) {
+                startScrambling(card, index);
+              } else {
+                stopScrambling(card);
+              }
+            } else {
+              card.style.filter = 'blur(0px)';
+              card.classList.remove('blurred');
+              stopScrambling(card);
+              restoreText(card);
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    // Store original texts (store link text when present so anchors remain intact)
+    cards.forEach(card => {
+      const titleLink = card.querySelector('.project-title .project-link');
+      const title = card.querySelector('.project-title');
+      const desc = card.querySelector('.project-desc');
+      if (titleLink) titleLink.dataset.original = titleLink.textContent;
+      else if (title) title.dataset.original = title.textContent;
+      if (desc) desc.dataset.original = desc.textContent;
+    });
+
+    window.addEventListener('scroll', () => {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+      updateBlur();
+      scrollTimeout = setTimeout(() => {
+        isScrolling = false;
+        updateBlur(); // Ensure scrambling stops
+      }, 50); // Shorter delay for quicker stop
+    }, { passive: true });
+    window.addEventListener('resize', updateBlur);
+    updateBlur();
+
+    // Ensure first card is not blurred initially
+    if (cards[0]) {
+      cards[0].style.filter = 'blur(0px)';
+      cards[0].classList.remove('blurred');
+      stopScrambling(cards[0]);
+    }
+  </script>
+</BaseLayout>
