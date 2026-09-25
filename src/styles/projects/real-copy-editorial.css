@@ -275,7 +275,17 @@ body.real-copy-page main { width: 100%; max-width: none; margin: 0; }
   .rc-story { padding-top: 0; }
   .rc-concept { grid-template-columns: 1fr; }
   .rc-concept > .rc-prose { grid-column: 1; }
-  .rc-concept-side { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .rc-concept-side {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 200px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .rc-concept-side img { display: block; width: 100%; max-width: none; height: auto; }
+  .rc-concept-overlay { position: relative; inset: auto; display: block; }
   .rc-concept-note {
     position: static;
     width: auto;
@@ -356,6 +366,50 @@ body.real-copy-page main { width: 100%; max-width: none; margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .rc-collage-hover {
     transition: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .rc-concept { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; width: 100% !important; min-width: 0 !important; }
+  .rc-concept-side { display: block !important; position: relative !important; grid-column: 1 !important; grid-row: 1 !important; width: 100% !important; min-width: 0 !important; min-height: 200px !important; }
+  .rc-concept-side img { display: block !important; width: 100% !important; max-width: none !important; height: auto !important; }
+  .rc-concept-overlay { position: relative !important; inset: auto !important; grid-column: 1 !important; grid-row: 2 !important; width: 100% !important; }
+  .rc-concept > .rc-prose { grid-column: 1 !important; grid-row: 3 !important; }
+}
+
+/* Final mobile concept layout overrides */
+@media (max-width: 700px) {
+  .rc-concept {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .rc-concept-side {
+    display: block !important;
+    position: relative !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 200px !important;
+  }
+  .rc-concept-side img {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+  }
+  .rc-concept-overlay {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    width: 100% !important;
+  }
+  .rc-concept > .rc-prose {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
   }
 }
 
