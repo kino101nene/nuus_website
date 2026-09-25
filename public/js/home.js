@@ -1,165 +1,63 @@
-// public/js/home.js
-(function () {
-  const grid = document.getElementById("alienGrid");
-  const stage = document.getElementById("glitchStageHero");
-  const video = document.getElementById("heroVideo");
+(() => {
+  const about = document.querySelector(".home-about");
+  const work = document.querySelector(".home-work");
 
-  if (!grid || !stage) return;
+  document.body.classList.add("home-motion-ready");
 
-  // Only attempt video playback if video element exists and is visible (desktop)
-  if (video && window.innerWidth > 600) {
-    // Force autoplay on desktop
-    const attemptPlay = () => {
-      video.muted = true; // Ensure muted
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // If autoplay fails, try again after user interaction
-          document.addEventListener("click", () => video.play(), {
-            once: true,
-          });
-        });
-      }
-    };
+  const mobile = window.matchMedia("(max-width: 700px)");
 
-    // Try immediately
-    attemptPlay();
-
-    // Try again when video is loaded
-    video.addEventListener("loadeddata", attemptPlay, { once: true });
+  if (about && mobile.matches) {
+    if ("IntersectionObserver" in window) {
+      const aboutObserver = new IntersectionObserver(([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        about.classList.add("isActive");
+        observer.disconnect();
+      }, { threshold: 0.2 });
+      aboutObserver.observe(about);
+    } else {
+      about.classList.add("isActive");
+    }
   }
 
-  const prefersReduced = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-  if (prefersReduced) return;
-
-  const items = Array.from(grid.querySelectorAll(".alien-item"));
-  const payloads = items
-    .map((fig) => {
-      const img = fig.querySelector("img");
-      return {
-        src: img?.getAttribute("src"),
-        alt: img?.getAttribute("alt") || "Sticker",
-      };
-    })
-    .filter((p) => p.src);
-
-  if (payloads.length === 0) return;
-
-  const rand = (min, max) => Math.random() * (max - min) + min;
-  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-
-  // Controls
-  const MAX_ON_SCREEN = 10;
-  const SPAWN_EVERY_MS = 260;
-  const DURATION_MIN = 1200;
-  const DURATION_MAX = 4200;
-
-  // pointer trail controls
-  const TRAIL_COUNT = 4;
-  const TRAIL_LIFETIME = 900;
-  const TRAIL_THROTTLE = 70;
-
-  const active = new Set();
-  let spawnTimer = null;
-  let running = false;
-
-  function getStageRect() {
-    return stage.getBoundingClientRect();
+  if (work) {
+    if ("IntersectionObserver" in window) {
+      const workObserver = new IntersectionObserver(([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        work.classList.add("isActive");
+        observer.disconnect();
+      }, { threshold: 0.3 });
+      workObserver.observe(work);
+    } else {
+      work.classList.add("isActive");
+    }
   }
 
-  function responsiveSize(rect) {
-    const base = rect.width * 0.12;
-    return Math.round(clamp(base, 64, 180));
-  }
+  let frameRequested = false;
 
-  function makeSticker({ x, y, w, src, alt, lifetime }) {
-    const wrap = document.createElement("div");
-    wrap.className = "glitch-sticker";
-    wrap.style.left = `${Math.round(x)}px`;
-    wrap.style.top = `${Math.round(y)}px`;
-    wrap.style.setProperty("--w", `${w}px`);
+  const updateAboutExit = () => {
+    frameRequested = false;
 
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = alt;
-    img.loading = "eager";
-    wrap.appendChild(img);
+    if (about && work && !mobile.matches) {
+      // When Work starts entering from the bottom, About has reached its
+      // sticky position. Use Work's live viewport position so this remains
+      // accurate after resizing and on mobile browser chrome changes.
+      const workTop = work.getBoundingClientRect().top;
+      const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 0;
+      const exitDistance = Math.max(1, window.innerHeight - headerHeight);
+      const exitProgress = Math.min(1, Math.max(0, (window.innerHeight - workTop) / exitDistance));
+      const easedExit = exitProgress * exitProgress * (3 - (2 * exitProgress));
+      about.style.setProperty("--about-exit-x", `${easedExit * 110}vw`);
+      about.style.setProperty("--about-label-opacity", String(1 - easedExit));
+    }
+  };
 
-    stage.appendChild(wrap);
-    active.add(wrap);
+  const requestAboutUpdate = () => {
+    if (frameRequested) return;
+    frameRequested = true;
+    requestAnimationFrame(updateAboutExit);
+  };
 
-    window.setTimeout(() => {
-      wrap.remove();
-      active.delete(wrap);
-    }, lifetime);
-  }
-
-  function spawnRandomSticker() {
-    if (!running) return;
-    if (active.size >= MAX_ON_SCREEN) return;
-
-    const rect = getStageRect();
-    if (rect.width === 0 || rect.height === 0) return;
-
-    const { src, alt } = pick(payloads);
-    const base = responsiveSize(rect);
-    const w = Math.round(rand(base * 0.7, base * 1.2));
-
-    const x = rand(0, Math.max(0, rect.width - w));
-    const y = rand(0, Math.max(0, rect.height - w));
-
-    const lifetime = Math.round(rand(DURATION_MIN, DURATION_MAX));
-    makeSticker({ x, y, w, src, alt, lifetime });
-  }
-
-  let lastTrailAt = 0;
-
-  function spawnTrailAt(clientX, clientY) {
-    if (!running) return;
-
-    const now = Date.now();
-    if (now - lastTrailAt < TRAIL_THROTTLE) return;
-    lastTrailAt = now;
-
-    const rect = getStageRect();
-    const localX = clientX - rect.left;
-    const localY = clientY - rect.top;
-
-    const { src, alt } = pick(payloads);
-    const w = Math.round(responsiveSize(rect) * 0.75);
-
-    const x = clamp(localX - w / 2, 0, Math.max(0, rect.width - w));
-    const y = clamp(localY - w / 2, 0, Math.max(0, rect.height - w));
-
-    makeSticker({ x, y, w, src, alt, lifetime: TRAIL_LIFETIME });
-  }
-
-  function onPointerMove(e) {
-    spawnTrailAt(e.clientX, e.clientY);
-  }
-
-  function onTouchMove(e) {
-    if (!e.touches || e.touches.length === 0) return;
-    const t = e.touches[0];
-    spawnTrailAt(t.clientX, t.clientY);
-  }
-
-  function startOverlay() {
-    if (running) return;
-    running = true;
-
-    stage.classList.add("is-active");
-    stage.setAttribute("aria-hidden", "false");
-
-    spawnTimer = window.setInterval(spawnRandomSticker, SPAWN_EVERY_MS);
-    spawnRandomSticker();
-
-    window.addEventListener("mousemove", onPointerMove, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-  }
-
-  video.addEventListener("ended", startOverlay);
+  window.addEventListener("scroll", requestAboutUpdate, { passive: true });
+  window.addEventListener("resize", requestAboutUpdate);
+  requestAboutUpdate();
 })();

@@ -1,0 +1,81 @@
+body.jijitsu-page {
+  --color-bg: var(--color-bg-jijitsu);
+  --bg: var(--color-bg);
+  --nuus-bg: var(--color-bg);
+  background: var(--color-bg);
+  --jj-type-label: 10px;
+  --jj-type-meta: 12px;
+  --jj-type-base: 16px;
+  --jj-type-title: 75.87px;
+}
+.jj-project { max-width: 1800px; margin: 0 auto; padding: 0 80px; }
+.jj-intro { position: relative; z-index: 4; display: flex; min-height: calc(100svh - var(--header-h)); flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 24px; color: var(--color-on-dark); background: transparent; }
+.jj-eyebrow { display: flex; align-items: center; width: max-content; gap: 20px; padding: 4px 8px; background: var(--color-accent); color: var(--color-on-dark); font-size: var(--jj-type-label); letter-spacing: .06em; }
+.jj-title-row { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: center; max-width: 800px; padding: 0 0 24px; }
+.jj-title-row h1,
+.jj-title-experience h2,
+.jj-title-experience .jj-prose p { padding: 4px 8px; background: rgb(0 0 0 / 5%); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); box-shadow: 0 0 24px 12px rgb(0 0 0 / 10%); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.jj-title-experience { padding: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.jj-intro h1 { width: max-content; margin: 24px 0 36px; font-size: var(--jj-type-title); line-height: 1; font-weight: 400; letter-spacing: -.065em; overflow-wrap: anywhere; }
+.jj-title-row h1 { margin: 0; }
+.jj-title-row h1,
+.jj-title-experience { letter-spacing: .03em; }
+.jj-title-row h1 { font-weight: 300; }
+.jj-title-row h1 { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.jj-eyebrow { position: absolute; top: 24px; left: 24px; align-items: flex-start; align-self: flex-start; background: transparent; font-size: var(--text-sm); }
+.jj-title-experience h2 { font-weight: 300; }
+.jj-intro h1 > span { color: var(--color-accent); }
+.jj-title-experience { display: grid; grid-template-columns: 1fr; gap: 8px; width: 100%; margin: 0; padding: 0; }
+.jj-title-experience h2 { display: flex; width: max-content; gap: 16px; align-items: baseline; margin: 0; font-family: var(--font-ja); font-size: var(--jj-type-base); font-weight: 400; }
+.jj-title-experience h2 { color: var(--color-on-dark); }
+.jj-title-experience h2 > span { font-family: var(--font-sans); font-size: var(--jj-type-label); color: var(--color-on-dark); }
+.jj-title-experience .jj-prose { font-size: var(--jj-type-base); }
+.jj-title-experience .jj-prose { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.jj-project figure { margin: 0; min-width: 0; }
+.jj-room { position: absolute; z-index: 0; inset: 0 0 auto; width: 100%; max-width: none; height: auto; margin: 0 !important; }
+.jj-room img { width: 100%; height: auto; object-fit: contain; }
+.jj-project figure img { width: 100%; height: auto; filter: none; }
+.jj-project figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; font-size: 10px; letter-spacing: .04em; color: var(--color-muted); }
+.jj-room-gifs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+.jj-room-gifs figure { min-width: 0; margin: 0; padding: 0; }
+.jj-room-gifs figure img { aspect-ratio: 1; object-fit: cover; }
+.jj-text { display: grid; grid-template-columns: minmax(140px, 1fr) minmax(0, 680px); gap: clamp(24px, 5vw, 80px); max-width: 1100px; margin: clamp(64px, 8vw, 128px) auto; }
+.jj-text h2 { margin: 0; font-family: var(--font-ja); font-size: 14px; font-weight: 400; }
+.jj-text h2 > span { display: block; margin-bottom: 12px; font-family: var(--font-sans); font-size: 10px; letter-spacing: .06em; color: var(--color-muted); }
+.jj-prose { font-family: var(--font-ja); font-size: 15px; line-height: 2.1; line-break: strict; }
+.jj-prose p { margin: 0 0 1.4em; }
+.jj-prose p:last-child { margin-bottom: 0; }
+.jj-encounter { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 5vw, 80px); }
+.jj-label { font-size: 10px; letter-spacing: .06em; color: var(--color-muted); }
+.jj-question-copy h2 { font-family: var(--font-ja); margin: 24px 0; font-size: clamp(22px, 3vw, 44px); line-height: 1.65; font-weight: 400; letter-spacing: -.03em; }
+.jj-question-copy p { font-family: var(--font-ja); font-size: 13px; line-height: 1.9; }
+.jj-chapter { padding-top: 28px; margin-top: clamp(64px, 8vw, 128px); }
+.jj-chapter-heading h2 { margin: 20px 0 36px; font-size: clamp(36px, 5.5vw, 80px); line-height: 1.05; font-weight: 400; letter-spacing: -.045em; overflow-wrap: anywhere; }
+.jj-chapter-description { max-width: 680px; margin: 0 0 56px auto; }
+.jj-posters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 28px; align-items: start; }
+.jj-posters figure img { aspect-ratio: 3 / 4; object-fit: contain; }
+.jj-map { max-width: 1100px; margin-inline: auto !important; }
+.jj-records { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: start; margin-top: 48px; }
+.jj-records figure:nth-child(2) { margin-top: 64px; }
+.jj-records figure:nth-child(3) { margin-top: 32px; }
+.jj-next { display: flex; flex-direction: column; gap: 24px; padding-top: 24px; }
+.jj-next-title { display: flex; justify-content: space-between; gap: 24px; font-size: clamp(28px, 5vw, 72px); line-height: 1.2; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.jj-project a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }
+@media (hover: hover) { .jj-project a:hover { color: var(--color-accent); } }
+@media (max-width: 900px) {
+  .jj-intro-bottom { align-items: flex-start; flex-direction: column; }
+  .jj-text { grid-template-columns: 140px minmax(0, 1fr); }
+  .jj-posters { gap: 32px 16px; }
+}
+@media (max-width: 600px) {
+  body.jijitsu-page { --jj-type-title: 45.16px; }
+  .jj-eyebrow { font-size: 9px; }
+  .jj-meta { flex-wrap: wrap; gap: 20px 28px; }
+  .jj-text, .jj-encounter { grid-template-columns: 1fr; gap: 24px; }
+  .jj-prose { font-size: 14px; }
+  .jj-posters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jj-room-gifs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .jj-records { grid-template-columns: 1fr; }
+  .jj-records figure:nth-child(n) { margin-top: 0; }
+  .jj-project figcaption { font-size: 9px; }
+}

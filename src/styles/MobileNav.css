@@ -1,0 +1,13 @@
+@media (max-width: 860px) {
+  :root { --header-h: 64px; }
+  .desktop-nav, .desktop-only { display: none; }
+  .site-header .logo { width: 112px; }
+  .mobile-toggle { display: flex; align-items: center; gap: 18px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--color-text); font: inherit; font-size: 13px; cursor: pointer; }
+  .mobile-toggle span { font-size: 22px; font-weight: 300; }
+  .mobile-menu-panel:not([hidden]) { display: flex; flex-direction: column; }
+  .mobile-menu-panel { position: fixed; inset: var(--header-h) 0 0; background: var(--color-bg); padding: 32px var(--header-gutter); overflow-y: auto; }
+  .mobile-menu-panel .nav-item { padding: 24px 0; gap: 8px; }
+  .mobile-menu-panel .nav-en { font-size: clamp(36px, 9vw, 64px); line-height: 1.1; letter-spacing: -.04em; }
+  .mobile-menu-panel .nav-ja { font-size: 14px; }
+  body.mobile-menu-open { overflow: hidden; }
+}

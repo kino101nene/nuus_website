@@ -1,22 +1,31 @@
-// public/js/main.js
-(function () {
-  const nav = document.querySelector("[data-nav]");
-  const toggle = document.querySelector("[data-nav-toggle]");
-
-  if (!nav || !toggle) return;
-
-  toggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", String(isOpen));
+// Shared mobile navigation.
+(() => {
+  const toggle = document.querySelector(".mobile-toggle");
+  const panel = document.querySelector(".mobile-menu-panel");
+  if (!toggle || !panel) return;
+  const setOpen = (open, restoreFocus = false) => {
+    panel.hidden = !open;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.innerHTML = open ? 'Close <span aria-hidden="true">−</span>' : 'Menu <span aria-hidden="true">+</span>';
+    document.body.classList.toggle("mobile-menu-open", open);
+    // Keep keyboard navigation inside the menu while it covers the page.
+    document.querySelectorAll("body > main, body > footer").forEach(el => { el.inert = open; });
+    if (restoreFocus) toggle.focus();
+  };
+  toggle.addEventListener("click", () => setOpen(panel.hidden));
+  panel.querySelectorAll("a").forEach(link => link.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", event => {
+    if (panel.hidden) return;
+    if (event.key === "Escape") setOpen(false, true);
+    if (event.key === "Tab") {
+      const items = [document.querySelector(".logo-link"), toggle, ...panel.querySelectorAll("a")];
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
   });
-
-  // Close menu when a link is clicked (mobile)
-  nav.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => {
-      if (nav.classList.contains("is-open")) {
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
+  window.matchMedia("(min-width: 861px)").addEventListener("change", event => {
+    if (event.matches) setOpen(false);
   });
 })();

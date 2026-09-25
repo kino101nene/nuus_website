@@ -12,60 +12,34 @@ import neneIcon from "../../assets/who/profiles/nene-icon.JPG";
 import "../../styles/who.css";
 ---
 
-<BaseLayout
-  title="Who — Nuus"
-  description="Project collection"
-  current="who"
->
-
-      <div class="container">
-        <div class="mono-card">
-          <OptimizedImage
-            class="lede-overlay"
-            src={nuusDiagram}
-            alt="Overlay graphic"
-          />
-          
-          <div class="who-layout">
-            <div class="profile">
-              <div class="profile-item">
-                <OptimizedImage
-                  class="profile-img"
-                  src={seiyaIcon}
-                  alt="Profile 1"
-                />
-                <p class="profile-text">Profile 1</p>
-              </div>
-              <div class="profile-item">
-                <OptimizedImage
-                  class="profile-img"
-                  src={aiIcon}
-                  alt="Profile 2"
-                />
-                <p class="profile-text">Profile 2</p>
-              </div>
-              <div class="profile-item">
-                <OptimizedImage
-                  class="profile-img"
-                  src={neneIcon}
-                  alt="Profile 3"
-                />
-                <p class="profile-text">Profile 3</p>
-              </div>
-            </div>
-
-            <div class="lede-wrapper">
-              <p class="lede">
-               ヌースは</p>
-              <p> 本質(X軸)と現象(Ｙ軸)に</p>
-              <p>N軸をもって</p>
-              <p>作品を作る</p>
-               <p> クリエイティブ集団
-              </p>
-            </div>
-          </div>
-
-         
-        </div>
+<BaseLayout bodyClass="who-page" title="Who — Nuus" description="本質と現象にN軸をもって作品を作るクリエイティブ集団、Nuus。" current="who">
+  <article class="who-editorial" aria-labelledby="who-title">
+    <header class="who-intro">
+      <div class="who-eyebrow"><span>NUUS / THE MINDS</span><span>脳</span></div>
+      <h1 id="who-title">Who<span>.</span></h1>
+      <div class="who-statement" lang="ja">
+        <span class="who-label">01 / NUUS</span>
+        <p>ヌースは、<br />本質と現象に<br /><em>N軸</em>をもって<br />作品を作る<br />クリエイティブ集団。</p>
       </div>
+    </header>
+
+    <section class="who-perspective" aria-labelledby="who-perspective-title">
+      <header><span class="who-label">02 / PERSPECTIVE</span><h2 id="who-perspective-title">X / Y / <span>N</span></h2></header>
+      <figure>
+        <OptimizedImage src={nuusDiagram} alt="Nuusの本質（X軸）、現象（Y軸）、N軸を表す図" />
+        <figcaption><span>NUUS / CONCEPT DIAGRAM</span><span>X · Y · N</span></figcaption>
+      </figure>
+      <dl class="who-axes"><div><dt>X</dt><dd lang="ja">本質</dd></div><div><dt>Y</dt><dd lang="ja">現象</dd></div><div><dt>N</dt><dd lang="ja">N軸</dd></div></dl>
+    </section>
+
+    <section class="who-members" aria-labelledby="who-members-title">
+      <header><span class="who-label">03 / MEMBERS</span><h2 id="who-members-title">The minds.</h2></header>
+      <div class="who-member-grid">
+        {[{image: seiyaIcon, name: "Seiya"}, {image: aiIcon, name: "Ai"}, {image: neneIcon, name: "Nene"}].map((member, index) => (
+          <figure><OptimizedImage src={member.image} alt={member.name} /><figcaption><span>{member.name}</span><span>0{index + 1}</span></figcaption></figure>
+        ))}
+      </div>
+    </section>
+    <a class="who-next" href="/what"><span class="who-label">具現化したアイデア / SELECTED WORK</span><span>What we make</span></a>
+  </article>
 </BaseLayout>

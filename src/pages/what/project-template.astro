@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OptimizedImage from "../../components/OptimizedImage.astro";
+// @ts-ignore
+import img1 from "../../assets/real-copy/contents/IMG_8360.JPG";
+// @ts-ignore
+import img2 from "../../assets/real-copy/contents/IMG_8360.JPG";
+// @ts-ignore
+import img3 from "../../assets/real-copy/contents/IMG_8375.JPG";
+// @ts-ignore
+import img4 from "../../assets/real-copy/contents/IMG_8407.JPG";
+// @ts-ignore
+import videoSrc from "../../assets/real-copy/contents/real_copy.mp4";
+import "../../styles/projects/real-copy.css";
+
+const gallery = [
+  img1,
+  img2,
+  img3,
+  img4,
+];
+
+const title = "Real_Copy";
+---
+
+<BaseLayout title={`${title} — Nuus`} description="Project page" current="what">
+  <main class="project project--wide" id="top">
+    <section class="hero-grid">
+      <!-- LEFT: project number / title / meta stack -->
+      <div class="hero-title">
+        <div class="project-side">
+          <span class="project-num">01</span>
+          <h1 class="project-main-title">{title}</h1>
+          <div class="project-meta">
+            <div class="project-meta__item">
+              <span class="project-meta__title">展示時期</span>
+              <span class="project-meta__content">2022年 8月</span>
+            </div>
+            <div class="project-meta__item">
+              <span class="project-meta__title">場所</span>
+              <span class="project-meta__content">表参道, 東京</span>
+            </div>
+            <div class="project-meta__item">
+              <span class="project-meta__title">Role</span>
+              <span class="project-meta__content">Concept, Dev, Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: video + description -->
+      <div class="hero-main">
+        <div class="video-wrap">
+          <video
+            class="video"
+            src={videoSrc}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          ></video>
+        </div>
+
+        <div class="desc desc-grid">
+          <div class="desc-content">
+            <div class="desc-panel" data-index="0">
+              <p class="desc-lead">
+                来場者は、作品を見ずに所定の位置まで誘導され、VRゴーグルを装着する。
+                目の前に広がるのは、木の壁、枯山水の庭、テーブルと椅子—— そして巨大な木の箱。
+              </p>
+            </div>
+
+            <div class="desc-panel" data-index="1">
+              <p class="desc-lead">
+                やがて、観客はその箱の中へと誘導される。箱の中では、壁一面に映像が流れ、中央の箱の穴を覗くと、さらに別の映像が見える。
+                VRを外すと、そこには実際には存在しないはずのVRの世界の痕跡 が残されている。床には木屑や設計図、バーコードのような白黒の紙が散らばり、テーブルにはVRの中と同じ皿、フォーク、バナナが置かれている。
+              </p>
+            </div>
+
+            <div class="desc-panel" data-index="2">
+              <p class="desc-lead">
+                REAL_copy. は、VRが「リアルのモデル」として現実に重なることで、現実とは何か？という問いを観客に投げかけるインスタレーションである。
+                VRと現実が共存することで、視覚だけでなく、触覚・嗅覚・聴覚といった感覚までもが共有され、両者の境界が揺らぎ、観客のリアルに対する認識が変容していく。
+                現実空間には、VR内で見たものと対応する「机」「椅子」「コップ」「壁」が配置されているが、VRと現実での見た目や存在感は意図的にズレている。
+                これにより、「現実はリアルであるべき」「VRは非現実的であるべき」という固定概念が揺さぶられ、観客は無意識のうちに「リアル（アクチュアル）」と「リアル（本質）」を再考させられる。
+              </p>
+            </div>
+          </div>
+
+          <div class="desc-titles">
+            <button class="desc-tab is-active" data-index="0">体験</button>
+            <button class="desc-tab" data-index="1">展開</button>
+            <button class="desc-tab" data-index="2">コンセプト</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY UNDER ALL -->
+   <section class="gallery" aria-label="Gallery">
+  {gallery.map((src) => (
+    <figure class="shot">
+      <div class="shot-frame">
+        <OptimizedImage
+          class="shot-img"
+          src={src}
+          alt="Real Copy documentation"
+          loading="lazy"
+        />
+      </div>
+    </figure>
+  ))}
+</section>
+
+  </main>
+</BaseLayout>

@@ -1,7 +1,9 @@
 ---
 import Header from "../components/Header.astro";
+
 import "../styles/main.css";
-import "../styles/header.css";
+import "../styles/DesktopNav.css";
+import "../styles/MobileNav.css";
 
 const {
   title = "Nuus",
@@ -14,9 +16,11 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
-      
   </head>
 
   <body class={Astro.props.bodyClass}>
@@ -28,6 +32,10 @@ const {
 
     <footer class="footer">
       <div class="container">
+        <nav class="footer-socials" aria-label="Contact links">
+          <a href="mailto:you@example.com" aria-label="Email" title="Email"><img src="/assets/header/icons/envelope_icon_125293.svg" width="20" height="20" alt="" /></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><img src="/assets/header/icons/instagram_icon_125245.svg" width="20" height="20" alt="" /></a>
+        </nav>
         <p class="credit">
           Icons by Lineicons —
           <a href="https://lineicons.com">lineicons.com</a>
