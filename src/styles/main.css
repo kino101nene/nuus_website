@@ -2,12 +2,12 @@
   /* =========================
      COLORS
      ========================= */
-  --color-bg: #eeedf2;
+  --color-bg: #fff;
   --color-accent: #5943d6;
   --color-accent-light: #b6a8ff;
-  --color-bg-real-copy: #e4e7ee;
-  --color-bg-jijitsu: #e3e7e5;
-  --color-bg-screening: #14131b;
+  --color-bg-real-copy: #fff;
+  --color-bg-jijitsu: #fff;
+  --color-bg-screening: #fff;
   --color-on-dark: #eeedf4;
   --color-muted-on-dark: #aaa6ba;
   --color-text: #191720;

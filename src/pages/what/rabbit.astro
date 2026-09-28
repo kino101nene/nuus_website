@@ -3,7 +3,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
 
 import "../../styles/projects/rabbit-editorial.css";
-import cover from "../../assets/rabbit/thumbnails/scene8_5_bed.jpg";
+import realCopyNext1 from "../../assets/real-copy/contents/IMG_8360.JPG";
+import realCopyNext2 from "../../assets/real-copy/contents/IMG_8375.JPG";
+import realCopyNext3 from "../../assets/real-copy/contents/IMG_8420.JPG";
 
 // @ts-ignore
 import visitor1 from "../../assets/rabbit/visitor1.gif";
@@ -11,8 +13,6 @@ import visitor1 from "../../assets/rabbit/visitor1.gif";
 import visitor2 from "../../assets/rabbit/visitor2.gif";
 // @ts-ignore
 import visitor3 from "../../assets/rabbit/visitor3.gif";
-// @ts-ignore
-import visitor4 from "../../assets/rabbit/visitor4.gif";
 
 // @ts-ignore
 import rabbit1 from "../../assets/rabbit/rabbit1.gif";
@@ -21,12 +21,6 @@ import rabbit2 from "../../assets/rabbit/rabbit2.gif";
 // @ts-ignore
 import rabbit3 from "../../assets/rabbit/rabbit3.gif";
 // @ts-ignore
-import rabbit4 from "../../assets/rabbit/rabbit4.gif";
-// @ts-ignore
-import rabbit5 from "../../assets/rabbit/rabbit5.gif";
-// @ts-ignore
-import rabbit6 from "../../assets/rabbit/rabbit6.gif";
-// @ts-ignore
 import rabbit7 from "../../assets/rabbit/rabbit7.gif";
 
 // @ts-ignore
@@ -34,86 +28,122 @@ import rabbitBehind from "../../assets/rabbit/rabbit_behind.png";
 
 const title = "Rabbit, Habbit, Kubid";
 
-const introText = `この空間は、USAGIたちの映画「Rabbit, Habbit, Kubid」に登場する場所であり、彼らの棲家である。
+const introText = `この空間は、USAGIたちの映画「Rabbit, Habbit, Kubid」に登場する場所であり、彼らの棲家である。`;
 
-来場者がこの空間に足を踏み入れ、展示作品——すなわち彼らの持ち物と関わることで、その様子は知らぬ間に映画の世界の一部として記録され、再構築されていく。`;
-
-const gridImages = [
-  visitor1,
-  visitor2,
-  visitor3,
-  visitor4,
-  rabbit1,
-  rabbit2,
-  rabbit3,
-  rabbit4,
-  rabbit5,
-  rabbit6,
-  rabbit7,
-  rabbitBehind,
-];
 ---
 
 <BaseLayout bodyClass="rabbit-screening" title={`${title} — Nuus`} description="JIJITSUの来場者と映画の世界が交わる映像作品。" current="what">
-  <article class="rb-project" aria-labelledby="rb-title">
+  <article class="project-editorial rb-project" aria-labelledby="rb-title">
     <header class="rb-intro">
-      <div class="rb-eyebrow"><a href="/what">Selected work</a><span>03 / FILM &amp; DOCUMENTARY</span></div>
       <h1 id="rb-title">Rabbit,<br />Habbit, Kubid<span>.</span></h1>
-      <div class="rb-intro-bottom"><p lang="ja">見ること。見られること。物語の一部になること。</p><span>JIJITSU / MOVING IMAGE</span></div>
     </header>
 
     <div class="rb-screen">
-      <button class="rb-play" type="button" aria-controls="rb-excerpt" aria-expanded="false">
-        <OptimizedImage src={cover} alt="Rabbit, Habbit, Kubidの場面" loading="eager" fetchpriority="high" />
-        <span class="rb-play-label"><span aria-hidden="true">▶</span> 映像の断片を見る <small>LOOP EXCERPT / GIF</small></span>
-      </button>
-      <div id="rb-excerpt" hidden data-animation={rabbit1.src}>
-        <img class="rb-excerpt-image" alt="Rabbit, Habbit, Kubidのループ映像" width={rabbit1.width} height={rabbit1.height} />
-        <button class="rb-stop" type="button">閉じる ×</button>
+      <img src={rabbit1.src} alt="Rabbit, Habbit, Kubidのループ映像" width={rabbit1.width} height={rabbit1.height} loading="eager" fetchpriority="high" />
+    </div>
+    <section class="project-split rb-hero-details" aria-label="作品情報">
+      <div class="project-eyebrow">
+        <div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span>2023</span></div>
+        <div class="project-eyebrow-pair"><span class="project-eyebrow-title">PLACE</span><span>TOYAMA</span></div>
+        <div class="project-eyebrow-pair"><span class="project-eyebrow-title">CREDIT</span><span>AI, nene, Alex</span></div>
+      </div>
+      <div class="rb-hero-prose" lang="ja"><p>{introText}</p></div>
+    </section>
+
+    <section class="rb-chapter" aria-label="来場者の記録">
+      <div class="rb-chapter-gallery">
+        <figure><OptimizedImage src={visitor1} alt="JIJITSUの空間を体験する来場者" /></figure>
+        <div class="rb-chapter-gallery-bottom">
+          <figure><OptimizedImage src={visitor2} alt="来場者の記録 2" /></figure>
+          <figure><OptimizedImage src={visitor3} alt="来場者の記録 3" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-split project-concept rb-concept-feature" aria-labelledby="rb-concept" lang="ja">
+      <h2 id="rb-concept" class="rb-soft-reveal">「見る」存在でありながら、<br>いつの間にか「見られる」存在となる。</h2>
+      <div class="project-prose rb-concept-prose">
+        <p>うさぎたちにとって、言葉は単なるコミュニケーションではなく、世界そのものを形づくる枠組みである。</p>
+        <p>空間、行動、映像の表現がその変化を反映し、<span class="rb-concept-emphasis">言語＝世界の再構築</span>のプロセスが描かれる。</p>
+      </div>
+    </section>
+
+    <section class="rb-chapter" aria-label="Rabbit, Habbit, Kubid">
+      <div class="rb-chapter-gallery">
+        <figure><OptimizedImage src={rabbit7} alt="Rabbit, Habbit, Kubid — Reconstructionの映像断片" /></figure>
+        <div class="rb-chapter-gallery-bottom">
+          <figure><OptimizedImage src={rabbit2} alt="映画の断片 2" /></figure>
+          <figure><OptimizedImage src={rabbit3} alt="映画の断片 3" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="rb-chapter rb-chapter--behind" aria-label="Behind the film"><figure class="rb-behind"><OptimizedImage src={rabbitBehind} alt="Rabbit, Habbit, Kubidの制作風景" /></figure></section>
+    <div class="project-next">
+      <div class="project-next-project-row">
+        <span class="project-next-kicker">他の作品</span>
+        <a class="project-next-link" href="/what/real-copy" aria-label="Real Copy プロジェクトを見る">
+          <span class="project-next-title">Real_Copy</span>
+          <svg class="project-next-arrow" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+            <path fill="currentColor" d="M4 2h6l10 10-10 10H4l10-10L4 2Z" />
+          </svg>
+        </a>
+        <div class="project-next-gifs" aria-hidden="true">
+          <OptimizedImage src={realCopyNext1} alt="" />
+          <OptimizedImage src={realCopyNext2} alt="" />
+          <OptimizedImage src={realCopyNext3} alt="" />
+        </div>
       </div>
     </div>
-    <div class="rb-caption"><span>RABBIT, HABBIT, KUBID</span><span>SELECTED EXCERPT</span></div>
-
-    <section class="rb-text" aria-labelledby="rb-about" lang="ja"><h2 id="rb-about">ABOUT THE FILM</h2><div>{introText.split("\n\n").map(text => <p>{text}</p>)}</div></section>
-
-    <section class="rb-chapter" aria-labelledby="rb-visitor">
-      <header><span class="rb-label">01 / DOCUMENTARY</span><h2 id="rb-visitor">The Visitor</h2><p lang="ja">来場者はここが映画の一部であることを知らない。<br />しかし、ここでの体験は映画のストーリーに影響を与えていく。</p></header>
-      <figure class="rb-feature"><OptimizedImage src={visitor1} alt="JIJITSUの空間を体験する来場者" /><figcaption><span>THE VISITOR</span><span>EXCERPT 01</span></figcaption></figure>
-      <details class="rb-fragments"><summary>来場者の記録をもっと見る <span aria-hidden="true">+</span></summary><div class="rb-fragment-grid">{[visitor2, visitor3, visitor4].map((src, index) => <figure><OptimizedImage src={src} alt={`来場者の記録 ${index + 2}`} /><figcaption>VISITOR / 0{index + 2}</figcaption></figure>)}</div></details>
-    </section>
-
-    <section class="rb-chapter" aria-labelledby="rb-film">
-      <header><span class="rb-label">02 / FILM</span><h2 id="rb-film">Rabbit, Habbit, Kubid</h2><p lang="ja">「見る」存在でありながら、いつの間にか「見られる」存在となる。</p></header>
-      <figure class="rb-feature"><OptimizedImage src={rabbit7} alt="Rabbit, Habbit, Kubid — Reconstructionの映像断片" /><figcaption><span>RECONSTRUCTION</span><span>FILM EXCERPT</span></figcaption></figure>
-      <section class="rb-text rb-language" aria-labelledby="rb-language"><h3 id="rb-language">Language as World</h3><div lang="ja"><p>うさぎたちにとって、言葉は単なるコミュニケーションではなく、世界そのものを形づくる枠組みである。</p><p>空間、行動、映像の表現がその変化を反映し、言語＝世界の再構築のプロセスが描かれる。</p></div></section>
-      <details class="rb-fragments"><summary>映画の断片をもっと見る <span aria-hidden="true">+</span></summary><div class="rb-fragment-grid">{[rabbit2, rabbit3, rabbit4, rabbit5, rabbit6].map((src, index) => <figure><OptimizedImage src={src} alt={`Rabbit, Habbit, Kubidの映像断片 ${index + 2}`} /><figcaption>FRAGMENT / 0{index + 2}</figcaption></figure>)}</div></details>
-    </section>
-
-    <section class="rb-chapter" aria-labelledby="rb-behind"><header><span class="rb-label">03 / BEHIND THE SCENES</span><h2 id="rb-behind">Behind the film</h2></header><figure class="rb-behind"><OptimizedImage src={rabbitBehind} alt="Rabbit, Habbit, Kubidの制作風景" /><figcaption>PRODUCTION RECORD</figcaption></figure></section>
-    <a class="rb-next" href="/what"><span class="rb-label">BACK TO INDEX</span><span>Selected work</span></a>
   </article>
 </BaseLayout>
+
 <script>
-  const play = document.querySelector<HTMLButtonElement>(".rb-play");
-  const excerpt = document.querySelector<HTMLElement>("#rb-excerpt");
-  const stop = document.querySelector<HTMLButtonElement>(".rb-stop");
-  const animation = document.querySelector<HTMLImageElement>(".rb-excerpt-image");
-  if (play && excerpt && stop && animation) {
-    play.addEventListener("click", () => {
-      animation.src = excerpt.dataset.animation!;
-      excerpt.hidden = false;
-      play.hidden = true;
-      play.setAttribute("aria-expanded", "true");
-      stop.focus();
+  import "../../scripts/next-project";
+  document.querySelectorAll('.rb-soft-reveal').forEach((element) => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      element.classList.add('is-in-view');
+      observer.unobserve(element);
+    }, { threshold: 0.35 });
+    observer.observe(element);
+  });
+
+  const heroProse = document.querySelector('.rb-hero-prose');
+  if (heroProse && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const textNodes = [...heroProse.querySelectorAll('p')].flatMap((element) =>
+      [...element.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE && node.textContent)
+    );
+    textNodes.forEach((node) => {
+      const fragment = document.createDocumentFragment();
+      [...(node.textContent ?? '')].forEach((character) => {
+        const span = document.createElement('span');
+        span.className = 'rb-visual-char';
+        span.textContent = character;
+        fragment.appendChild(span);
+      });
+      node.replaceWith(fragment);
     });
-    const close = () => {
-      excerpt.hidden = true;
-      animation.removeAttribute("src");
-      play.hidden = false;
-      play.setAttribute("aria-expanded", "false");
-      play.focus();
+
+    const updateVisualLines = () => {
+      const lineTops: number[] = [];
+      heroProse.querySelectorAll<HTMLElement>('.rb-visual-char').forEach((character) => {
+        const top = character.offsetTop;
+        let lineIndex = lineTops.findIndex((lineTop) => Math.abs(lineTop - top) < 2);
+        if (lineIndex === -1) {
+          lineIndex = lineTops.length;
+          lineTops.push(top);
+        }
+        character.style.setProperty('--line-delay', `${lineIndex * 90}ms`);
+      });
     };
-    stop.addEventListener("click", close);
-    excerpt.addEventListener("keydown", event => { if (event.key === "Escape") close(); });
+    heroProse.classList.add('is-line-motion-ready');
+    updateVisualLines();
+    document.fonts.ready.then(updateVisualLines);
+    window.addEventListener('resize', updateVisualLines);
+    const observer = new IntersectionObserver(([entry]) => {
+      heroProse.classList.toggle('is-in-view', entry.isIntersecting);
+    }, { threshold: 0.25 });
+    observer.observe(heroProse);
   }
 </script>

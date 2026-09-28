@@ -4,39 +4,65 @@ import OptimizedImage from "../components/OptimizedImage.astro";
 import homeVideo from "../assets/home/nuus-sum.mp4";
 import heroPoster from "../assets/home/hero-image-mobile.webp";
 import realCopy from "../assets/real-copy/thumbnails/IMG_8348.JPG";
-import { realCopyConcept } from "../data/real-copy";
+import jijitsu from "../assets/jijitsu/thumbnails/IMG_3734.jpg";
+import rabbit from "../assets/rabbit/thumbnails/scene8_5_bed.jpg";
 import "../styles/home.css";
-const realCopyExcerpt = `${[...realCopyConcept].slice(0, 50).join("")}…`;
 ---
 <BaseLayout bodyClass="home-page" title="Nuus" description="本質と現象にN軸をもって作品を作るクリエイティブ集団、Nuus。" current="home">
   <section class="home-hero" aria-label="Nuus introduction">
     <div class="home-hero-sticky">
-      <video class="home-film" id="home-film" src={homeVideo} poster={heroPoster.src} autoplay muted playsinline loop preload="auto" aria-label="Nuusのイントロ映像"></video>
+      <video class="home-film" src={homeVideo} poster={heroPoster.src} autoplay muted playsinline loop preload="auto" aria-label="Nuusのイントロ映像"></video>
     </div>
   </section>
 
   <div class="home-editorial">
-    <section class="home-about" aria-labelledby="home-about-title">
-      <span class="home-label">01 / THE MINDS</span>
-      <div><h2 id="home-about-title" lang="ja">本質と現象に、<br /><span>N軸</span>をもって。</h2><p lang="ja">ヌースは、本質（X軸）と現象（Y軸）に<br />N軸をもって作品を作るクリエイティブ集団。</p><a class="home-text-link" href="/who">About Nuus</a></div>
-    </section>
-
-    <section class="home-work" id="home-work" aria-labelledby="home-work-title">
-      <header><div><span class="home-label">02 / SELECTED WORK</span><h2 id="home-work-title">見えてるものが現実か？</h2></div><a class="home-text-link" href="/what">All projects</a></header>
+    <section class="home-work" id="home-work" aria-label="Selected work">
       <div class="home-work-grid">
         <article class="home-project">
           <a class="home-project-image" href="/what/real-copy" aria-label="Real_copyの詳細を見る"><OptimizedImage src={realCopy} alt="Real_copy — project documentation" /></a>
           <div class="home-project-copy">
             <span class="home-label">01 / VR / INSTALLATION</span>
             <h3><a href="/what/real-copy">Real_copy</a></h3>
-            <p lang="ja">{realCopyExcerpt}</p>
-            <a class="home-text-link" href="/what/real-copy">View project</a>
+            <a class="home-project-link" href="/what/real-copy">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+              <span>Check here</span>
+            </a>
           </div>
         </article>
+        <article class="home-project">
+          <div class="home-project-copy">
+            <span class="home-label">02 / EXHIBITION / INSTALLATION</span>
+            <h3><a href="/what/jijitsu">JIJITSU</a></h3>
+            <a class="home-project-link" href="/what/jijitsu">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+              <span>Check here</span>
+            </a>
+          </div>
+          <a class="home-project-image" href="/what/jijitsu" aria-label="JIJITSUの詳細を見る"><OptimizedImage src={jijitsu} alt="JIJITSU — exhibition documentation" /></a>
+        </article>
+      </div>
+      <div class="home-work-grid">
+      <article class="home-project home-project--rabbit">
+        <a class="home-project-image" href="/what/rabbit" aria-label="Rabbit, Habbit, Kubidの詳細を見る"><OptimizedImage src={rabbit} alt="Rabbit, Habbit, Kubid — film still" /></a>
+        <div class="home-project-copy">
+          <span class="home-label">03 / FILM / DOCUMENTARY</span>
+          <h3><a href="/what/rabbit">Rabbit, Habbit, Kubid</a></h3>
+        </div>
+      </article>
+      <article class="home-project" aria-label="Project placeholder">
+        <div class="home-project-placeholder" aria-hidden="true"></div>
+        <div class="home-project-copy">
+          <span class="home-label">04 / PROJECT</span>
+          <h3>Coming soon</h3>
+          <span class="home-project-link" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+            <span>Check here</span>
+          </span>
+        </div>
+      </article>
       </div>
     </section>
 
-    <a class="home-notes" href="/when"><span class="home-label">03 / NOTES IN TIME</span><span class="home-notes-title" lang="ja">今考えてること。</span><span class="home-label">CURRENT INTERESTS &amp; EXPLORATIONS</span></a>
   </div>
-  <script src="/js/home.js?v=mobile-about-1" defer></script>
+  <script src="/js/home.js?v=work-only-1" defer></script>
 </BaseLayout>

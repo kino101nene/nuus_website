@@ -1,5 +1,13 @@
 // Shared mobile navigation.
 (() => {
+  const footer = document.querySelector(".footer");
+  if (footer && "IntersectionObserver" in window) {
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      document.body.classList.toggle("footer-visible", entry.isIntersecting);
+    }, { threshold: 0 });
+    footerObserver.observe(footer);
+  }
+
   const toggle = document.querySelector(".mobile-toggle");
   const panel = document.querySelector(".mobile-menu-panel");
   if (!toggle || !panel) return;

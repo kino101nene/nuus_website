@@ -1,0 +1,72 @@
+/* Shared project primitives. Override these tokens on a page or section. */
+:root {
+  --project-eyebrow-color: #555;
+  --project-eyebrow-size: var(--text-sm);
+  --project-eyebrow-size-mobile: 9px;
+  --project-eyebrow-gap: 8px;
+  --project-eyebrow-pair-gap: 2px;
+  --project-eyebrow-padding-top: 16px;
+  --project-eyebrow-tracking: .06em;
+  --project-eyebrow-title-weight: 500;
+}
+
+.project-eyebrow {
+  display: flex;
+  flex-direction: column;
+  align-items: var(--project-eyebrow-align, flex-start);
+  justify-content: flex-start;
+  width: max-content;
+  gap: var(--project-eyebrow-gap);
+  padding: var(--project-eyebrow-padding-top) 0 0;
+  background: transparent;
+  color: var(--project-eyebrow-color);
+  font-size: var(--project-eyebrow-size);
+  letter-spacing: var(--project-eyebrow-tracking);
+}
+.project-eyebrow-pair { display: flex; flex-direction: column; gap: var(--project-eyebrow-pair-gap); }
+.project-eyebrow-title { font-weight: var(--project-eyebrow-title-weight); }
+.project-eyebrow-value { font-weight: 400; }
+
+.project-editorial {
+  --project-columns: minmax(0, 4fr) minmax(0, 6fr);
+  --project-column-gap: 4%;
+  --project-section-space: 160px;
+  --project-section-space-mobile: 80px;
+  --project-concept-title-size: 20px;
+  --project-body-size: 16px;
+  --project-body-leading: 2.1;
+  --project-paragraph-space: 1.4em;
+}
+
+.project-split {
+  display: grid;
+  grid-template-columns: var(--project-columns);
+  gap: var(--project-column-gap);
+  align-items: start;
+}
+
+.project-concept {
+  width: 100%;
+  padding-block: var(--project-section-space);
+}
+
+.project-concept h2 {
+  align-self: start;
+  margin: 0;
+  font-family: var(--font-ja);
+  font-size: var(--project-concept-title-size);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.project-concept .project-prose {
+  width: 100%;
+  max-width: none;
+  font-family: var(--font-ja);
+  font-size: var(--project-body-size);
+  line-height: var(--project-body-leading);
+  line-break: strict;
+}
+
+.project-prose p { margin: 0 0 var(--project-paragraph-space); }
+.project-prose p:last-child { margin-bottom: 0; }

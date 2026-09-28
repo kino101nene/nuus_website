@@ -1,5 +1,6 @@
 @media (max-width: 860px) {
   :root { --header-h: 64px; }
+  .header-inner { padding-top: 0; }
   .desktop-nav, .desktop-only { display: none; }
   .site-header .logo { width: 112px; }
   .mobile-toggle { display: flex; align-items: center; gap: 18px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--color-text); font: inherit; font-size: 13px; cursor: pointer; }
@@ -9,5 +10,12 @@
   .mobile-menu-panel .nav-item { padding: 24px 0; gap: 8px; }
   .mobile-menu-panel .nav-en { font-size: clamp(36px, 9vw, 64px); line-height: 1.1; letter-spacing: -.04em; }
   .mobile-menu-panel .nav-ja { font-size: 14px; }
+  .mobile-menu-panel .nav-item { color: #000 !important; text-decoration: none !important; mix-blend-mode: normal; }
+  body.mobile-menu-open .site-header { mix-blend-mode: normal; }
+  body.mobile-menu-open .site-header .logo,
+  body.mobile-menu-open .mobile-toggle { filter: none; color: #000 !important; }
+  body.mobile-menu-open .site-header .logo { filter: none; }
   body.mobile-menu-open { overflow: hidden; }
+  .footer .container { flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .footer-socials { justify-content: center; }
 }

@@ -34,30 +34,22 @@ import soilImg from "../../assets/jijitsu/contents/dream-mapping/soil.jpg";
 import visitorGif from "../../assets/jijitsu/contents/room/GIF/visitor1.gif";
 import visitorGif2 from "../../assets/jijitsu/contents/room/GIF/visitor2.gif";
 import visitorGif3 from "../../assets/jijitsu/contents/room/GIF/visitor3.gif";
-import visitorGif4 from "../../assets/jijitsu/contents/room/GIF/visitor4.gif";
-// @ts-ignore
-import thumbnailImg from "../../assets/jijitsu/thumbnails/IMG_3734.jpg";
 
 import "../../styles/projects/jijitsu-editorial.css";
 import roomImage from "../../assets/jijitsu/contents/room/JPG/whole-room.JPG";
+import rabbitNext1 from "../../assets/rabbit/visitor1.gif";
+import rabbitNext2 from "../../assets/rabbit/visitor2.gif";
+import rabbitNext3 from "../../assets/rabbit/visitor3.gif";
 
 const title = "JIJITSU";
 
-const jijitsuMeta = [
-  { label: "Year", value: "2026" },
-  { label: "Type", value: "Installation / Prototype" },
-  { label: "Role", value: "Concept, Dev, Design" },
-];
-
 const jijitsuDescriptions = [
   {
-    label: "体験",
     text: `このこじんまりとした空間には、キッチン、トイレ、ロフトが備わり、一見すると誰でも住めそうなアパートの一室のように見える。
 しかし、部屋の半分には白い布で覆われた土台のようなものが佇み、まず座る場所が見当たらない。
 床には土ごと置かれた植物、牛乳らしきものが入った瓶、彫刻のように形作られた粘土が点在し、生活感がありながらも、どこか異様な気配が漂う。`,
   },
   {
-    label: "展開",
     text: `来場者には、「かつてUSAGIたちという存在が住処としていたとされる空間の痕跡」が再構築されたものであると説明される。
 
 そして、こう問いかけられる。
@@ -67,7 +59,6 @@ const jijitsuDescriptions = [
 USAGIたちが残した"らしき"ものの用途や意味は明かされず、それらはただ、そこにある。`,
   },
   {
-    label: "コンセプト",
     text: `来場者は、その空間にあるものを観察し、触れ、試しながら、自分なりの解釈や物語を生み出していく。
 
 ここにあるものは、かつて存在したものなのか、それとも今ここで生まれたものなのか。
@@ -77,40 +68,11 @@ USAGIたちが残した"らしき"ものの用途や意味は明かされず、�
   },
 ];
 
-const criminalPoster = [
-  boxingImg,
-  galleryImg,
-  hiringImg,
-  jazzConcertImg,
-  margotImg,
-  mathTutorImg,
-  partyImg,
-  shopliftersImg,
-  missingImg,
-];
-
-const dreamMapping = [lettersImg, mapImg, orangeDogImg, soilImg];
-const roomGifs = [visitorGif, visitorGif2, visitorGif3, visitorGif4];
+const roomGifs = [visitorGif, visitorGif2, visitorGif3];
 const sections = [
   {
-    number: "02",
-    title: "JIJITSU",
-    media: visitorGif,
-    mediaAlt: "Jijitsu animation",
-    meta: jijitsuMeta,
-    descriptions: jijitsuDescriptions,
-    gallery: [],
-  },
-  {
-    number: "02-01",
-    title: "Wanted Criminals",
-    media: null,
-    mediaAlt: "",
-    meta: [],
-    titleInContent: true,
     descriptions: [
       {
-        label: "概要",
         text: `「Wanted Criminals」 は、指名手配写真のもつフィクション性を再解釈し、デジタル処理を施して新たな文脈に置き換えたポスターシリーズである。
 
 本作では、犯罪者の「像」として機能する指名手配写真をデータとして分解し、ランダムな改変を加えることで、視覚的な明確さを揺るがし、写真が持つ意味や役割を変容させている。
@@ -133,15 +95,8 @@ const sections = [
     ],
   },
   {
-    number: "02-02",
-    title: "Dream Mapping",
-    media: mapImg,
-    mediaAlt: "Dream Mapping main image",
-    meta: [],
-    titleInContent: true,
     descriptions: [
       {
-        label: "概要",
         text: `USAGIたちが記録していたとされる「夢の地図」。それは言葉と図形が交錯し、論理的な説明を拒む断片的な記録である。
 
 ここに描かれているのは、場所なのか、記憶なのか、それとも誰かの想像の産物なのか。見る者は、その解釈を委ねられ、自らの物語を紡ぐことになる。
@@ -149,85 +104,162 @@ const sections = [
 夢とは、語られることで形を成し、共有されることで新たな意味を持つ——「Dream Mapping」は、その流動性を可視化する試みである。`,
       },
     ],
-    gallery: dreamMapping.map((src, index) => ({
-      src,
-      title: `Dream Mapping ${index + 1}`,
-    })),
   },
 ];
 ---
 
 <BaseLayout bodyClass="jijitsu-page" title={`${title} — Nuus`} description="USAGIたちの住処を辿る体験型展示、JIJITSU。" current="what">
-  <article class="jj-project" aria-labelledby="jj-title">
+  <article class="project-editorial jj-project" aria-labelledby="jj-title">
     <header class="jj-intro">
-      <div class="jj-eyebrow"><span>#2 YEAR 2026, TOKYO</span></div>
       <div class="jj-title-row">
         <h1 id="jj-title">JIJITSU</h1>
-        <div class="jj-title-experience">
-          <div class="jj-prose">
-            <p>{jijitsuDescriptions[0].text.replace(/\s+/g, "").split("床には")[0]}</p>
-            <p>床には{jijitsuDescriptions[0].text.replace(/\s+/g, "").split("床には")[1]}</p>
-          </div>
-        </div>
       </div>
     </header>
 
     <figure class="jj-room">
       <OptimizedImage src={roomImage} alt="JIJITSUの展示空間の全景" loading="eager" fetchpriority="high" />
-      <figcaption><span>USAGIたちの住処</span><span>INSTALLATION VIEW</span></figcaption>
     </figure>
+    <section class="project-split jj-hero-details" lang="ja">
+      <div class="project-eyebrow">
+        <div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span>2023</span></div>
+        <div class="project-eyebrow-pair"><span class="project-eyebrow-title">PLACE</span><span>TOYAMA</span></div>
+        <div class="project-eyebrow-pair"><span class="project-eyebrow-title">CREDIT</span><span>AI, nene, Seiya</span></div>
+      </div>
+      <div class="jj-hero-prose jj-prose">
+        <p>{jijitsuDescriptions[0].text.replace(/\s+/g, "").split("床には")[0]}</p>
+        <p>{(`床には${jijitsuDescriptions[0].text.replace(/\s+/g, "").split("床には")[1]}`).split(/(生活感がありながらも、どこか異様な気配が漂う。)/).map(part => part === "生活感がありながらも、どこか異様な気配が漂う。" ? <span class="jj-hero-emphasis">{part}</span> : part)}</p>
+      </div>
+    </section>
     <div class="jj-room-gifs" aria-label="JIJITSU visitor records">
-      {roomGifs.map((gif, index) => <figure><OptimizedImage src={gif} alt={`JIJITSU visitor record ${index + 1}`} /><figcaption><span>VISITOR RECORD</span><span>0{index + 1}</span></figcaption></figure>)}
+      <figure><OptimizedImage src={roomGifs[0]} alt="JIJITSU visitor record 1" /></figure>
+      <div class="jj-room-gifs-bottom">
+        {roomGifs.slice(1, 3).map((gif, index) => <figure><OptimizedImage src={gif} alt={`JIJITSU visitor record ${index + 2}`} /></figure>)}
+      </div>
     </div>
 
-    <section class="jj-encounter" aria-labelledby="jj-question">
-      <div class="jj-question-copy" lang="ja">
-        <span class="jj-label">02 / AN INVITATION</span>
-        <h2 id="jj-question">もし、あなたが<br />ここに住むとしたら？</h2>
-        <p>ここを自分なりに快適に過ごすとしたら、何をするか？</p>
-      </div>
-    </section>
-    <section class="jj-text" aria-labelledby="jj-development" lang="ja">
-      <h2 id="jj-development"><span>THE ENCOUNTER</span>展開</h2>
-      <div class="jj-prose">{jijitsuDescriptions[1].text.split("\n\n").filter(Boolean).map(text => <p>{text}</p>)}</div>
+    <section class="project-split project-concept jj-concept-feature" aria-labelledby="jj-concept-feature" lang="ja">
+      <h2 id="jj-concept-feature" class="jj-soft-reveal">もし、あなたが<br />ここに住むとしたら？</h2>
+      <div class="project-prose jj-prose">{jijitsuDescriptions[1].text.split("\n\n").filter(Boolean).map(text => <p>{text}</p>)}</div>
     </section>
 
-    <section class="jj-chapter" aria-labelledby="jj-posters">
-      <header class="jj-chapter-heading"><span class="jj-label">03 / TRACES</span><h2 id="jj-posters">Wanted Criminals</h2></header>
-      <div class="jj-chapter-description jj-prose" lang="ja">{sections[1].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
+    <section class="jj-chapter jj-wanted" aria-labelledby="jj-posters">
+      <div class="jj-chapter-copy">
+        <header class="jj-chapter-heading"><span class="jj-label">Sub Project 1</span><h2 id="jj-posters">Wanted Criminals</h2></header>
+        <div class="jj-chapter-description jj-prose" lang="ja">{sections[0].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
+      </div>
       <div class="jj-posters">
-        {sections[1].gallery.map((item, index) => <figure><OptimizedImage src={item.src} alt={`Wanted Criminals — ${item.title}`} /><figcaption><span>{item.title}</span><span>0{index + 1}</span></figcaption></figure>)}
+        {sections[0].gallery.map((item) => <figure><OptimizedImage src={item.src} alt={`Wanted Criminals — ${item.title}`} /></figure>)}
       </div>
+      <div class="jj-posters-progress" aria-hidden="true"><span></span></div>
     </section>
 
-    <section class="jj-chapter" aria-labelledby="jj-dream">
-      <header class="jj-chapter-heading"><span class="jj-label">04 / RECORDS</span><h2 id="jj-dream">Dream Mapping</h2></header>
-      <div class="jj-chapter-description jj-prose" lang="ja">{sections[2].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
-      <figure class="jj-map"><OptimizedImage src={mapImg} alt="USAGIたちの夢の地図" /><figcaption><span>Dream map</span><span>01 / 04</span></figcaption></figure>
-      <div class="jj-records">
-        {[{ src: lettersImg, title: "Letters" }, { src: orangeDogImg, title: "Orange dog" }, { src: soilImg, title: "Soil" }].map((item, index) => <figure><OptimizedImage src={item.src} alt={`Dream Mapping — ${item.title}`} /><figcaption><span>{item.title}</span><span>0{index + 2} / 04</span></figcaption></figure>)}
+    <section class="jj-chapter jj-dream" aria-labelledby="jj-dream">
+      <div class="jj-chapter-copy">
+        <header class="jj-chapter-heading"><span class="jj-label">Sub Project 2</span><h2 id="jj-dream">Dream Mapping</h2></header>
+        <div class="jj-chapter-description jj-prose" lang="ja">{sections[1].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
       </div>
+      <div class="jj-posters jj-dream-gallery">
+        {[{ src: mapImg, title: "Dream map" }, { src: lettersImg, title: "Letters" }, { src: orangeDogImg, title: "Orange dog" }, { src: soilImg, title: "Soil" }].map((item) => <figure><OptimizedImage src={item.src} alt={`Dream Mapping — ${item.title}`} /></figure>)}
+      </div>
+      <div class="jj-posters-progress" aria-hidden="true"><span></span></div>
     </section>
 
     <section class="jj-text jj-concept" aria-labelledby="jj-concept" lang="ja">
-      <h2 id="jj-concept"><span>05 / SELF-REALITY</span>コンセプト</h2>
-      <div class="jj-prose">{jijitsuDescriptions[2].text.split("\n\n").filter(Boolean).map(text => <p>{text}</p>)}</div>
+      <h2 id="jj-concept" class="jj-soft-reveal jj-soft-reveal--title-slow">自実を考える</h2>
+      <div class="jj-prose jj-soft-reveal jj-soft-reveal--body">{jijitsuDescriptions[2].text.split("\n\n").filter(Boolean).map(text => <p>{text.split(/(再構築された現実)/).map(part => part === "再構築された現実" ? <span class="jj-concept-emphasis">{part}</span> : part)}</p>)}</div>
     </section>
-    <a class="jj-next" href="/what/rabbit"><span class="jj-label">次の作品 / NEXT PROJECT</span><span class="jj-next-title">rabbit,habit,kubid</span></a>
+    <div class="project-next">
+      <div class="project-next-project-row">
+        <span class="project-next-kicker">他の作品</span>
+        <a class="project-next-link" href="/what/rabbit" aria-label="rabbit,habit,kubid プロジェクトを見る">
+          <span class="project-next-title">rabbit,habit,kubid</span>
+          <svg class="project-next-arrow" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+            <path fill="currentColor" d="M4 2h6l10 10-10 10H4l10-10L4 2Z" />
+          </svg>
+        </a>
+        <div class="project-next-gifs" aria-hidden="true"><img src={rabbitNext1.src} alt="" /><img src={rabbitNext2.src} alt="" /><img src={rabbitNext3.src} alt="" /></div>
+      </div>
+    </div>
   </article>
 </BaseLayout>
 
 <script>
-  const project = document.querySelector('.jj-project');
-  const intro = document.querySelector('.jj-intro');
-  const room = document.querySelector('.jj-room');
-  const gifs = document.querySelector('.jj-room-gifs');
-  const syncRoomSpacing = () => {
-    if (!intro || !room || !gifs) return;
-    const roomHeight = room.getBoundingClientRect().height;
-    const introHeight = intro.getBoundingClientRect().height;
-    gifs.style.marginTop = `${Math.max(40, roomHeight - introHeight + 40)}px`;
-  };
-  window.addEventListener('load', syncRoomSpacing);
-  window.addEventListener('resize', syncRoomSpacing);
+  document.querySelectorAll('.jj-chapter-copy').forEach((element) => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || entry.intersectionRatio < 0.95) return;
+      element.classList.add('is-in-view');
+      observer.unobserve(element);
+    }, { threshold: [0.95, 1] });
+    observer.observe(element);
+  });
+
+  import "../../scripts/next-project";
+
+  document.querySelectorAll('.jj-soft-reveal').forEach((element) => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      element.classList.add('is-in-view');
+      observer.unobserve(element);
+    }, { threshold: 0.35 });
+    observer.observe(element);
+  });
+
+  const heroProse = document.querySelector('.jj-hero-prose');
+  if (heroProse && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const textNodes = [...heroProse.querySelectorAll('p, .jj-hero-emphasis')].flatMap((element) =>
+      [...element.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE && node.textContent)
+    );
+    textNodes.forEach((node) => {
+      const fragment = document.createDocumentFragment();
+      [...(node.textContent ?? '')].forEach((character) => {
+        const span = document.createElement('span');
+        span.className = 'jj-visual-char';
+        span.textContent = character;
+        fragment.appendChild(span);
+      });
+      node.replaceWith(fragment);
+    });
+
+    const updateVisualLines = () => {
+      const characters = [...heroProse.querySelectorAll('.jj-visual-char')];
+      const lineTops = [];
+      characters.forEach((character) => {
+        const top = character.getBoundingClientRect().top;
+        let lineIndex = lineTops.findIndex((lineTop) => Math.abs(lineTop - top) < 2);
+        if (lineIndex === -1) {
+          lineIndex = lineTops.length;
+          lineTops.push(top);
+        }
+        character.style.setProperty('--line-delay', `${lineIndex * 90}ms`);
+      });
+      heroProse.classList.add('is-line-motion-ready');
+    };
+
+    updateVisualLines();
+    document.fonts?.ready.then(updateVisualLines);
+    window.addEventListener('resize', updateVisualLines);
+
+    const heroProseObserver = new IntersectionObserver(([entry]) => {
+      heroProse.classList.toggle('is-in-view', entry.isIntersecting);
+    }, { threshold: 0.25 });
+    heroProseObserver.observe(heroProse);
+  }
+
+  const posterGalleries = [...document.querySelectorAll('.jj-posters')];
+  posterGalleries.forEach((posters) => {
+    const progressThumb = posters.nextElementSibling?.querySelector('span');
+    if (!(posters instanceof HTMLElement) || !(progressThumb instanceof HTMLElement)) return;
+    const updatePosterProgress = () => {
+      const visibleRatio = Math.min(1, posters.clientWidth / posters.scrollWidth);
+      const scrollRatio = posters.scrollWidth > posters.clientWidth
+        ? posters.scrollLeft / (posters.scrollWidth - posters.clientWidth)
+        : 0;
+      progressThumb.style.width = `${visibleRatio * 100}%`;
+      progressThumb.style.transform = `translateX(${scrollRatio * ((1 - visibleRatio) / visibleRatio) * 100}%)`;
+    };
+    posters.addEventListener('scroll', updatePosterProgress, { passive: true });
+    new ResizeObserver(updatePosterProgress).observe(posters);
+    updatePosterProgress();
+  });
+
 </script>
