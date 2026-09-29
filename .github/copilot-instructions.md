@@ -1,6 +1,6 @@
 # AI agent instructions — nuus_website
 
-This repository is the Nuus website, built with Astro 5. Keep changes in this website project separate from any Shopify work.
+This repository is the Nuus website, built with Astro 7 (Node.js 22.12.0 or newer). Keep changes in this website project separate from any Shopify work.
 
 When the user provides a GitHub issue URL or issue number for this repository, read that issue before making changes. Follow its requirements and acceptance criteria, and clarify any conflict with the user's latest instructions. Do not search for issues automatically on every task; if no issue is referenced, work from the user's request and repository context.
 
