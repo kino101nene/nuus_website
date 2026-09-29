@@ -75,8 +75,11 @@ const introText = `この空間は、USAGIたちの映画「Rabbit, Habbit, Kubi
     <div class="rb-film-wrap">
       <section class="rb-chapter" aria-label="Rabbit, Habbit, Kubid">
         <div class="rb-chapter-gallery rb-chapter-gallery--film">
-          <div class="rb-film-frame">
-            {filmGifs.map((gif, index) => <figure class:list={{ "is-active": index === 0 }}><img src={gif.src} alt={`Rabbit, Habbit, Kubid — 映像断片 ${index + 1}`} width={gif.width} height={gif.height} loading={index === 0 ? "eager" : "lazy"} /></figure>)}
+          <div class="rb-film-stage">
+            <div class="rb-film-frame">
+              {filmGifs.map((gif, index) => <figure class:list={{ "is-active": index === 0 }}><img src={gif.src} alt={`Rabbit, Habbit, Kubid — 映像断片 ${index + 1}`} width={gif.width} height={gif.height} loading={index === 0 ? "eager" : "lazy"} /></figure>)}
+            </div>
+            <figure class="rb-behind rb-behind--mobile"><OptimizedImage src={rabbitBehind} alt="映像を眺めるうさぎたちの後ろ姿" /></figure>
           </div>
         </div>
       </section>
@@ -109,15 +112,16 @@ const introText = `この空間は、USAGIたちの映画「Rabbit, Habbit, Kubi
   import "../../scripts/soft-reveal";
 
   const filmGallery = document.querySelector<HTMLElement>(".rb-chapter-gallery--film");
+  const filmStage = filmGallery?.querySelector<HTMLElement>(".rb-film-stage");
   const filmFrame = filmGallery?.querySelector<HTMLElement>(".rb-film-frame");
   const filmSlides = filmFrame ? [...filmFrame.querySelectorAll<HTMLElement>("figure")] : [];
-  if (filmGallery && filmFrame && filmSlides.length > 1 && window.matchMedia("(max-width: 700px)").matches) {
+  if (filmGallery && filmStage && filmSlides.length > 1 && window.matchMedia("(max-width: 700px)").matches) {
     const updateFilmSlide = () => {
       const galleryTop = filmGallery.getBoundingClientRect().top + window.scrollY;
       const galleryStyle = getComputedStyle(filmGallery);
       const topPadding = parseFloat(galleryStyle.paddingTop) || 0;
       const stickyTop = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 0;
-      const travel = Math.max(1, filmGallery.offsetHeight - filmFrame.offsetHeight - topPadding);
+      const travel = Math.max(1, filmGallery.offsetHeight - filmStage.offsetHeight - topPadding);
       const progress = Math.min(1, Math.max(0, (window.scrollY - (galleryTop + topPadding - stickyTop)) / travel));
       const activeIndex = Math.min(filmSlides.length - 1, Math.round(progress * (filmSlides.length - 1)));
       filmSlides.forEach((slide, index) => slide.classList.toggle("is-active", index === activeIndex));
