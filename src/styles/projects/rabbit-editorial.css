@@ -47,11 +47,13 @@ body.rabbit-screening {
 .rb-chapter-gallery-bottom figure:first-child { aspect-ratio: 4 / 3; }
 .rb-chapter-gallery-bottom figure img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .rb-chapter-gallery--film { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; width: 79.2%; margin-left: 20.8%; }
+.rb-film-stage { display: contents; }
 .rb-film-frame { display: contents; }
 .rb-film-frame > figure { width: 100%; aspect-ratio: 4 / 3; margin: 0; overflow: hidden; }
 .rb-film-frame > figure:first-child { grid-column: 1 / -1; justify-self: end; width: 79.545%; }
 .rb-film-frame > figure img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .rb-behind { max-width: 1100px; margin-inline: auto !important; }
+.rb-behind--mobile { display: none; }
 .rb-film-wrap + .project-next { margin-top: 96px; }
 @media (hover: hover) { .rabbit-screening a:hover { color: var(--color-accent); } }
 @media (max-width: 700px) {
@@ -75,12 +77,17 @@ body.rabbit-screening {
   .rb-chapter-gallery-bottom { width: 100%; margin: 12px 0 0; gap: 12px; }
   .rb-chapter-gallery-bottom figure:first-child { aspect-ratio: 267 / 148; }
   .rb-chapter-gallery-bottom figure img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-  .rb-chapter-gallery--film { --rb-film-frame-height: calc(100svh - var(--header-h)); position: relative; display: block; width: calc(100% + (var(--header-gutter) * 4)); height: calc((var(--rb-film-frame-height) * 7) + var(--project-section-space-mobile)); margin-inline: calc(var(--header-gutter) * -2); padding-top: var(--project-section-space-mobile); }
-  .rb-chapter-gallery--film .rb-film-frame { position: sticky; top: var(--header-h); display: block; width: 100%; height: var(--rb-film-frame-height); }
+  .rb-film-wrap { background: transparent; box-shadow: none; clip-path: none; }
+  .rb-chapter--behind { display: none; }
+  .rb-chapter-gallery--film { position: relative; display: block; width: calc(100% + (var(--header-gutter) * 4)); height: calc((100svh - var(--header-h)) * 7 + var(--project-section-space-mobile)); margin-inline: calc(var(--header-gutter) * -2); padding-top: var(--project-section-space-mobile); }
+  .rb-chapter-gallery--film .rb-film-stage { position: sticky; top: var(--header-h); display: block; width: 100%; background: #000; }
+  .rb-chapter-gallery--film .rb-film-frame { position: relative; display: block; width: 100%; aspect-ratio: 802 / 456; }
   .rb-chapter-gallery--film .rb-film-frame > figure { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; margin: 0; opacity: 0; transition: opacity 250ms ease; }
   .rb-chapter-gallery--film .rb-film-frame > figure:first-child { grid-column: auto; justify-self: auto; width: 100%; }
   .rb-chapter-gallery--film .rb-film-frame > figure.is-active { opacity: 1; }
   .rb-chapter-gallery--film .rb-film-frame > figure img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+  .rb-chapter-gallery--film .rb-behind--mobile { display: block; max-width: none; width: 100%; }
+  .rb-chapter-gallery--film .rb-behind--mobile img { display: block; width: 100%; height: auto; }
   .rabbit-screening .project-eyebrow { --project-eyebrow-size: var(--project-eyebrow-size-mobile); }
   .rb-hero-prose { font-size: var(--project-hero-copy-size); }
   .rb-concept-feature { grid-template-columns: 1fr; gap: 20px; padding-block: var(--project-section-space-mobile); }
