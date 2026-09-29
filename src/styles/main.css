@@ -33,6 +33,7 @@
   --font-sans: "Roboto", sans-serif;
   --font-ja: "Hiragino Sans", "Yu Gothic", sans-serif;
   --font-hand: "Caveat", cursive;
+  --font-weight-light: 300;
 
   --text-xs: 10px;
   --text-sm: 12px;
@@ -51,6 +52,12 @@
   --letter-spacing-tight: -0.03em;
   --letter-spacing-base: 0.02em;
   --letter-spacing-wide: 0.08em;
+
+  /* Soft reveal motion */
+  --reveal-distance: 4px;
+  --reveal-duration: 650ms;
+  --reveal-delay: 150ms;
+  --reveal-ease: cubic-bezier(.22, 1, .36, 1);
 
   /* =========================
      SPACING
@@ -104,8 +111,27 @@
   --ease: var(--transition-base);
 }
 
+@media (max-width: 699px) {
+  :root {
+    --page-padding: 20px;
+    --page-padding-inline-wide: 20px;
+  }
+}
+
+.project-soft-reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition: opacity var(--reveal-duration) var(--reveal-ease) var(--reveal-delay),
+    transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay);
+}
+.project-soft-reveal.is-in-view { opacity: 1; transform: translateY(0); }
+
 * {
   box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-soft-reveal { opacity: 1; transform: none; transition: none; }
 }
 
 html {

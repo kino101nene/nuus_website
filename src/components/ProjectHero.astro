@@ -1,0 +1,96 @@
+---
+import type { ImageMetadata } from "astro";
+import OptimizedImage from "./OptimizedImage.astro";
+
+interface HeroParagraph {
+  before: string;
+  emphasis?: string;
+  after?: string;
+}
+
+interface Props {
+  variant: "jj" | "rb";
+  titleLines: string[];
+  titleAccent?: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  optimizeImage?: boolean;
+  year: string;
+  place: string;
+  credit: string;
+  paragraphs: HeroParagraph[];
+}
+
+const {
+  variant,
+  titleLines,
+  titleAccent = "",
+  image,
+  imageAlt,
+  optimizeImage = true,
+  year,
+  place,
+  credit,
+  paragraphs,
+} = Astro.props;
+
+const isJijitsu = variant === "jj";
+const pageClass = isJijitsu ? "jj" : "rb";
+const imageClass = isJijitsu ? "jj-room" : "rb-screen";
+const mobileImageClass = isJijitsu ? "jj-mobile-room" : "rb-mobile-room";
+const titleId = isJijitsu ? "jj-title" : "rb-title";
+const titleText = titleLines.join("\n");
+---
+
+<div class={`${pageClass}-hero-desktop`}>
+  <header class={`${pageClass}-intro`}>
+    {isJijitsu && <div class="jj-title-row"><h1 id={titleId} class="project-hero-title">{titleText}</h1></div>}
+    {!isJijitsu && <h1 id={titleId} class="project-hero-title">{titleText}{titleAccent && <span>{titleAccent}</span>}</h1>}
+  </header>
+
+  {isJijitsu ? (
+    <figure class={imageClass}>
+      {optimizeImage
+        ? <OptimizedImage src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
+        : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />}
+    </figure>
+  ) : (
+    <div class={imageClass}>
+      {optimizeImage
+        ? <OptimizedImage src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
+        : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />}
+    </div>
+  )}
+
+  <section class={`project-split ${pageClass}-hero-details`} aria-label="作品情報">
+    <div class="project-eyebrow">
+      <div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span class="project-eyebrow-value">{year}</span></div>
+      <div class="project-eyebrow-pair"><span class="project-eyebrow-title">PLACE</span><span class="project-eyebrow-value">{place}</span></div>
+      <div class="project-eyebrow-pair"><span class="project-eyebrow-title">CREDIT</span><span class="project-eyebrow-value">{credit}</span></div>
+    </div>
+    <div class={`project-hero-prose ${pageClass}-hero-prose ${pageClass}-prose`} lang="ja">
+      {paragraphs.map(({ before, emphasis, after }) => <p>{before}{emphasis && <span class={`${pageClass}-hero-emphasis`}>{emphasis}</span>}{after}</p>)}
+    </div>
+  </section>
+</div>
+
+<section class={`${pageClass}-hero-mobile` } aria-label="作品ヒーロー">
+  <div class={`${pageClass}-mobile-heading`}>
+    <div class="project-eyebrow">
+      <div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span class="project-eyebrow-value">{year}</span></div>
+      <div class="project-eyebrow-pair"><span class="project-eyebrow-title">PLACE</span><span class="project-eyebrow-value">{place}</span></div>
+      <div class="project-eyebrow-pair"><span class="project-eyebrow-title">CREDIT</span><span class="project-eyebrow-value">{credit}</span></div>
+    </div>
+    <div class={`${pageClass}-mobile-title`}>
+      <h1 class="project-hero-title">{titleText}{titleAccent && <span>{titleAccent}</span>}</h1>
+    </div>
+  </div>
+  <div class={mobileImageClass}>
+    {optimizeImage
+      ? <OptimizedImage src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
+      : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />}
+  </div>
+  <div class={`project-hero-prose ${pageClass}-hero-prose ${pageClass}-prose`} lang="ja">
+    {paragraphs.map(({ before, emphasis, after }) => <p>{before}{emphasis && <span class={`${pageClass}-hero-emphasis`}>{emphasis}</span>}{after}</p>)}
+  </div>
+</section>

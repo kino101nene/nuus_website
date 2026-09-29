@@ -35,19 +35,19 @@ const gallery = [img1, img2, null, null, img5, img6];
 
 <BaseLayout bodyClass="real-copy-page" title={`${title} — Nuus`} description="VRと現実の境界を問い直すインスタレーション、Real_copy。" current="what">
   <div class="rc-banana-layer" aria-hidden="true"><OptimizedImage src={banana} alt="" loading="eager" /></div>
-  <article class="rc-project" aria-labelledby="rc-title">
+  <article class="project-editorial rc-project" aria-labelledby="rc-title">
     <div class="rc-alien-language-wrap" aria-hidden="true">
       <div class="rc-alien-language">
         {alienLanguageImages.map((src, index) => <div class={`rc-alien-item${index === 0 ? " is-active" : ""}`}><img src={src} alt="" loading="lazy" /><span>{alienLanguageText[index]?.text}</span></div>)}
       </div>
     </div>
     <div class="rc-overview">
-      <div class="rc-title-heading"><h1 id="rc-title">REAL_copy.</h1></div>
+      <div class="rc-title-heading"><h1 id="rc-title" class="project-hero-title">REAL_copy.</h1></div>
       <header class="rc-intro">
         <div class="rc-title-row">
-          <section class="rc-title-experience" aria-label="作品情報" lang="ja">
+          <section class="project-split project-hero-details rc-title-experience" aria-label="作品情報" lang="ja">
             <div class="project-eyebrow"><div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span class="project-eyebrow-value">2022</span></div><div class="project-eyebrow-pair"><span class="project-eyebrow-title">PLACE</span><span class="project-eyebrow-value">TOKYO</span></div><div class="project-eyebrow-pair"><span class="project-eyebrow-title">CREDIT</span><span class="project-eyebrow-value">AI, nene, Seiya, Michael</span></div></div>
-            <div class="rc-prose"><p>来場者は作品を見ないままVRゴーグルを装着する。<br />目の前に現れるのは、木の壁、枯山水の庭、テーブルと椅子、そして巨大な木の箱。<br />箱の中へ進むと壁一面に映像が流れ、中央の穴を覗くとさらに別の映像が現れる。<br /><br>VRを外すと、そこには先ほどの世界の痕跡が残されている。木屑や設計図、皿、フォーク、バナナ——VRの中にあったものが、少し違う姿で現実にも存在している。</p></div>
+            <div class="rc-prose project-hero-prose"><p>来場者は作品を見ないままVRゴーグルを装着する。<br />目の前に現れるのは、木の壁、枯山水の庭、テーブルと椅子、そして巨大な木の箱。<br />箱の中へ進むと壁一面に映像が流れ、中央の穴を覗くとさらに別の映像が現れる。<br /><br>VRを外すと、そこには先ほどの世界の痕跡が残されている。木屑や設計図、皿、フォーク、バナナ——VRの中にあったものが、少し違う姿で現実にも存在している。</p></div>
           </section>
         </div>
       </header>
@@ -78,7 +78,7 @@ const gallery = [img1, img2, null, null, img5, img6];
         </div>
 
       </div>
-      <section class="rc-mobile-experience rc-prose" lang="ja"><p>来場者は作品を見ないままVRゴーグルを装着する。<br />目の前に現れるのは、木の壁、枯山水の庭、テーブルと椅子、そして巨大な木の箱。<br />箱の中へ進むと壁一面に映像が流れ、中央の穴を覗くとさらに別の映像が現れる。<br /><br />VRを外すと、そこには先ほどの世界の痕跡が残されている。木屑や設計図、皿、フォーク、バナナ——VRの中にあったものが、少し違う姿で現実にも存在している。</p></section>
+      <section class="rc-mobile-experience rc-prose project-hero-prose" lang="ja"><p>来場者は作品を見ないままVRゴーグルを装着する。<br />目の前に現れるのは、木の壁、枯山水の庭、テーブルと椅子、そして巨大な木の箱。<br />箱の中へ進むと壁一面に映像が流れ、中央の穴を覗くとさらに別の映像が現れる。<br /><br />VRを外すと、そこには先ほどの世界の痕跡が残されている。木屑や設計図、皿、フォーク、バナナ——VRの中にあったものが、少し違う姿で現実にも存在している。</p></section>
     </div>
 
     <section class="rc-text-section rc-concept" lang="ja">
@@ -87,22 +87,24 @@ const gallery = [img1, img2, null, null, img5, img6];
           <OptimizedImage src={conceptScreenshot} alt="Real_copy コンセプト資料" loading="lazy" />
         </div>
       </div>
-      <div class="rc-concept-label">五感を分解する</div>
-      <div class="rc-prose"><p>REAL_copy. は、VRと現実を重ね合わせ、その境界を曖昧にするインスタレーションである。<br><br>視覚だけでなく、触覚・嗅覚・聴覚までを共有しながら、「何を現実として認識しているのか」を問い直す。</p></div>
+      <div class="rc-concept-label project-soft-reveal project-soft-reveal--title-slow">五感を分解する</div>
+      <div class="rc-prose project-soft-reveal project-soft-reveal--body"><p>REAL_copy. は、VRと現実を重ね合わせ、その境界を曖昧にするインスタレーションである。<br><br>視覚だけでなく、触覚・嗅覚・聴覚までを共有しながら、「何を現実として認識しているのか」を問い直す。</p></div>
     </section>
 
-    <div class="project-next">
-      <div class="project-next-project-row">
-        <span class="project-next-kicker">他の作品</span>
-        <a class="project-next-link" href="/what/jijitsu" aria-label="JIJITSU プロジェクトを見る">
-          <span class="project-next-title">JIJITSU</span>
-          <svg class="project-next-arrow" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
-            <path fill="currentColor" d="M4 2h6l10 10-10 10H4l10-10L4 2Z" />
-          </svg>
-        </a>
-        <div class="project-next-gifs" aria-hidden="true"><img src={jijitsuGif1.src} alt="" /><img src={jijitsuGif2.src} alt="" /><img src={jijitsuGif3.src} alt="" /></div>
+      <div class="project-next">
+        <div class="project-next-project-row">
+          <div class="project-next-copy">
+            <span class="project-next-kicker">他の作品</span>
+            <a class="project-next-link" href="/what/jijitsu" aria-label="JIJITSU プロジェクトを見る">
+              <span class="project-next-title">JIJITSU</span>
+              <svg class="project-next-arrow" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+                <path fill="currentColor" d="M4 2h6l10 10-10 10H4l10-10L4 2Z" />
+              </svg>
+            </a>
+          </div>
+          <div class="project-next-gifs" aria-hidden="true"><img src={jijitsuGif1.src} alt="" /><img src={jijitsuGif2.src} alt="" /><img src={jijitsuGif3.src} alt="" /></div>
+        </div>
       </div>
-    </div>
   </article>
   <script>
     const gallery = document.querySelector('.rc-media-gallery');
@@ -122,5 +124,6 @@ const gallery = [img1, img2, null, null, img5, img6];
       updateAlien();
     }
     import "../../scripts/next-project";
+    import "../../scripts/soft-reveal";
   </script>
 </BaseLayout>

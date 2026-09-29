@@ -8,6 +8,21 @@
     footerObserver.observe(footer);
   }
 
+  const header = document.querySelector(".site-header");
+  if (header) {
+    let isScrolled = false;
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      if (!isScrolled && scrollY >= 80) {
+        isScrolled = true;
+        header.classList.add("is-scrolled");
+      } else if (isScrolled && scrollY < 40) {
+        isScrolled = false;
+        header.classList.remove("is-scrolled");
+      }
+    }, { passive: true });
+  }
+
   const toggle = document.querySelector(".mobile-toggle");
   const panel = document.querySelector(".mobile-menu-panel");
   if (!toggle || !panel) return;

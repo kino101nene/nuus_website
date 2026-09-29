@@ -5,7 +5,7 @@ body.real-copy-page {
   --color-bg: var(--color-bg-real-copy);
   --bg: var(--color-bg);
   --nuus-bg: var(--color-bg);
-  --rc-type-base: 16px;
+  --rc-type-base: var(--project-hero-copy-size);
   background: var(--color-bg);
   width: 100%;
   overflow-x: clip;
@@ -86,7 +86,6 @@ to {
   padding-top: 0;
   background: var(--color-bg);
 }
-.real-copy-page .project-eyebrow { --project-eyebrow-align: center; }
 .rc-title-row {
   display: grid;
   grid-template-columns: 1fr;
@@ -95,6 +94,7 @@ to {
   max-width: 350px;
 }
 .rc-title-heading { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; height: auto; min-height: 0; }
+.rc-title-heading h1 { font-size: var(--project-hero-title-size-mobile); font-weight: var(--project-hero-title-weight); line-height: var(--project-hero-title-leading); letter-spacing: var(--project-hero-title-tracking); }
 .rc-title-experience {
   display: grid;
   grid-template-columns: 1fr;
@@ -106,8 +106,9 @@ to {
   position: relative;
 }
 .rc-title-experience .rc-prose {
-  font-size: 16px;
-  letter-spacing: .03em;
+  font-size: var(--project-hero-copy-size);
+  line-height: var(--project-hero-copy-leading);
+  letter-spacing: var(--project-hero-copy-tracking);
 }
 .rc-mobile-experience { display: none; }
 .rc-narrative {
@@ -224,7 +225,7 @@ to {
   }
 .rc-title-experience .rc-prose { display: none; }
 .rc-mobile-experience { display: block; }
-.rc-alien-language-wrap { left: 16px; margin-left: 0; max-width: calc(100vw - 32px); }
+.rc-alien-language-wrap { left: 0; margin-left: calc((var(--header-gutter) * -2) + 10px); max-width: calc(100vw - 20px); }
 .rc-alien-language { left: 0; width: 24%; }
 .rc-narrative { gap: 48px; }
 .rc-intro { position: relative; top: auto; }
@@ -311,7 +312,7 @@ to {
 @media (min-width: 701px) {
 .rc-concept { position: relative; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr) !important; }
 .rc-concept-media { position: absolute; inset: 0; pointer-events: none; }
-.rc-concept-label { grid-column: 1; grid-row: 1; z-index: 2; }
+.rc-concept-label { grid-column: 1; grid-row: 1; z-index: 2; font-family: var(--project-font-ja); font-size: var(--project-concept-title-size); font-weight: var(--project-concept-title-weight); line-height: var(--project-concept-title-leading); letter-spacing: var(--project-concept-title-tracking); }
 .rc-concept > .rc-prose {
     grid-column: 2 !important;
     grid-row: 1 !important;
@@ -322,7 +323,7 @@ to {
 }
 
 @media (min-width: 701px) {
-.rc-title-heading h1 { font-size: 4rem; font-weight: 200; }
+.rc-title-heading h1 { font-size: var(--project-hero-title-size); font-weight: var(--project-hero-title-weight); }
 }
 
 @media (min-width: 800px) {
@@ -333,11 +334,10 @@ body.real-copy-page .rc-title-experience {
   }
 body.real-copy-page .rc-title-experience .project-eyebrow {
     align-self: start;
-    --project-eyebrow-align: flex-start;
   }
 body.real-copy-page .rc-title-row { max-width: none; width: 100%; }
 body.real-copy-page .rc-prose {
-    font-size: 1.25rem;
+    font-size: var(--project-hero-copy-size-wide);
   }
 body.real-copy-page .rc-concept > .rc-prose {
     width: 100%;
@@ -408,11 +408,14 @@ body.real-copy-page .rc-concept-side img {
     height: auto;
   }
 body.real-copy-page .rc-concept-label {
+    font-family: var(--project-font-ja);
     grid-column: 1 !important;
     grid-row: 2 !important;
     align-self: start;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: var(--project-concept-title-size);
+    font-weight: var(--project-concept-title-weight);
+    line-height: var(--project-concept-title-leading);
+    letter-spacing: var(--project-concept-title-tracking);
   }
 body.real-copy-page .rc-concept > .rc-prose {
     grid-column: 2 !important;
@@ -429,7 +432,7 @@ body.real-copy-page .rc-concept > .rc-prose {
 .rc-intro { grid-column: 1; grid-row: 1; }
 .rc-narrative { grid-column: 1; grid-row: 2; }
 .rc-concept { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; width: 100% !important; min-width: 0 !important; }
-.rc-concept-media { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; gap: 16px !important; grid-column: 1 !important; grid-row: 1 !important; width: 100% !important; }
+.rc-concept-media { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; grid-column: 1 !important; grid-row: 1 !important; width: 100% !important; }
 .rc-concept-side { display: block !important; grid-column: 1 !important; grid-row: 1 !important; width: 100% !important; min-width: 0 !important; min-height: 200px !important; }
 .rc-concept-side img { display: block !important; width: 100% !important; height: auto !important; }
 .rc-concept > .rc-prose { grid-column: 1 !important; grid-row: 2 !important; }
@@ -449,6 +452,8 @@ body.real-copy-page .rc-concept > .rc-prose {
     grid-template-columns: minmax(0, 1fr) !important;
     width: 100% !important;
     min-width: 0 !important;
+    row-gap: 20px;
+    column-gap: 0;
   }
 .rc-concept-side {
     display: block !important;
@@ -458,6 +463,7 @@ body.real-copy-page .rc-concept > .rc-prose {
     width: 100% !important;
     min-width: 0 !important;
     min-height: 200px !important;
+    margin-bottom: calc(var(--project-section-space-mobile) - 20px);
   }
 .rc-concept-side img {
     display: block !important;
@@ -510,6 +516,12 @@ body.real-copy-page .rc-concept > .rc-prose {
   font-size: var(--rc-type-base);
   line-height: 2.1;
   line-break: strict;
+}
+body.real-copy-page .rc-concept > .rc-prose {
+  font-family: var(--project-font-ja);
+  font-size: var(--project-body-size);
+  line-height: var(--project-body-leading);
+  letter-spacing: var(--project-hero-copy-tracking);
 }
 .rc-prose p {
   margin: 0 0 1.4em;
@@ -575,6 +587,8 @@ body.real-copy-page .rc-concept > .rc-prose {
   }
 }
 @media (max-width: 700px) {
+.rc-project { padding-block: var(--project-container-padding-block-mobile); }
+body.real-copy-page .rc-concept > .rc-prose { font-size: var(--rc-type-base); }
 .rc-narrative {
     gap: 48px;
   }
@@ -591,12 +605,22 @@ body.real-copy-page .rc-concept > .rc-prose {
   }
 .rc-concept {
     grid-template-columns: 1fr;
+    padding-block: var(--project-section-space-mobile);
+  }
+.rc-title-heading h1 { font-size: var(--project-hero-title-size-mobile); }
+body.real-copy-page .rc-concept-label {
+    font-size: var(--project-concept-title-size-mobile);
   }
 }
 @media (max-width: 600px) {
 .rc-text-section {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .rc-concept {
+    row-gap: 20px;
+    column-gap: 0;
   }
 
   .rc-prose {
