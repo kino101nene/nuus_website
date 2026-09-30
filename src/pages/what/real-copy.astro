@@ -12,7 +12,7 @@ import img5 from "../../assets/real-copy/contents/IMG_8420.JPG";
 // @ts-ignore
 import img6 from "../../assets/real-copy/contents/LINE_ALBUM_7_230917_2.jpg";
 // @ts-ignore
-import conceptScreenshot from "../../assets/real-copy/contents/Screenshot 2022-08-03 at 15.38.27.png";
+import conceptScreenshot from "../../assets/real-copy/contents/room-overview.JPG";
 import conceptNote from "../../assets/real-copy/contents/overlay/concept-note.png";
 import jijitsuGif1 from "../../assets/jijitsu/contents/room/GIF/visitor1.gif";
 import jijitsuGif2 from "../../assets/jijitsu/contents/room/GIF/visitor2.gif";
@@ -26,23 +26,24 @@ import overlayBox from "../../assets/real-copy/contents/overlay/box-sketch.png";
 
 import "../../styles/projects/real-copy-editorial.css";
 
-const title = "Real_Copy";
+const title = "REAL_copy";
 const alienLanguageImages = Object.entries(import.meta.glob("../../assets/real-copy/contents/alien_languages_png/*.png", { eager: true, import: "default", query: "?url" })).sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true })).map(([, src]) => src);
 
 const gallery = [img1, img2, null, null, img5, img6];
 
 ---
 
-<BaseLayout bodyClass="real-copy-page" title={`${title} — Nuus`} description="VRと現実の境界を問い直すインスタレーション、Real_copy。" current="what">
+<BaseLayout bodyClass="real-copy-page" title={`${title} — Nuus`} description="VRと現実の境界を問い直すインスタレーション、REAL_copy。" current="what">
   <div class="rc-banana-layer" aria-hidden="true"><OptimizedImage src={banana} alt="" loading="eager" /></div>
   <article class="project-editorial rc-project" aria-labelledby="rc-title">
-    <div class="rc-alien-language-wrap" aria-hidden="true">
+    <!-- Temporarily disabled: alien language overlay. -->
+    <!-- <div class="rc-alien-language-wrap" aria-hidden="true">
       <div class="rc-alien-language">
         {alienLanguageImages.map((src, index) => <div class={`rc-alien-item${index === 0 ? " is-active" : ""}`}><img src={src} alt="" loading="lazy" /><span>{alienLanguageText[index]?.text}</span></div>)}
       </div>
-    </div>
+    </div> -->
     <div class="rc-overview">
-      <div class="rc-title-heading"><h1 id="rc-title" class="project-hero-title">REAL_copy.</h1></div>
+      <div class="rc-title-heading"><h1 id="rc-title" class="project-hero-title">REAL_copy</h1></div>
       <header class="rc-intro">
         <div class="rc-title-row">
           <section class="project-split project-hero-details rc-title-experience" aria-label="作品情報" lang="ja">
@@ -58,20 +59,20 @@ const gallery = [img1, img2, null, null, img5, img6];
             <img src={overlayBox.src} alt="" />
             <img class="rc-gallery-concept-note" src={conceptNote.src} alt="" />
           </div>
-        <div class="rc-media-gallery" aria-label="Real_copy 映像・展示記録">
+        <div class="rc-media-gallery" aria-label="REAL_copy 映像・展示記録">
           {gallery.slice(0, 2).map((src, index) => (
             <figure class="rc-shot">
-              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`Real_copy 展示記録 ${index + 1}`} loading="lazy" /></div></div>
+              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`REAL_copy 展示記録 ${index + 1}`} loading="lazy" /></div></div>
             </figure>
           ))}
 
           <figure class="rc-film">
-            <div class="rc-collage-hover"><div class="rc-media-frame"><video src={videoSrc} autoplay muted loop playsinline preload="auto" aria-label="Real_copy — プロジェクト映像"></video></div></div>
+            <div class="rc-collage-hover"><div class="rc-media-frame"><video src={videoSrc} autoplay muted loop playsinline preload="auto" aria-label="REAL_copy — プロジェクト映像"></video></div></div>
           </figure>
 
           {gallery.slice(2).map((src, index) => (
             src ? <figure class="rc-shot">
-              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`Real_copy 展示記録 ${index + 3}`} loading="lazy" /></div></div>
+              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`REAL_copy 展示記録 ${index + 3}`} loading="lazy" /></div></div>
             </figure> : <figure class="rc-shot rc-shot-empty" aria-hidden="true"></figure>
           ))}
         </div>
@@ -84,25 +85,27 @@ const gallery = [img1, img2, null, null, img5, img6];
     <section class="rc-text-section rc-concept" lang="ja">
       <div class="rc-concept-media">
         <div class="rc-concept-side">
-          <OptimizedImage src={conceptScreenshot} alt="Real_copy コンセプト資料" loading="lazy" />
+          <OptimizedImage src={conceptScreenshot} alt="REAL_copyのルームオーバービュー" loading="lazy" />
         </div>
       </div>
       <div class="rc-concept-label project-soft-reveal project-soft-reveal--title-slow">五感を分解する</div>
-      <div class="rc-prose project-soft-reveal project-soft-reveal--body"><p>REAL_copy. は、VRと現実を重ね合わせ、その境界を曖昧にするインスタレーションである。<br><br>視覚だけでなく、触覚・嗅覚・聴覚までを共有しながら、「何を現実として認識しているのか」を問い直す。</p></div>
+      <div class="rc-prose project-soft-reveal project-soft-reveal--body"><p>REAL_copy は、VRと現実を重ね合わせ、その境界を曖昧にするインスタレーションである。<br><br>視覚だけでなく、触覚・嗅覚・聴覚までを共有しながら、「何を現実として認識しているのか」を問い直す。</p></div>
     </section>
 
       <div class="project-next">
         <div class="project-next-project-row">
           <div class="project-next-copy">
-            <span class="project-next-kicker">他の作品</span>
-            <a class="project-next-link" href="/what/jijitsu" aria-label="JIJITSU プロジェクトを見る">
-              <span class="project-next-title">JIJITSU</span>
-              <svg class="project-next-arrow" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
-                <path fill="currentColor" d="M4 2h6l10 10-10 10H4l10-10L4 2Z" />
-              </svg>
-            </a>
+            <div class="project-next-content">
+              <span class="project-next-kicker">他の作品</span>
+              <div class="project-next-link">
+                <a class="project-next-title" href="/what/jijitsu">jijitsu</a>
+                <a class="project-next-action" href="/what/jijitsu" aria-label="jijitsu プロジェクトを見る"><span>Check now</span><svg class="project-next-arrow" viewBox="0 0 24 18" width="24" height="18" aria-hidden="true">
+                <g transform="scale(1 .75)"><path fill="currentColor" d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" /></g>
+                </svg></a>
+              </div>
+            </div>
           </div>
-          <div class="project-next-gifs" aria-hidden="true"><img src={jijitsuGif1.src} alt="" /><img src={jijitsuGif2.src} alt="" /><img src={jijitsuGif3.src} alt="" /></div>
+          <a class="project-next-gifs" href="/what/jijitsu" aria-label="jijitsu プロジェクトを見る"><span class="project-next-thumb"><img src={jijitsuGif1.src} alt="" /></span><span class="project-next-thumb"><img src={jijitsuGif2.src} alt="" /></span><span class="project-next-thumb"><img src={jijitsuGif3.src} alt="" /></span></a>
         </div>
       </div>
   </article>
@@ -114,6 +117,7 @@ const gallery = [img1, img2, null, null, img5, img6];
       setActive(items[2]);
       items.forEach((item) => item.addEventListener('mouseenter', () => setActive(item)));
     }
+    /* Temporarily disabled with the overlay markup above.
     const alienImages = [...document.querySelectorAll('.rc-alien-language .rc-alien-item')];
     if (alienImages.length > 1) {
       const updateAlien = () => {
@@ -123,6 +127,7 @@ const gallery = [img1, img2, null, null, img5, img6];
       window.addEventListener('scroll', updateAlien, { passive: true });
       updateAlien();
     }
+    */
     import "../../scripts/next-project";
     import "../../scripts/soft-reveal";
   </script>

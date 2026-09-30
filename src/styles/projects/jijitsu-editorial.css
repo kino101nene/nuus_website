@@ -10,8 +10,10 @@ body.jijitsu-page {
   --jj-hero-height: 90svh;
 }
 .jj-project { position: relative; max-width: 1800px; margin: calc(-1 * var(--header-h)) auto 0; padding: var(--jj-hero-height) calc(var(--header-gutter) * 2) 64px; }
-.jj-intro { position: absolute; z-index: 4; inset: 0 80px auto; width: auto; height: max-content; padding: 24px; color: var(--color-on-dark); background: transparent; opacity: 0; animation: jj-hero-fade var(--project-hero-title-fade-duration) var(--project-hero-fade-ease) var(--project-hero-title-fade-delay) forwards; }
-.jj-title-row { position: absolute; top: calc(var(--jj-hero-height) / 2 + 80px); left: 24px; display: grid; grid-template-columns: 1fr; gap: 16px; align-items: center; max-width: 800px; padding: 0; transform: translateY(-50%); }
+.jj-hero-desktop { display: contents; }
+.jj-hero-mobile { display: none; }
+.jj-intro { position: absolute; z-index: 4; inset: 0 80px auto; width: auto; height: var(--jj-hero-height); box-sizing: border-box; padding: 24px; color: var(--color-on-dark); background: transparent; opacity: 0; animation: jj-hero-fade var(--project-hero-title-fade-duration) var(--project-hero-fade-ease) var(--project-hero-title-fade-delay) forwards; }
+.jj-title-row { position: absolute; top: auto; bottom: 168px; left: 24px; display: grid; grid-template-columns: 1fr; gap: 16px; align-items: center; max-width: 800px; padding: 0; transform: none; }
 .jj-title-row h1 { padding: 4px 8px; background: rgb(0 0 0 / 5%); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); box-shadow: 0 0 24px 12px rgb(0 0 0 / 10%); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .jj-intro h1 { width: max-content; margin: 24px 0 36px; font-size: var(--project-hero-title-size); line-height: var(--project-hero-title-leading); font-weight: var(--project-hero-title-weight); letter-spacing: var(--project-hero-title-tracking); overflow-wrap: anywhere; }
 .jj-title-row h1 { margin: 0; }
@@ -30,7 +32,7 @@ body.jijitsu-page {
 .jj-hero-prose.is-line-motion-ready .jj-visual-char { display: inline-block; opacity: 0; filter: blur(var(--project-hero-line-blur)); transform: translateY(var(--project-hero-line-distance)); transition: opacity var(--project-hero-line-duration) var(--project-hero-line-ease), filter var(--project-hero-line-duration) var(--project-hero-line-ease), transform var(--project-hero-line-duration) var(--project-hero-line-ease); transition-delay: var(--line-delay, 0ms); }
 .jj-hero-prose.is-line-motion-ready.is-in-view .jj-visual-char { opacity: 1; filter: blur(0); transform: translateY(0); }
 .jj-hero-emphasis { color: var(--color-text); }
-.jj-room-gifs { margin-top: 0; padding-block: 160px 0; }
+.jj-room-gifs { margin-top: 0; padding-block: var(--space-3xl) 0; }
 .jj-room-gifs figure { min-width: 0; margin: 0; padding: 0; }
 .jj-room-gifs > figure:first-child { width: 63%; margin-left: 37%; }
 .jj-room-gifs-bottom { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; width: 79.2%; margin-top: 1.25rem; margin-left: 20.8%; align-items: start; }
@@ -39,18 +41,23 @@ body.jijitsu-page {
 .jj-room-gifs figure img { height: auto; aspect-ratio: auto; object-fit: contain; }
 .jj-room-gifs-bottom figure img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 .jj-text { display: grid; grid-template-columns: minmax(140px, 1fr) minmax(0, 680px); gap: clamp(24px, 5vw, 80px); max-width: 1100px; margin: clamp(64px, 8vw, 128px) auto; }
-.jj-text h2 { margin: 0; font-family: var(--font-ja); font-size: 14px; font-weight: 400; }
+.jj-text h2 { margin: 0; font-family: var(--font-ja); font-size: var(--text-base); font-weight: 400; }
 .jj-prose { font-family: var(--font-ja); font-size: var(--jj-type-base); line-height: 2.1; line-break: strict; }
 .jj-prose p { margin: 0 0 1.4em; }
 .jj-prose p:last-child { margin-bottom: 0; }
-.jj-label { font-size: 10px; letter-spacing: .06em; color: var(--color-muted); }
+.jj-label { font-size: var(--project-subproject-label-size); line-height: var(--line-height-loose); letter-spacing: .06em; color: var(--color-muted); }
 .jj-chapter { padding-top: 28px; margin-top: clamp(64px, 8vw, 128px); }
 .jj-wanted { margin-top: 0; }
+.jj-dream { margin-block: var(--jj-dream-space, 80px); }
 .jj-chapter-accordion { border-bottom: 1px solid var(--color-muted); }
-.jj-chapter-copy { display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; }
+.jj-chapter-copy { cursor: pointer; list-style: none; }
 .jj-chapter-copy::-webkit-details-marker { display: none; }
-.jj-chapter-copy::after { content: ""; display: block; flex: 0 0 12px; width: 12px; height: 8px; margin-left: 24px; background: var(--color-muted); clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 38%, 50% 100%, 0 38%); transition: transform 200ms ease; }
-.jj-chapter-accordion[open] > .jj-chapter-copy::after { transform: rotate(180deg); }
+.jj-chapter-trigger { display: flex; align-items: center; justify-content: space-between; box-sizing: border-box; width: 100%; padding-inline: var(--space-20); }
+.jj-chapter-arrow { display: block; flex: 0 0 12px; align-self: flex-end; width: 12px; height: 12px; margin: 0 0 36px 24px; fill: var(--color-muted); transition: transform 200ms ease; }
+@media (min-width: 601px) {
+  .jj-chapter-arrow { flex-basis: 45px; width: 45px; height: 45px; }
+}
+.jj-chapter-accordion[open] > .jj-chapter-copy .jj-chapter-arrow { transform: rotate(180deg); }
 .jj-chapter-accordion > .jj-chapter-copy:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }
 .jj-chapter-copy .jj-chapter-heading h2 { color: #eeedf4; opacity: .72; transform: translateY(4px); transition: color 1400ms cubic-bezier(.22, 1, .36, 1), opacity 1400ms cubic-bezier(.22, 1, .36, 1), transform 1400ms cubic-bezier(.22, 1, .36, 1); }
 .jj-chapter-copy.is-in-view .jj-chapter-heading h2 { color: #686471; opacity: 1; transform: translateY(0); }
@@ -58,15 +65,22 @@ body.jijitsu-page {
 .jj-chapter-description { max-width: 680px; margin: 0 auto 56px 0; text-align: left; }
 .jj-posters { display: grid; grid-auto-flow: column; grid-auto-columns: calc(31.25% - 26.25px); grid-template-columns: none; gap: 28px; align-items: start; overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: inline mandatory; scrollbar-width: none; background: #fff; box-shadow: 0 0 0 100vmax #fff; clip-path: inset(0 -100vmax); }
 .jj-posters::-webkit-scrollbar { display: none; }
-.jj-posters-progress { width: 100%; height: 10px; overflow: hidden; border-radius: 20px; background: #000; }
-.jj-posters-progress span { display: block; height: 100%; border-radius: 20px; background: #eeedf4; will-change: width, transform; }
+.jj-posters-progress { position: relative; width: 33.333%; height: 12px; margin: 0 auto var(--space-48); padding-block: var(--space-lg); overflow: visible; }
+.jj-posters-progress-track { position: absolute; top: 50%; right: 3px; left: 3px; height: 2px; border-radius: 999px; background: #d2d1d6; transform: translateY(-50%); }
+.jj-posters-progress-fill { position: absolute; top: 50%; left: 0; height: 2px; border-radius: 999px; background: #8b8892; transform: translateY(-50%); }
+.jj-posters-progress-end,
+.jj-posters-progress-thumb { position: absolute; top: 50%; width: 15px; height: 15px; border-radius: 50%; background: #686471; transform: translate(-50%, -50%); }
+.jj-posters-progress-end { left: 100%; background: #d2d1d6; }
+.jj-posters-progress-thumb { left: 0; background: #8b8892; will-change: transform; }
+.jj-posters-progress.is-complete .jj-posters-progress-end,
+.jj-posters-progress.is-complete .jj-posters-progress-thumb { background: #000; }
 .jj-posters figure { position: relative; scroll-snap-align: start; transform-origin: center; transition: transform 500ms cubic-bezier(.22, 1, .36, 1), filter 500ms ease; }
 .jj-posters figure img { aspect-ratio: 3 / 4; object-fit: contain; }
 .jj-dream-gallery figure img { object-fit: cover; }
 @media (hover: hover) {
   .jj-posters figure:hover { z-index: 2; transform: translateY(-8px) scale(1.025); filter: drop-shadow(0 14px 18px rgb(0 0 0 / 35%)); }
 }
-.jj-concept { grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 160px; align-items: start; max-width: none; margin: 0; padding-block: 160px; background: #000; color: var(--color-soft); box-shadow: 0 0 0 100vmax #000; clip-path: inset(0 -100vmax); }
+.jj-concept { --project-section-space: clamp(2.5rem, 5.5556vw, 5rem); grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: var(--space-3xl); align-items: start; max-width: none; margin: 0; padding-block: var(--project-section-space); background: #000; color: var(--color-soft); box-shadow: 0 0 0 100vmax #000; clip-path: inset(0 -100vmax); }
 .jj-concept h2 { align-self: start; margin: 0; color: #fff; font-family: var(--project-font-ja); font-size: var(--project-concept-title-size); font-weight: var(--project-concept-title-weight); line-height: var(--project-concept-title-leading); letter-spacing: var(--project-concept-title-tracking); }
 .jj-concept .jj-prose { grid-column: 2; width: 100%; max-width: none; font-size: 16px; }
 .jj-concept-emphasis { color: #fff; }
@@ -79,7 +93,13 @@ body.jijitsu-page {
 @media (min-width: 800px) {
   .jj-hero-prose { font-size: var(--project-hero-copy-size-wide); }
 }
+@media (min-width: 701px) {
+  .jj-project { --jj-dream-space: clamp(2.5rem, 5.5556vw, 5rem); }
+}
 @media (max-width: 600px) {
+  .jj-chapter-heading h2 { margin: 0 0 20px; padding-top: 0; }
+  .jj-chapter-trigger { padding-inline: 0 var(--space-sm); }
+  .jj-chapter-arrow { flex-basis: 24px; align-self: center; width: 24px; height: 24px; margin: 0 0 0 24px; }
   .jj-project { padding-block: var(--project-container-padding-block-mobile); padding-inline: calc(var(--header-gutter) * 2); }
   .jj-hero-desktop { display: none; }
   .jj-hero-mobile { display: block; }
@@ -99,10 +119,11 @@ body.jijitsu-page {
   .jj-room-gifs-bottom figure:first-child { aspect-ratio: 267 / 148; }
   .jijitsu-page .project-eyebrow { --project-eyebrow-size: var(--project-eyebrow-size-mobile); }
 .jj-text { grid-template-columns: 1fr; gap: 24px; }
-  .jj-prose { font-size: 14px; }
+  .jj-prose { font-size: var(--text-base); }
   .jj-hero-prose { font-size: var(--project-hero-copy-size); }
   .jj-posters { grid-template-columns: none; grid-auto-columns: 78vw; }
-  .jj-dream { padding-block: 12px; }
+  .jj-posters-progress { padding-block: var(--space-20); }
+  .jj-dream { margin: 0 0 var(--space-lg); padding: var(--space-lg) 0 0; }
   .jj-concept-feature { grid-template-columns: 1fr; gap: 20px; padding-block: var(--project-section-space-mobile); }
   .jj-concept { grid-template-columns: 1fr; gap: 20px; padding-block: var(--project-section-space-mobile); }
   .jj-concept h2 { font-size: var(--project-concept-title-size-mobile); }
@@ -133,9 +154,7 @@ body.jijitsu-page {
   }
 }
 
-/* Surrounding section spacing is independent of the card. */
-.jj-concept + .project-next { margin-top: 68px; }
-@media (max-width: 600px) {
-  .jj-concept + .project-next { margin-top: 12px; }
+.jijitsu-page { --next-background: #000; --next-color: #ddd; }
+@media (hover: hover) {
+  body.jijitsu-page .footer-socials a:hover { color: #fff; }
 }
-.jijitsu-page { --next-background: #000; --next-color: #fff; }

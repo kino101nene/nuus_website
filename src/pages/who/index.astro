@@ -15,31 +15,30 @@ import "../../styles/who.css";
 <BaseLayout bodyClass="who-page" title="Who — Nuus" description="本質と現象にN軸をもって作品を作るクリエイティブ集団、Nuus。" current="who">
   <article class="who-editorial" aria-labelledby="who-title">
     <header class="who-intro">
-      <div class="who-eyebrow"><span>NUUS / THE MINDS</span><span>脳</span></div>
-      <h1 id="who-title">Who<span>.</span></h1>
-      <div class="who-statement" lang="ja">
-        <span class="who-label">01 / NUUS</span>
-        <p>ヌースは、<br />本質と現象に<br /><em>N軸</em>をもって<br />作品を作る<br />クリエイティブ集団。</p>
-      </div>
+      <h1 id="who-title">The brains behind</h1>
     </header>
 
-    <section class="who-perspective" aria-labelledby="who-perspective-title">
-      <header><span class="who-label">02 / PERSPECTIVE</span><h2 id="who-perspective-title">X / Y / <span>N</span></h2></header>
-      <figure>
-        <OptimizedImage src={nuusDiagram} alt="Nuusの本質（X軸）、現象（Y軸）、N軸を表す図" />
-        <figcaption><span>NUUS / CONCEPT DIAGRAM</span><span>X · Y · N</span></figcaption>
-      </figure>
-      <dl class="who-axes"><div><dt>X</dt><dd lang="ja">本質</dd></div><div><dt>Y</dt><dd lang="ja">現象</dd></div><div><dt>N</dt><dd lang="ja">N軸</dd></div></dl>
-    </section>
-
-    <section class="who-members" aria-labelledby="who-members-title">
-      <header><span class="who-label">03 / MEMBERS</span><h2 id="who-members-title">The minds.</h2></header>
+    <section class="who-members" aria-label="Members">
       <div class="who-member-grid">
-        {[{image: seiyaIcon, name: "Seiya"}, {image: aiIcon, name: "Ai"}, {image: neneIcon, name: "Nene"}].map((member, index) => (
-          <figure><OptimizedImage src={member.image} alt={member.name} /><figcaption><span>{member.name}</span><span>0{index + 1}</span></figcaption></figure>
+        {[{image: seiyaIcon, name: "Seiya", role: "management"}, {image: aiIcon, name: "Ai", role: "art director/creative"}, {image: neneIcon, name: "nene", role: "creative technologist"}].map((member) => (
+          <figure>
+            <div class="who-member-visual"><OptimizedImage src={member.image} alt={member.name} /><span class="who-member-role">{member.role}</span></div>
+            <figcaption><span>{member.name}</span></figcaption>
+          </figure>
         ))}
       </div>
     </section>
-    <a class="who-next" href="/#home-work"><span class="who-label">具現化したアイデア / SELECTED WORK</span><span>What we make</span></a>
+
+    <div class="who-statement project-soft-reveal project-soft-reveal--body" lang="ja">
+      <p>nuus(ヌース)は、<br>本質と現象に<span class="who-statement-emphasis">N軸</span>をもって作品を作るクリエイティブ集団</p>
+    </div>
+
+    <section class="who-perspective" aria-label="Perspective diagram">
+      <OptimizedImage src={nuusDiagram} alt="Nuusの本質（X軸）、現象（Y軸）、N軸を表す図" />
+    </section>
   </article>
 </BaseLayout>
+
+<script>
+  import "../../scripts/soft-reveal";
+</script>

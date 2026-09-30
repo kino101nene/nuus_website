@@ -32,17 +32,20 @@ import orangeDogImg from "../../assets/jijitsu/contents/dream-mapping/orange-dog
 import soilImg from "../../assets/jijitsu/contents/dream-mapping/soil.jpg";
 
 // @ts-ignore
-import visitorGif from "../../assets/jijitsu/contents/room/GIF/visitor1.gif";
-import visitorGif2 from "../../assets/jijitsu/contents/room/GIF/visitor2.gif";
-import visitorGif3 from "../../assets/jijitsu/contents/room/GIF/visitor3.gif";
+// @ts-ignore
+import visitor5 from "../../assets/rabbit/visitors5.gif";
+// @ts-ignore
+import visitor2 from "../../assets/rabbit/visitor2.gif";
+// @ts-ignore
+import visitor8 from "../../assets/rabbit/visitors8.gif";
 
 import "../../styles/projects/jijitsu-editorial.css";
 import roomImage from "../../assets/jijitsu/contents/room/JPG/whole-room.JPG";
-import rabbitNext1 from "../../assets/rabbit/visitor1.gif";
-import rabbitNext2 from "../../assets/rabbit/visitor2.gif";
-import rabbitNext3 from "../../assets/rabbit/visitor3.gif";
+import rabbitNext1 from "../../assets/rabbit/thumbnails/rabbit10.gif";
+import rabbitNext2 from "../../assets/rabbit/thumbnails/rabbit11.gif";
+import rabbitNext3 from "../../assets/rabbit/thumbnails/rabbit12.gif";
 
-const title = "JIJITSU";
+const title = "jijitsu";
 
 const jijitsuDescriptions = [
   {
@@ -74,7 +77,11 @@ const [heroLead, heroRoomRemainder = ""] = normalizedHeroText.split("床には")
 const heroEmphasis = "生活感がありながらも、どこか異様な気配が漂う。";
 const [heroRoomDescriptionBeforeEmphasis = "", heroRoomDescriptionAfterEmphasis = ""] = `床には${heroRoomRemainder}`.split(heroEmphasis);
 
-const roomGifs = [visitorGif, visitorGif2, visitorGif3];
+const roomGifs = [
+  { src: visitor5, number: 5 },
+  { src: visitor2, number: 2 },
+  { src: visitor8, number: 8 },
+];
 const sections = [
   {
     descriptions: [
@@ -114,13 +121,13 @@ const sections = [
 ];
 ---
 
-<BaseLayout bodyClass="jijitsu-page" title={`${title} — Nuus`} description="USAGIたちの住処を辿る体験型展示、JIJITSU。" current="what">
+<BaseLayout bodyClass="jijitsu-page" title={`${title} — Nuus`} description="USAGIたちの住処を辿る体験型展示、jijitsu。" current="what">
   <article class="project-editorial jj-project" aria-label={title}>
     <ProjectHero
       variant="jj"
       titleLines={[title]}
       image={roomImage}
-      imageAlt="JIJITSUの部屋"
+      imageAlt="jijitsuの部屋"
       year="2023"
       place="TOYAMA"
       credit="AI, nene, Seiya"
@@ -129,10 +136,10 @@ const sections = [
         { before: heroRoomDescriptionBeforeEmphasis, emphasis: heroEmphasis, after: heroRoomDescriptionAfterEmphasis },
       ]}
     />
-    <div class="jj-room-gifs" aria-label="JIJITSU visitor records">
-      <figure><OptimizedImage src={roomGifs[0]} alt="JIJITSU visitor record 1" /></figure>
+    <div class="jj-room-gifs" aria-label="jijitsu visitor records">
+      <figure><OptimizedImage src={roomGifs[0].src} alt={`jijitsu visitor record ${roomGifs[0].number}`} /></figure>
       <div class="jj-room-gifs-bottom">
-        {roomGifs.slice(1, 3).map((gif, index) => <figure><OptimizedImage src={gif} alt={`JIJITSU visitor record ${index + 2}`} /></figure>)}
+        {roomGifs.slice(1).map((gif) => <figure><OptimizedImage src={gif.src} alt={`jijitsu visitor record ${gif.number}`} /></figure>)}
       </div>
     </div>
 
@@ -144,14 +151,22 @@ const sections = [
     <section class="jj-chapter jj-wanted" aria-labelledby="jj-posters">
       <details class="jj-chapter-accordion">
         <summary class="jj-chapter-copy">
-          <header class="jj-chapter-heading"><span class="jj-label">Sub Project 1</span><h2 id="jj-posters">Wanted Criminals</h2></header>
+          <div class="jj-chapter-trigger">
+            <header class="jj-chapter-heading"><span class="jj-label">Sub Project 1</span><h2 id="jj-posters">Wanted Criminals</h2></header>
+            <svg class="jj-chapter-arrow" viewBox="0 0 512 512" aria-hidden="true"><path d="M505.752 123.582c-8.331-8.331-21.839-8.331-30.17 0L256 343.163 36.418 123.582c-8.331-8.331-21.839-8.331-30.17 0s-8.331 21.839 0 30.17l234.667 234.667c8.331 8.331 21.839 8.331 30.17 0l234.667-234.667c8.331-8.331 8.331-21.839 0-30.17Z" /></svg>
+          </div>
         </summary>
         <div class="jj-chapter-content">
           <div class="jj-chapter-description jj-prose" lang="ja">{sections[0].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
           <div class="jj-posters">
             {sections[0].gallery.map((item) => <figure><OptimizedImage src={item.src} alt={`Wanted Criminals — ${item.title}`} /></figure>)}
           </div>
-          <div class="jj-posters-progress" aria-hidden="true"><span></span></div>
+          <div class="jj-posters-progress" aria-hidden="true">
+            <span class="jj-posters-progress-track"></span>
+            <span class="jj-posters-progress-fill"></span>
+            <span class="jj-posters-progress-end"></span>
+            <span class="jj-posters-progress-thumb"></span>
+          </div>
         </div>
       </details>
     </section>
@@ -159,14 +174,22 @@ const sections = [
     <section class="jj-chapter jj-dream" aria-labelledby="jj-dream">
       <details class="jj-chapter-accordion">
         <summary class="jj-chapter-copy">
-          <header class="jj-chapter-heading"><span class="jj-label">Sub Project 2</span><h2 id="jj-dream">Dream Mapping</h2></header>
+          <div class="jj-chapter-trigger">
+            <header class="jj-chapter-heading"><span class="jj-label">Sub Project 2</span><h2 id="jj-dream">Dream Mapping</h2></header>
+            <svg class="jj-chapter-arrow" viewBox="0 0 512 512" aria-hidden="true"><path d="M505.752 123.582c-8.331-8.331-21.839-8.331-30.17 0L256 343.163 36.418 123.582c-8.331-8.331-21.839-8.331-30.17 0s-8.331 21.839 0 30.17l234.667 234.667c8.331 8.331 21.839 8.331 30.17 0l234.667-234.667c8.331-8.331 8.331-21.839 0-30.17Z" /></svg>
+          </div>
         </summary>
         <div class="jj-chapter-content">
           <div class="jj-chapter-description jj-prose" lang="ja">{sections[1].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
           <div class="jj-posters jj-dream-gallery">
             {[{ src: mapImg, title: "Dream map" }, { src: lettersImg, title: "Letters" }, { src: orangeDogImg, title: "Orange dog" }, { src: soilImg, title: "Soil" }].map((item) => <figure><OptimizedImage src={item.src} alt={`Dream Mapping — ${item.title}`} /></figure>)}
           </div>
-          <div class="jj-posters-progress" aria-hidden="true"><span></span></div>
+          <div class="jj-posters-progress" aria-hidden="true">
+            <span class="jj-posters-progress-track"></span>
+            <span class="jj-posters-progress-fill"></span>
+            <span class="jj-posters-progress-end"></span>
+            <span class="jj-posters-progress-thumb"></span>
+          </div>
         </div>
       </details>
     </section>
@@ -178,15 +201,17 @@ const sections = [
     <div class="project-next">
       <div class="project-next-project-row">
         <div class="project-next-copy">
-          <span class="project-next-kicker">他の作品</span>
-          <a class="project-next-link" href="/what/rabbit" aria-label="rabbit,habit,kubid プロジェクトを見る">
-            <span class="project-next-title">rabbit,<br class="project-next-title-break" />habit,<br class="project-next-title-break" />kubid</span>
-            <svg class="project-next-arrow" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
-              <path fill="currentColor" d="M4 2h6l10 10-10 10H4l10-10L4 2Z" />
-            </svg>
-          </a>
+          <div class="project-next-content">
+            <span class="project-next-kicker">他の作品</span>
+            <div class="project-next-link">
+              <a class="project-next-title" href="/what/rabbit">rabbit,<br class="project-next-title-break" /> habbit,<br class="project-next-title-break" /> kubid</a>
+              <a class="project-next-action" href="/what/rabbit" aria-label="rabbit, habbit, kubid プロジェクトを見る"><span>Check now</span><svg class="project-next-arrow" viewBox="0 0 24 18" width="24" height="18" aria-hidden="true">
+              <g transform="scale(1 .75)"><path fill="currentColor" d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" /></g>
+              </svg></a>
+            </div>
+          </div>
         </div>
-        <div class="project-next-gifs" aria-hidden="true"><img src={rabbitNext1.src} alt="" /><img src={rabbitNext2.src} alt="" /><img src={rabbitNext3.src} alt="" /></div>
+        <a class="project-next-gifs" href="/what/rabbit" aria-label="rabbit, habbit, kubid プロジェクトを見る"><span class="project-next-thumb"><img src={rabbitNext1.src} alt="" /></span><span class="project-next-thumb"><img src={rabbitNext2.src} alt="" /></span><span class="project-next-thumb"><img src={rabbitNext3.src} alt="" /></span></a>
       </div>
     </div>
   </article>
@@ -252,18 +277,28 @@ const sections = [
 
   const posterGalleries = [...document.querySelectorAll('.jj-posters')];
   posterGalleries.forEach((posters) => {
-    const progressThumb = posters.nextElementSibling?.querySelector('span');
-    if (!(posters instanceof HTMLElement) || !(progressThumb instanceof HTMLElement)) return;
+    const progressTrack = posters.nextElementSibling;
+    const progressThumb = progressTrack?.querySelector('.jj-posters-progress-thumb');
+    const progressFill = progressTrack?.querySelector('.jj-posters-progress-fill');
+    const chapterDetails = posters.closest('details');
+    if (!(posters instanceof HTMLElement) || !(progressTrack instanceof HTMLElement) || !(progressThumb instanceof HTMLElement) || !(progressFill instanceof HTMLElement)) return;
+    let progressFrame = 0;
     const updatePosterProgress = () => {
-      const visibleRatio = Math.min(1, posters.clientWidth / posters.scrollWidth);
-      const scrollRatio = posters.scrollWidth > posters.clientWidth
-        ? posters.scrollLeft / (posters.scrollWidth - posters.clientWidth)
-        : 0;
-      progressThumb.style.width = `${visibleRatio * 100}%`;
-      progressThumb.style.transform = `translateX(${scrollRatio * ((1 - visibleRatio) / visibleRatio) * 100}%)`;
+      cancelAnimationFrame(progressFrame);
+      progressFrame = requestAnimationFrame(() => {
+        const maxScroll = posters.scrollWidth - posters.clientWidth;
+        const scrollRatio = maxScroll > 0 ? Math.max(0, Math.min(1, posters.scrollLeft / maxScroll)) : 0;
+        const travel = progressTrack.clientWidth * scrollRatio;
+        progressThumb.style.transform = `translate(calc(-50% + ${travel}px), -50%)`;
+        progressFill.style.width = `${travel}px`;
+        progressTrack.classList.toggle('is-complete', scrollRatio >= 0.999);
+      });
     };
     posters.addEventListener('scroll', updatePosterProgress, { passive: true });
-    new ResizeObserver(updatePosterProgress).observe(posters);
+    const progressResizeObserver = new ResizeObserver(updatePosterProgress);
+    progressResizeObserver.observe(posters);
+    progressResizeObserver.observe(progressTrack);
+    chapterDetails?.addEventListener('toggle', updatePosterProgress);
     updatePosterProgress();
   });
 

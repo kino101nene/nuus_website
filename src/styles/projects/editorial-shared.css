@@ -1,6 +1,7 @@
 /* Shared project primitives. Override these tokens on a page or section. */
 :root {
   --project-font-ja: var(--font-ja);
+  --project-font-title: var(--font-project-title);
   --project-hero-copy-size: var(--text-base);
   --project-hero-copy-size-wide: var(--text-20);
   --project-hero-title-size: 75.87px;
@@ -25,12 +26,14 @@
   --project-concept-body-reveal-delay: 350ms;
   --project-eyebrow-color: #555;
   --project-eyebrow-size: var(--text-sm);
-  --project-eyebrow-size-mobile: 10px;
+  --project-eyebrow-size-mobile: var(--text-xs);
   --project-eyebrow-gap: 8px;
   --project-eyebrow-pair-gap: 2px;
   --project-eyebrow-padding-top: 16px;
   --project-eyebrow-tracking: .06em;
   --project-eyebrow-title-weight: 500;
+  --project-subproject-label-size: 14px;
+  --project-subproject-label-size-mobile: var(--text-xs);
 }
 
 .project-eyebrow {
@@ -66,6 +69,10 @@
   --project-paragraph-space: 1.4em;
 }
 
+@media (max-width: 600px) {
+  :root { --project-subproject-label-size: var(--project-subproject-label-size-mobile); }
+}
+
 .project-split {
   display: grid;
   grid-template-columns: var(--project-columns);
@@ -74,7 +81,7 @@
 }
 
 .project-hero-title {
-  font-family: var(--project-font-ja);
+  font-family: var(--project-font-title);
   font-size: var(--project-hero-title-size);
   font-weight: var(--project-hero-title-weight);
   line-height: var(--project-hero-title-leading);
@@ -137,4 +144,13 @@
 @media (max-width: 700px) {
   .project-concept h2 { font-size: var(--project-concept-title-size-mobile); }
   .project-concept .project-prose { font-size: var(--project-hero-copy-size); }
+}
+
+@media (min-width: 701px) {
+  :root {
+    --project-eyebrow-gap: clamp(0.25rem, 0.5556vw, 0.5rem);
+    --project-eyebrow-pair-gap: 0.125rem;
+    --project-eyebrow-padding-top: clamp(0.5rem, 1.1111vw, 1rem);
+  }
+  .project-editorial { --project-section-space: clamp(5rem, 11.1111vw, 10rem); }
 }

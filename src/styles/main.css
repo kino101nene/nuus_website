@@ -31,9 +31,12 @@
      TYPOGRAPHY
      ========================= */
   --font-sans: "Roboto", sans-serif;
+  --font-ubuntu: "Ubuntu", sans-serif;
+  --font-project-title: var(--font-ubuntu);
   --font-ja: "Hiragino Sans", "Yu Gothic", sans-serif;
   --font-hand: "Caveat", cursive;
   --font-weight-light: 300;
+  --font-weight-regular: 400;
 
   --text-xs: 10px;
   --text-sm: 12px;
@@ -42,6 +45,7 @@
   --text-md: 18px;
   --text-20: 20px;
   --text-22: 22px;
+  --text-24: 24px;
   --text-lg: 32px;
   --text-xl: 72px;
 
@@ -62,13 +66,17 @@
   /* =========================
      SPACING
      ========================= */
-  --space-2xs: 4px;
+  --space-2xs: 0.25rem;
   --space-xs: 8px;
   --space-sm: 16px;
+  --space-20: 20px;
   --space-md: 24px;
   --space-lg: 40px;
+  --space-indicator-offset: 46px;
   --space-xl: 72px;
+  --space-48: 48px;
   --space-2xl: 120px;
+  --space-3xl: 160px;
 
   /* =========================
      LAYOUT
@@ -79,6 +87,7 @@
 
   --page-padding: 40px;
   --page-padding-inline-wide: 160px;
+  --page-padding-inline-home: 96px;
   --section-gap: 120px;
   --grid-gap: 24px;
 
@@ -115,6 +124,46 @@
   :root {
     --page-padding: 20px;
     --page-padding-inline-wide: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  :root {
+    --page-padding-inline-home: 20px;
+
+    /* Current mobile sizes are preserved at 440px and scale down below it. */
+    --text-xs: clamp(0.5625rem, 2.2727vw, 0.625rem);
+    --text-sm: clamp(0.6875rem, 2.7273vw, 0.75rem);
+    --text-base: clamp(0.8125rem, 3.1818vw, 0.875rem);
+    --text-16: clamp(0.875rem, 3.6364vw, 1rem);
+    --text-md: clamp(1rem, 4.0909vw, 1.125rem);
+    --text-20: clamp(1.125rem, 4.5455vw, 1.25rem);
+    --text-22: clamp(1.25rem, 5vw, 1.375rem);
+    --text-24: clamp(1.3125rem, 5.4545vw, 1.5rem);
+    --text-lg: clamp(1.75rem, 7.2727vw, 2rem);
+    --text-xl: clamp(4rem, 16.3636vw, 4.5rem);
+  }
+}
+
+/* Tablet and desktop spacing tokens scale from their current 1440px values. */
+@media (min-width: 701px) {
+  :root {
+    --space-xs: clamp(0.25rem, 0.5556vw, 0.5rem);
+    --space-sm: clamp(0.5rem, 1.1111vw, 1rem);
+    --space-20: clamp(0.625rem, 1.3889vw, 1.25rem);
+    --space-md: clamp(0.75rem, 1.6667vw, 1.5rem);
+    --space-lg: clamp(1.25rem, 2.7778vw, 2.5rem);
+    --space-indicator-offset: clamp(1.4375rem, 3.1944vw, 2.875rem);
+    --space-xl: clamp(2.25rem, 5vw, 4.5rem);
+    --space-48: clamp(1.5rem, 3.3333vw, 3rem);
+    --space-2xl: clamp(3.75rem, 8.3333vw, 7.5rem);
+    --space-3xl: clamp(5rem, 11.1111vw, 10rem);
+
+    --page-padding: clamp(1.25rem, 2.7778vw, 2.5rem);
+    --page-padding-inline-wide: clamp(5rem, 11.1111vw, 10rem);
+    --page-padding-inline-home: clamp(3rem, 6.6667vw, 6rem);
+    --section-gap: clamp(3.75rem, 8.3333vw, 7.5rem);
+    --grid-gap: clamp(0.75rem, 1.6667vw, 1.5rem);
   }
 }
 

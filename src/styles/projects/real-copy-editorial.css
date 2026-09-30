@@ -10,7 +10,8 @@ body.real-copy-page {
   width: 100%;
   overflow-x: clip;
 }
-body.real-copy-page main { width: 100%; max-width: none; margin: 0; }
+/* Clip horizontal collage overflow without creating a vertical scroll container. */
+body.real-copy-page main { width: 100%; max-width: 100%; margin: 0; overflow-x: clip; }
 .rc-prose { font-size: 16px; letter-spacing: .03em; line-height: 1.5; }
 .rc-banana-layer {
   position: sticky;
@@ -135,6 +136,13 @@ to {
 .rc-gallery-overlay img { width: auto; max-width: 45%; height: 100%; object-fit: contain; object-position: bottom; }
 .rc-gallery-overlay img { position: relative; top: -2vh; left: -140px; transform: none; }
 .rc-gallery-overlay .rc-gallery-concept-note { position: absolute; right: 0; bottom: -20%; left: auto; top: auto; width: 40%; max-width: none; height: auto; object-fit: contain; }
+@media (min-width: 701px) and (max-width: 1024px) {
+  .rc-gallery-overlay {
+    left: calc(var(--header-gutter) * -2);
+    right: calc(var(--header-gutter) * -2);
+  }
+  .rc-gallery-overlay > img:not(.rc-gallery-concept-note) { left: 0; }
+}
 .rc-film,
 
 .rc-shot {
@@ -155,6 +163,8 @@ to {
   padding: 0;
   z-index: 1;
 }
+/* Keep the child indices used by the collage, but give empty slots no box. */
+.rc-media-gallery > .rc-shot-empty { display: none; }
 .rc-media-gallery > figure:nth-child(1) { width: 40.8%; right: calc(5% - 80px); bottom: 25vh; z-index: 6; transform: rotate(-2.2deg); }
 .rc-media-gallery > figure:nth-child(2) { width: 29%; right: 5%; top: 4%; z-index: 3; transform: rotate(1.8deg); }
 .rc-media-gallery > figure:nth-child(3) { width: 39%; left: clamp(-50px, -3vw, -20px); top: 15%; z-index: 5; transform: rotate(-0.5deg); }
@@ -223,6 +233,7 @@ to {
     left: 0;
     top: 20%;
   }
+.rc-gallery-overlay .rc-gallery-concept-note { bottom: -60%; width: 45%; }
 .rc-title-experience .rc-prose { display: none; }
 .rc-mobile-experience { display: block; }
 .rc-alien-language-wrap { left: 0; margin-left: calc((var(--header-gutter) * -2) + 10px); max-width: calc(100vw - 20px); }
@@ -353,7 +364,8 @@ body.real-copy-page .rc-concept > .rc-prose {
     gap: 0;
   }
 .rc-overview > .rc-intro { order: 2; width: 100%; }
-.rc-overview > .rc-narrative { order: 1; width: 60%; margin-left: 40%; }
+.rc-overview > .rc-title-heading { order: 1; }
+.rc-overview > .rc-narrative { order: 0; width: 60%; margin-left: 40%; }
 }
 
 @media (min-width: 701px) {
@@ -537,7 +549,7 @@ body.real-copy-page .rc-concept > .rc-prose {
   z-index: 3;
   overflow: visible;
   grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
-  gap: 160px;
+  gap: var(--space-3xl);
   align-items: center;
   max-width: none;
   padding-block: 160px;
@@ -572,7 +584,7 @@ body.real-copy-page .rc-concept > .rc-prose {
     color: var(--color-accent);
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
 .rc-overview {
     grid-template-columns: 1fr;
   }

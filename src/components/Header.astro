@@ -3,7 +3,7 @@ const { pathname } = Astro.url;
 const links = [
   { href: "/#home-work", en: "What was", ja: "具現化したアイデア" },
   { href: "/who", en: "Who is", ja: "脳" },
-  { href: "/when", en: "When will be", ja: "今考えてること" },
+  { href: "/#home-video-game", en: "When will be", ja: "今考えてること" },
 ];
 const active = (href: string) => href === "/#home-work"
   ? pathname.startsWith("/what/")
