@@ -27,4 +27,3 @@ When the user provides a GitHub issue URL or issue number for this repository, r
 - Change Astro markup in `src/pages` or `src/components`, and change styling in the CSS file that owns the relevant page or shared component.
 - Preserve existing asset paths and behavior. Keep browser JavaScript small and relevant to the component or page.
 - Run `npm run build` after changes that could affect imports, page output, or shared styles. `npm run dev` starts the local preview; `npm run preview` serves a completed build.
-- Do not edit the `copy/` directory as if it were the live site; current pages are under `src/pages`.
