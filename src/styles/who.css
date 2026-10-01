@@ -23,7 +23,7 @@
   .who-intro h1 { font-size: var(--who-title-size-mobile); }
   .who-statement { gap: 24px; }
   .who-intro h1 { margin-bottom: 40px; }
-  .who-member-grid { grid-template-columns: 1fr; gap: 40px; }
+  .who-member-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-xs); width: 100%; }
   .who-member-grid figure { max-width: 250px; width: 100%; margin-inline: auto; }
 }
 
