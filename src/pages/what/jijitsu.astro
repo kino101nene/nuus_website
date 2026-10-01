@@ -162,7 +162,7 @@ const sections = [
         <div class="jj-chapter-content">
           <div class="jj-chapter-description jj-prose" lang="ja">{sections[0].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
           <div class="jj-posters">
-            {sections[0].gallery.map((item) => <figure><OptimizedImage src={item.src} alt={`Wanted Criminals — ${item.title}`} /></figure>)}
+            {sections[0].gallery.map((item) => <figure><OptimizedImage src={item.src} alt={`Wanted Criminals — ${item.title}`} width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 78vw, 32vw" /></figure>)}
           </div>
           <div class="jj-posters-progress" aria-hidden="true">
             <span class="jj-posters-progress-track"></span>
@@ -185,7 +185,7 @@ const sections = [
         <div class="jj-chapter-content">
           <div class="jj-chapter-description jj-prose" lang="ja">{sections[1].descriptions[0].text.split("\n\n").map(text => <p>{text}</p>)}</div>
           <div class="jj-posters jj-dream-gallery">
-            {[{ src: mapImg, title: "Dream map" }, { src: lettersImg, title: "Letters" }, { src: orangeDogImg, title: "Orange dog" }, { src: soilImg, title: "Soil" }].map((item) => <figure><OptimizedImage src={item.src} alt={`Dream Mapping — ${item.title}`} /></figure>)}
+            {[{ src: mapImg, title: "Dream map" }, { src: lettersImg, title: "Letters" }, { src: orangeDogImg, title: "Orange dog" }, { src: soilImg, title: "Soil" }].map((item) => <figure><OptimizedImage src={item.src} alt={`Dream Mapping — ${item.title}`} width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 78vw, 32vw" /></figure>)}
           </div>
           <div class="jj-posters-progress" aria-hidden="true">
             <span class="jj-posters-progress-track"></span>

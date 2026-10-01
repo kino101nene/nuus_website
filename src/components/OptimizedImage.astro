@@ -7,9 +7,12 @@ interface Props {
   loading?: 'lazy' | 'eager';
   class?: string;
   fetchpriority?: 'high' | 'low' | 'auto';
+  width?: number;
+  widths?: number[];
+  sizes?: string;
 }
 
-const { src, alt, loading = 'lazy', class: className, fetchpriority } = Astro.props;
+const { src, alt, loading = 'lazy', class: className, fetchpriority, width, widths, sizes } = Astro.props;
 ---
 
-<Image src={src} alt={alt} loading={loading} class={className} fetchpriority={fetchpriority} />
+<Image src={src} alt={alt} loading={loading} class={className} fetchpriority={fetchpriority} width={width} widths={widths} sizes={sizes} />
