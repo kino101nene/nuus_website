@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
+import LoopVideo from "../../components/LoopVideo.astro";
 import ProjectHero from "../../components/ProjectHero.astro";
 
 // @ts-ignore
@@ -31,19 +32,21 @@ import orangeDogImg from "../../assets/jijitsu/contents/dream-mapping/orange-dog
 // @ts-ignore
 import soilImg from "../../assets/jijitsu/contents/dream-mapping/soil.jpg";
 
-// @ts-ignore
-// @ts-ignore
-import visitor5 from "../../assets/rabbit/visitors5.gif";
-// @ts-ignore
-import visitor2 from "../../assets/rabbit/visitor2.gif";
-// @ts-ignore
-import visitor8 from "../../assets/rabbit/visitors8.gif";
+import visitor5 from "../../assets/media/loops/rabbit-visitors-5.mp4";
+import visitor2 from "../../assets/media/loops/rabbit-visitor-2.mp4";
+import visitor8 from "../../assets/media/loops/rabbit-visitors-8.mp4";
+import visitor5Poster from "../../assets/media/posters/rabbit-visitors-5.jpg";
+import visitor2Poster from "../../assets/media/posters/rabbit-visitor-2.jpg";
+import visitor8Poster from "../../assets/media/posters/rabbit-visitors-8.jpg";
 
 import "../../styles/projects/jijitsu-editorial.css";
 import roomImage from "../../assets/jijitsu/contents/room/JPG/whole-room.JPG";
-import rabbitNext1 from "../../assets/rabbit/thumbnails/rabbit10.gif";
-import rabbitNext2 from "../../assets/rabbit/thumbnails/rabbit11.gif";
-import rabbitNext3 from "../../assets/rabbit/thumbnails/rabbit12.gif";
+import rabbitNext1 from "../../assets/media/loops/rabbit-thumb-10.mp4";
+import rabbitNext2 from "../../assets/media/loops/rabbit-thumb-11.mp4";
+import rabbitNext3 from "../../assets/media/loops/rabbit-thumb-12.mp4";
+import rabbitNextPoster1 from "../../assets/media/posters/rabbit-thumb-10.jpg";
+import rabbitNextPoster2 from "../../assets/media/posters/rabbit-thumb-11.jpg";
+import rabbitNextPoster3 from "../../assets/media/posters/rabbit-thumb-12.jpg";
 
 const title = "jijitsu";
 
@@ -78,9 +81,9 @@ const heroEmphasis = "生活感がありながらも、どこか異様な気配�
 const [heroRoomDescriptionBeforeEmphasis = "", heroRoomDescriptionAfterEmphasis = ""] = `床には${heroRoomRemainder}`.split(heroEmphasis);
 
 const roomGifs = [
-  { src: visitor5, number: 5 },
-  { src: visitor2, number: 2 },
-  { src: visitor8, number: 8 },
+  { src: visitor5, poster: visitor5Poster.src, number: 5 },
+  { src: visitor2, poster: visitor2Poster.src, number: 2 },
+  { src: visitor8, poster: visitor8Poster.src, number: 8 },
 ];
 const sections = [
   {
@@ -137,9 +140,9 @@ const sections = [
       ]}
     />
     <div class="jj-room-gifs" aria-label="jijitsu visitor records">
-      <figure><OptimizedImage src={roomGifs[0].src} alt={`jijitsu visitor record ${roomGifs[0].number}`} /></figure>
+      <figure><LoopVideo src={roomGifs[0].src} poster={roomGifs[0].poster} alt={`jijitsu visitor record ${roomGifs[0].number}`} /></figure>
       <div class="jj-room-gifs-bottom">
-        {roomGifs.slice(1).map((gif) => <figure><OptimizedImage src={gif.src} alt={`jijitsu visitor record ${gif.number}`} /></figure>)}
+        {roomGifs.slice(1).map((gif) => <figure><LoopVideo src={gif.src} poster={gif.poster} alt={`jijitsu visitor record ${gif.number}`} /></figure>)}
       </div>
     </div>
 
@@ -211,7 +214,7 @@ const sections = [
             </div>
           </div>
         </div>
-        <a class="project-next-gifs" href="/what/rabbit" aria-label="rabbit, habbit, kubid プロジェクトを見る"><span class="project-next-thumb"><img src={rabbitNext1.src} alt="" /></span><span class="project-next-thumb"><img src={rabbitNext2.src} alt="" /></span><span class="project-next-thumb"><img src={rabbitNext3.src} alt="" /></span></a>
+        <a class="project-next-gifs" href="/what/rabbit" aria-label="rabbit, habbit, kubid プロジェクトを見る"><span class="project-next-thumb"><LoopVideo src={rabbitNext1} poster={rabbitNextPoster1.src} alt="" /></span><span class="project-next-thumb"><LoopVideo src={rabbitNext2} poster={rabbitNextPoster2.src} alt="" /></span><span class="project-next-thumb"><LoopVideo src={rabbitNext3} poster={rabbitNextPoster3.src} alt="" /></span></a>
       </div>
     </div>
   </article>

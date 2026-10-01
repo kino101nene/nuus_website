@@ -12,7 +12,9 @@ interface Props {
   variant: "jj" | "rb";
   titleLines: string[];
   titleAccent?: string;
-  image: ImageMetadata;
+  image?: ImageMetadata;
+  videoSrc?: string;
+  videoPoster?: string;
   imageAlt: string;
   optimizeImage?: boolean;
   year: string;
@@ -26,6 +28,8 @@ const {
   titleLines,
   titleAccent = "",
   image,
+  videoSrc,
+  videoPoster,
   imageAlt,
   optimizeImage = true,
   year,
@@ -50,15 +54,19 @@ const titleText = titleLines.join("\n");
 
   {isJijitsu ? (
     <figure class={imageClass}>
-      {optimizeImage
+      {videoSrc
+        ? <video src={videoSrc} poster={videoPoster} muted loop playsinline preload="none" aria-label={imageAlt} data-managed-loop-video></video>
+        : image && (optimizeImage
         ? <OptimizedImage src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
-        : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />}
+        : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />)}
     </figure>
   ) : (
     <div class={imageClass}>
-      {optimizeImage
+      {videoSrc
+        ? <video src={videoSrc} poster={videoPoster} muted loop playsinline preload="none" aria-label={imageAlt} data-managed-loop-video></video>
+        : image && (optimizeImage
         ? <OptimizedImage src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
-        : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />}
+        : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />)}
     </div>
   )}
 
@@ -86,11 +94,17 @@ const titleText = titleLines.join("\n");
     </div>
   </div>
   <div class={mobileImageClass}>
-    {optimizeImage
+    {videoSrc
+      ? <video src={videoSrc} poster={videoPoster} muted loop playsinline preload="none" aria-label={imageAlt} data-managed-loop-video></video>
+      : image && (optimizeImage
       ? <OptimizedImage src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
-      : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />}
+      : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />)}
   </div>
   <div class={`project-hero-prose ${pageClass}-hero-prose ${pageClass}-prose`} lang="ja">
     {paragraphs.map(({ before, emphasis, after }) => <p>{before}{emphasis && <span class={`${pageClass}-hero-emphasis`}>{emphasis}</span>}{after}</p>)}
   </div>
 </section>
+
+<script>
+  import "../scripts/managed-loop-video";
+</script>

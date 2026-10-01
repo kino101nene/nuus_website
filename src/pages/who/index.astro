@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
+import LoopVideo from "../../components/LoopVideo.astro";
 // @ts-ignore
 import nuusDiagram from "../../assets/who/nuus_diagram.png";
 // @ts-ignore
 import seiyaIcon from "../../assets/who/profiles/seiya-icon.JPG";
 // @ts-ignore
-import aiIcon from "../../assets/who/profiles/ai-icon.gif";
+import aiIcon from "../../assets/media/loops/who-ai-icon.mp4";
+import aiIconPoster from "../../assets/media/posters/who-ai-icon.jpg";
 // @ts-ignore
 import neneIcon from "../../assets/who/profiles/nene-icon.JPG";
 import "../../styles/who.css";
@@ -20,9 +22,9 @@ import "../../styles/who.css";
 
     <section class="who-members" aria-label="Members">
       <div class="who-member-grid">
-        {[{image: seiyaIcon, name: "Seiya", role: "management"}, {image: aiIcon, name: "Ai", role: "art director/creative"}, {image: neneIcon, name: "nene", role: "creative technologist"}].map((member) => (
+        {[{image: seiyaIcon, name: "Seiya", role: "management"}, {video: aiIcon, poster: aiIconPoster.src, name: "Ai", role: "art director/creative"}, {image: neneIcon, name: "nene", role: "creative technologist"}].map((member) => (
           <figure>
-            <div class="who-member-visual"><OptimizedImage src={member.image} alt={member.name} /><span class="who-member-role">{member.role}</span></div>
+            <div class="who-member-visual">{member.video ? <LoopVideo src={member.video} poster={member.poster} alt={member.name} /> : member.image && <OptimizedImage src={member.image} alt={member.name} />}<span class="who-member-role">{member.role}</span></div>
             <figcaption><span>{member.name}</span></figcaption>
           </figure>
         ))}

@@ -84,7 +84,7 @@
   visibility: visible;
   transition: opacity 1000ms ease 700ms, visibility 0s linear 700ms;
 }
-.project-next-gifs img {
+.project-next-gifs :is(img, video) {
   display: block;
   width: 100%;
   height: var(--next-image-height);
@@ -93,7 +93,7 @@
 }
 .project-next-thumb { display: block; min-width: 0; overflow: hidden; }
 @media (min-width: 601px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .project-next-thumb:hover img { transform: scale(1.025); }
+  .project-next-thumb:hover :is(img, video) { transform: scale(1.025); }
 }
 .project-next-title {
   display: block;
@@ -216,7 +216,7 @@
     background: rgb(0 0 0 / 30%);
     pointer-events: none;
   }
-  .project-next-gifs img {
+  .project-next-gifs :is(img, video) {
     height: 100%;
     filter: none;
   }
@@ -254,5 +254,5 @@
     transform: none;
     transition: none;
   }
-  .project-next-gifs img { transition: none; }
+  .project-next-gifs :is(img, video) { transition: none; }
 }

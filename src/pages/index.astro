@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
-import homeVideo from "../assets/home/nuus-sum.mp4";
+import LoopVideo from "../components/LoopVideo.astro";
+import optimizedHomeVideo from "../assets/media/loops/home-nuus-sum.mp4";
 import heroPoster from "../assets/home/hero-image-mobile.webp";
 import realCopy from "../assets/real-copy/thumbnails/IMG_8366 (1).JPG";
 import jijitsu from "../assets/jijitsu/thumbnails/IMG_3734.jpg";
@@ -12,7 +13,7 @@ import "../styles/home.css";
 <BaseLayout bodyClass="home-page" title="Nuus" description="本質と現象にN軸をもって作品を作るクリエイティブ集団、Nuus。" current="home">
   <section class="home-hero" aria-label="Nuus introduction">
     <div class="home-hero-sticky">
-      <video class="home-film" src={homeVideo} poster={heroPoster.src} autoplay muted playsinline loop preload="auto" aria-label="Nuusのイントロ映像"></video>
+      <LoopVideo class="home-film" src={optimizedHomeVideo} poster={heroPoster.src} alt="Nuusのイントロ映像" />
     </div>
     <a class="home-hero-scroll-link" href="#home-work" aria-label="Selected workへ移動">
       <svg class="home-hero-scroll-arrow" viewBox="0 0 511.93 511.93" aria-hidden="true"><path fill="currentColor" d="M476.738 280.436c-4.16-4.16-10.88-4.16-15.04 0l-195.2 195.2V10.996c0-5.333-3.84-10.133-9.067-10.88-6.613-.96-12.267 4.16-12.267 10.56v464.96l-195.093-195.2c-4.267-4.053-10.987-3.947-15.04.213-3.947 4.16-3.947 10.667 0 14.827L248.365 508.81c4.16 4.16 10.88 4.16 15.04 0l213.333-213.333c4.16-4.054 4.16-10.881 0-15.041Z" /></svg>
