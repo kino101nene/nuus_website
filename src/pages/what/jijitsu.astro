@@ -81,9 +81,9 @@ const heroEmphasis = "生活感がありながらも、どこか異様な気配�
 const [heroRoomDescriptionBeforeEmphasis = "", heroRoomDescriptionAfterEmphasis = ""] = `床には${heroRoomRemainder}`.split(heroEmphasis);
 
 const roomGifs = [
-  { src: visitor5, poster: visitor5Poster.src, number: 5 },
-  { src: visitor2, poster: visitor2Poster.src, number: 2 },
-  { src: visitor8, poster: visitor8Poster.src, number: 8 },
+  { src: visitor5, poster: visitor5Poster, number: 5 },
+  { src: visitor2, poster: visitor2Poster, number: 2 },
+  { src: visitor8, poster: visitor8Poster, number: 8 },
 ];
 const sections = [
   {
@@ -140,9 +140,9 @@ const sections = [
       ]}
     />
     <div class="jj-room-gifs" aria-label="jijitsu visitor records">
-      <figure><LoopVideo src={roomGifs[0].src} poster={roomGifs[0].poster} alt={`jijitsu visitor record ${roomGifs[0].number}`} /></figure>
+      <figure><LoopVideo src={roomGifs[0].src} poster={roomGifs[0].poster} alt={`jijitsu visitor record ${roomGifs[0].number}`} seamlessPoster /></figure>
       <div class="jj-room-gifs-bottom">
-        {roomGifs.slice(1).map((gif) => <figure><LoopVideo src={gif.src} poster={gif.poster} alt={`jijitsu visitor record ${gif.number}`} /></figure>)}
+        {roomGifs.slice(1).map((gif) => <figure><LoopVideo src={gif.src} poster={gif.poster} alt={`jijitsu visitor record ${gif.number}`} seamlessPoster /></figure>)}
       </div>
     </div>
 
