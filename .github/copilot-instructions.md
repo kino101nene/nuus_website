@@ -11,7 +11,6 @@ When the user provides a GitHub issue URL or issue number for this repository, r
 - `src/pages/index.astro` and `src/styles/home.css` implement the homepage.
 - `src/pages/what/{real-copy,jijitsu,rabbit}.astro` are the current work pages. Their page-specific styles are `src/styles/projects/{real-copy,jijitsu,rabbit}-editorial.css`.
 - `src/styles/projects/editorial-shared.css` contains shared work-page typography and layout primitives. `src/styles/projects/next-project.css` contains the shared next-project section.
-- `src/pages/what/project-template.astro` is a separate legacy/example route that imports `src/styles/projects/real-copy.css`; it is not the template used by the three current work pages.
 - `src/pages/who/index.astro` and `src/pages/when/index.astro` use `src/styles/who.css` and `src/styles/when.css`.
 - Imported images and videos live in `src/assets`; URL-addressed assets and plain browser scripts live in `public`. Page scripts also live in `src/scripts`.
 

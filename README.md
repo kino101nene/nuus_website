@@ -21,6 +21,4 @@ npm run dev
 - `src/styles/main.css`: site-wide design tokens and base styles. `src/styles/projects/editorial-shared.css` and `next-project.css` provide shared work-page styles.
 - `src/assets/`: imported media. `public/`: assets and scripts served by URL.
 
-`src/pages/what/project-template.astro` is a separate older example route that uses `src/styles/projects/real-copy.css`; the current work pages do not use it.
-
 AI agent guidance is in [`.github/copilot-instructions.md`](.github/copilot-instructions.md) and [`AGENTS.md`](AGENTS.md).
