@@ -29,12 +29,21 @@ import "../../styles/who.css";
           </figure>
         ))}
       </div>
+      <button class="who-member-arrow who-member-arrow--prev" type="button" aria-label="Previous member" hidden>
+        <img src="/assets/arrow-next.svg" alt="" aria-hidden="true" />
+      </button>
+      <button class="who-member-arrow who-member-arrow--next" type="button" aria-label="Next member">
+        <img src="/assets/arrow-next.svg" alt="" aria-hidden="true" />
+      </button>
     </section>
 
-    <div class="who-statement project-soft-reveal project-soft-reveal--body" lang="ja">
-      <p>nuus(ヌース)は、<br>本質と現象に<span class="who-statement-emphasis">N軸</span>をもって作品を作るクリエイティブ集団</p>
-    </div>
-
+  <div class="who-statement project-soft-reveal project-soft-reveal--body" lang="ja">
+  <h2 class="who-statement-title" lang="en">The thinking behind</h2>
+  <p>
+    nuus（ヌース）は、すべてが説明されたかのような世界で、本質と現象を<span class="who-statement-emphasis">N軸</span>から捉える。<br>
+    パラレルワールドのような空間や体験をつくり、世界に良い混乱を与える。
+  </p>
+</div>
     <section class="who-perspective" aria-label="Perspective diagram">
       <OptimizedImage src={nuusDiagram} alt="Nuusの本質（X軸）、現象（Y軸）、N軸を表す図" />
     </section>
@@ -43,4 +52,5 @@ import "../../styles/who.css";
 
 <script>
   import "../../scripts/soft-reveal";
+  import "../../scripts/who-member-carousel";
 </script>
