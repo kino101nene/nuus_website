@@ -1,28 +1,80 @@
 ---
+import type { ImageMetadata } from "astro";
+
 interface Props {
   src: string;
-  poster: string;
+  poster: string | ImageMetadata;
   alt: string;
   class?: string;
   scrollControlled?: boolean;
+  seamlessPoster?: boolean;
 }
 
-const { src, poster, alt, class: className, scrollControlled = false } = Astro.props;
+const { src, poster, alt, class: className, scrollControlled = false, seamlessPoster = false } = Astro.props;
+const posterSrc = typeof poster === "string" ? poster : poster.src;
+const posterRatio = typeof poster === "string" ? undefined : `${poster.width} / ${poster.height}`;
 ---
 
-<video
-  class={className}
-  src={src}
-  poster={poster}
-  muted
-  loop
-  playsinline
-  preload="none"
-  aria-label={alt || undefined}
-  aria-hidden={alt ? undefined : "true"}
-  data-managed-loop-video={!scrollControlled ? "" : undefined}
-  data-scroll-controlled={scrollControlled ? "" : undefined}
-></video>
+{seamlessPoster ? (
+  <span class="loop-video-shell" data-seamless-poster style={posterRatio && `--loop-poster-ratio: ${posterRatio}`}>
+    <video
+      class={className}
+      src={src}
+      poster={posterSrc}
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-label={alt || undefined}
+      data-managed-loop-video={!scrollControlled ? "" : undefined}
+      data-scroll-controlled={scrollControlled ? "" : undefined}
+    ></video>
+    <img class="loop-video-poster" src={posterSrc} alt="" aria-hidden="true" width={typeof poster === "string" ? undefined : poster.width} height={typeof poster === "string" ? undefined : poster.height} />
+  </span>
+) : (
+  <video
+    class={className}
+    src={src}
+    poster={posterSrc}
+    muted
+    loop
+    playsinline
+    preload="none"
+    aria-label={alt || undefined}
+    aria-hidden={alt ? undefined : "true"}
+    data-managed-loop-video={!scrollControlled ? "" : undefined}
+    data-scroll-controlled={scrollControlled ? "" : undefined}
+  ></video>
+)}
+
+<style>
+  .loop-video-shell {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: var(--loop-poster-ratio);
+  }
+
+  .loop-video-shell video,
+  .loop-video-poster {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .loop-video-poster {
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loop-video-shell.is-poster-managed:not(.has-video-frame) .loop-video-poster {
+    opacity: 1;
+  }
+</style>
 
 <script>
   import "../scripts/managed-loop-video";

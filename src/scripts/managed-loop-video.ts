@@ -2,16 +2,39 @@ const videos = [...document.querySelectorAll<HTMLVideoElement>("video[data-manag
 
 if (videos.length) {
   const visibleVideos = new Set<HTMLVideoElement>();
+  const posterImages = new Map<HTMLVideoElement, HTMLImageElement>();
+  videos.forEach((video) => {
+    const shell = video.closest<HTMLElement>("[data-seamless-poster]");
+    if (!shell) return;
+
+    const posterImage = shell.querySelector<HTMLImageElement>(".loop-video-poster");
+    if (posterImage) posterImages.set(video, posterImage);
+    shell.classList.add("is-poster-managed");
+    const showVideoFrame = () => shell.classList.add("has-video-frame");
+    if ("requestVideoFrameCallback" in video) {
+      video.requestVideoFrameCallback(showVideoFrame);
+    }
+    video.addEventListener("timeupdate", () => {
+      requestAnimationFrame(() => requestAnimationFrame(showVideoFrame));
+    }, { once: true });
+  });
+
   const syncPlayback = () => {
     const pageVisible = document.visibilityState === "visible";
     videos.forEach((video) => {
-      if (pageVisible && visibleVideos.has(video)) {
+      const posterImage = posterImages.get(video);
+      if (pageVisible && visibleVideos.has(video) && (!posterImage || posterImage.complete)) {
         void video.play().catch(() => {});
       } else {
         video.pause();
       }
     });
   };
+
+  posterImages.forEach((posterImage) => {
+    posterImage.addEventListener("load", syncPlayback, { once: true });
+    posterImage.addEventListener("error", syncPlayback, { once: true });
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(({ target, isIntersecting }) => {
