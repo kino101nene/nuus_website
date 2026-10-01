@@ -1,6 +1,9 @@
 {
   "name": "nuus_website",
   "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --host 0.0.0.0",
@@ -9,6 +12,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "astro": "^7.3.5"
   }
 }

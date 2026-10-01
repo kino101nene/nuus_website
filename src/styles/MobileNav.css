@@ -1,0 +1,34 @@
+@media (max-width: 860px) {
+  :root { --header-h: 64px; }
+  .header-inner { padding-block: var(--header-padding-block-mobile); }
+  .desktop-nav, .desktop-only { display: none; }
+  .site-header .logo { width: 112px; }
+  .mobile-toggle { display: flex; align-items: center; gap: 18px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--color-text); font: inherit; font-size: clamp(0.75rem, 2.9545vw, 0.8125rem); cursor: pointer; }
+  .mobile-toggle span { font-size: var(--text-22); font-weight: 300; }
+  .mobile-menu-panel:not([hidden]) { display: flex; flex-direction: column; }
+  .mobile-menu-panel { position: fixed; inset: 0; z-index: -1; background: #000; color: #fff; padding: calc(var(--header-h) + 32px) 40px 32px; overflow-y: auto; }
+  .mobile-menu-panel .nav-item { padding: 24px 0; gap: 8px; }
+  .mobile-menu-panel .nav-en { font-size: clamp(36px, 9vw, 64px); line-height: 1.1; letter-spacing: -.04em; }
+  .mobile-menu-panel .nav-ja { font-size: var(--text-base); }
+  .mobile-menu-panel .nav-item { color: #fff !important; text-decoration: none !important; mix-blend-mode: normal; }
+  body.mobile-menu-open .site-header { mix-blend-mode: normal; }
+  body.mobile-menu-open .mobile-menu-panel::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--header-h) + 16px);
+    right: 0;
+    left: 0;
+    height: 1px;
+    background: #d9d9d9;
+  }
+  body.mobile-menu-open .site-header .logo { filter: invert(1); }
+  body.mobile-menu-open .site-header .logo-glyph { opacity: 1 !important; }
+  body.mobile-menu-open .mobile-toggle { filter: none; color: #fff !important; }
+  body.mobile-menu-open { overflow: hidden; }
+  .footer { margin-top: 0; padding-block: 16px; }
+  .footer .container { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: 10px; text-align: center; }
+  .footer-socials { order: 0; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; }
+  .footer-socials a { min-height: 0; }
+  .footer-brand { order: 1; }
+  .footer-brand img { width: 120px; min-width: 0; max-width: 120px; }
+}

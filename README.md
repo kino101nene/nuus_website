@@ -1,46 +1,24 @@
-# Astro Starter Kit: Basics
+# Nuus website
+
+Astro 5 site for Nuus.
+
+## Development
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+`npm run build` generates the static site in `dist/`. `npm run preview` serves that build locally.
 
-## 🚀 Project Structure
+## Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+- `src/pages/index.astro`: homepage; styles in `src/styles/home.css`.
+- `src/pages/what/real-copy.astro`, `jijitsu.astro`, `rabbit.astro`: current work pages; each imports its matching `*-editorial.css` file from `src/styles/projects/`.
+- `src/pages/who/index.astro`, `src/pages/when/index.astro`: other site pages.
+- `src/layouts/BaseLayout.astro`: shared page shell, header, footer, and global styles.
+- `src/components/`: shared Astro components.
+- `src/styles/main.css`: site-wide design tokens and base styles. `src/styles/projects/editorial-shared.css` and `next-project.css` provide shared work-page styles.
+- `src/assets/`: imported media. `public/`: assets and scripts served by URL.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+AI agent guidance is in [`.github/copilot-instructions.md`](.github/copilot-instructions.md) and [`AGENTS.md`](AGENTS.md).

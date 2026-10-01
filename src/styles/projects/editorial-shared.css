@@ -1,0 +1,156 @@
+/* Shared project primitives. Override these tokens on a page or section. */
+:root {
+  --project-font-ja: var(--font-ja);
+  --project-font-title: var(--font-project-title);
+  --project-hero-copy-size: var(--text-base);
+  --project-hero-copy-size-wide: var(--text-20);
+  --project-hero-title-size: 75.87px;
+  --project-hero-title-size-mobile: clamp(32px, 8vw, 45.16px);
+  --project-hero-title-weight: 300;
+  --project-hero-title-leading: 1;
+  --project-hero-title-tracking: .03em;
+  --project-hero-copy-leading: 2.1;
+  --project-hero-copy-tracking: var(--letter-spacing-base);
+  --project-hero-fade-ease: ease;
+  --project-hero-title-fade-duration: 1400ms;
+  --project-hero-title-fade-delay: 250ms;
+  --project-hero-media-fade-duration: 1600ms;
+  --project-hero-line-duration: 800ms;
+  --project-hero-line-stagger: 90ms;
+  --project-hero-line-distance: 3px;
+  --project-hero-line-blur: 2px;
+  --project-hero-line-ease: cubic-bezier(.22, 1, .36, 1);
+  --project-concept-title-reveal-duration: 900ms;
+  --project-concept-title-reveal-delay: 200ms;
+  --project-concept-body-reveal-duration: 850ms;
+  --project-concept-body-reveal-delay: 350ms;
+  --project-eyebrow-color: #555;
+  --project-eyebrow-size: var(--text-sm);
+  --project-eyebrow-size-mobile: var(--text-xs);
+  --project-eyebrow-gap: 8px;
+  --project-eyebrow-pair-gap: 2px;
+  --project-eyebrow-padding-top: 16px;
+  --project-eyebrow-tracking: .06em;
+  --project-eyebrow-title-weight: 500;
+  --project-subproject-label-size: 14px;
+  --project-subproject-label-size-mobile: var(--text-xs);
+}
+
+.project-eyebrow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: max-content;
+  gap: var(--project-eyebrow-gap);
+  padding: var(--project-eyebrow-padding-top) 0 0;
+  background: transparent;
+  color: var(--project-eyebrow-color);
+  font-size: var(--project-eyebrow-size);
+  letter-spacing: var(--project-eyebrow-tracking);
+}
+.project-eyebrow-pair { display: flex; flex-direction: column; gap: var(--project-eyebrow-pair-gap); }
+.project-eyebrow-title { font-weight: var(--project-eyebrow-title-weight); }
+.project-eyebrow-value { font-weight: 400; }
+
+.project-editorial {
+  --project-container-padding-block-mobile: 0px;
+  --project-columns: minmax(0, 4fr) minmax(0, 6fr);
+  --project-column-gap: 4%;
+  --project-section-space: 160px;
+  --project-section-space-mobile: 48px;
+  --project-concept-title-size: var(--text-20);
+  --project-concept-title-size-mobile: var(--project-concept-title-size);
+  --project-concept-title-weight: 500;
+  --project-concept-title-leading: 1.65;
+  --project-concept-title-tracking: var(--letter-spacing-base);
+  --project-body-size: var(--text-16);
+  --project-body-leading: 2.1;
+  --project-paragraph-space: 1.4em;
+}
+
+@media (max-width: 600px) {
+  :root { --project-subproject-label-size: var(--project-subproject-label-size-mobile); }
+}
+
+.project-split {
+  display: grid;
+  grid-template-columns: var(--project-columns);
+  gap: var(--project-column-gap);
+  align-items: start;
+}
+
+.project-hero-title {
+  font-family: var(--project-font-title);
+  font-size: var(--project-hero-title-size);
+  font-weight: var(--project-hero-title-weight);
+  line-height: var(--project-hero-title-leading);
+  letter-spacing: var(--project-hero-title-tracking);
+}
+
+.project-hero-prose {
+  font-family: var(--project-font-ja);
+  font-size: var(--project-hero-copy-size);
+  line-height: var(--project-hero-copy-leading);
+  letter-spacing: var(--project-hero-copy-tracking);
+}
+
+@media (min-width: 800px) {
+  .project-hero-prose { font-size: var(--project-hero-copy-size-wide); }
+}
+
+@media (max-width: 700px) {
+  .project-hero-title { font-size: var(--project-hero-title-size-mobile); }
+  .project-eyebrow { padding-block: 20px; }
+}
+
+.project-concept {
+  width: 100%;
+  padding-block: var(--project-section-space);
+}
+
+.project-concept h2 {
+  align-self: start;
+  margin: 0;
+  font-family: var(--project-font-ja);
+  font-size: var(--project-concept-title-size);
+  font-weight: var(--project-concept-title-weight);
+  line-height: var(--project-concept-title-leading);
+  letter-spacing: var(--project-concept-title-tracking);
+}
+
+.project-concept .project-prose {
+  width: 100%;
+  max-width: none;
+  font-family: var(--project-font-ja);
+  font-size: var(--project-body-size);
+  line-height: var(--project-body-leading);
+  line-break: strict;
+}
+
+.project-soft-reveal--title-slow {
+  transition-duration: var(--project-concept-title-reveal-duration);
+  transition-delay: var(--project-concept-title-reveal-delay);
+}
+
+.project-soft-reveal--body {
+  transition-duration: var(--project-concept-body-reveal-duration);
+  transition-delay: var(--project-concept-body-reveal-delay);
+}
+
+.project-prose p { margin: 0 0 var(--project-paragraph-space); }
+.project-prose p:last-child { margin-bottom: 0; }
+
+@media (max-width: 700px) {
+  .project-concept h2 { font-size: var(--project-concept-title-size-mobile); }
+  .project-concept .project-prose { font-size: var(--project-hero-copy-size); }
+}
+
+@media (min-width: 701px) {
+  :root {
+    --project-eyebrow-gap: clamp(0.25rem, 0.5556vw, 0.5rem);
+    --project-eyebrow-pair-gap: 0.125rem;
+    --project-eyebrow-padding-top: clamp(0.5rem, 1.1111vw, 1rem);
+  }
+  .project-editorial { --project-section-space: clamp(5rem, 11.1111vw, 10rem); }
+}

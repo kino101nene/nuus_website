@@ -1,506 +1,88 @@
-.project-title .project-link,
-.project-title:hover .project-link {
-  cursor: pointer !important;
+/* Work index: all rules are isolated from the project detail pages. */
+.work-index {
+  --work-accent: var(--color-accent);
+  --work-gutter: clamp(20px, 4.5vw, 80px);
 }
-.project-link:hover {
-  cursor: pointer;
+
+.work-collection {
+  max-width: 1800px;
+  margin-inline: auto;
+  padding: 20px var(--work-gutter) 0;
 }
-/* Thumbnail hover swap effect */
-.thumb-hover-swap {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.thumb-hover-swap > :first-child {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 1;
-  transition: opacity 0.2s;
-}
-.thumb-hover-swap > :last-child {
-  display: block;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
+
+.work-motion-ready .work-intro,
+.work-motion-ready .work-entry,
+.work-motion-ready .work-end {
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
+  translate: 0 14%;
 }
-.thumb-hover-swap:hover > :first-child {
-  opacity: 0;
-}
-.thumb-hover-swap:hover > :last-child {
+
+.work-motion-ready .work-intro.isActive,
+.work-motion-ready .work-entry.isActive,
+.work-motion-ready .work-end.isActive {
   opacity: 1;
-}
-/* Ensure header stretches edge-to-edge on what pages */
-.site-header {
-  left: 0 !important;
-  right: 0 !important;
-  width: 100vw !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-@import "./main.css";
-
-/* =========================================================
-   WHAT page — sticky stacking cards (no nav dots)
-   - Mobile: normal scroll list
-   - Desktop: sticky stack + staggered sticky-top
-   - Visual: minimal borders, strong grid rhythm, calm hover
-   ========================================================= */
-
-/* ---------- Tokens ---------- */
-:root {
-  /* Sticky Settings */
-  --sticky-top: 10vh;
-  --card-height: 65vh;
+  translate: 0;
+  transition-property: opacity, translate;
+  transition-duration: 1.4s;
+  transition-timing-function: cubic-bezier(.215, .61, .355, 1), cubic-bezier(.23, 1, .32, 1);
 }
 
-/* ---------- Base ---------- */
-html {
-  scroll-behavior: auto; /* keep crisp; no nav dots now */
-}
+.work-motion-ready .work-entry:nth-child(2).isActive { transition-delay: .7s; }
 
-body {
-  margin: 0 var(--body-margin-x);
-  min-height: 100svh;
-  overflow-x: hidden;
+.work-motion-ready .work-entry .work-caption { opacity: 0; translate: 0 28%; }
+.work-motion-ready .work-entry.isActive .work-caption { opacity: 1; translate: 0; transition-property: opacity, translate; transition-duration: 1.6s; transition-delay: .12s; transition-timing-function: cubic-bezier(.215, .61, .355, 1), cubic-bezier(.23, 1, .32, 1); }
+.work-motion-ready .work-entry:nth-child(2).isActive .work-caption { transition-delay: .82s; }
 
-  /* Page layout: header (fixed) + main grows + footer sticks to bottom */
+.work-eyebrow,
+.work-end {
   display: flex;
-  flex-direction: column;
-
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
+  justify-content: space-between;
+  gap: 24px;
+  font-size: 11px;
+  letter-spacing: .08em;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+.work-eyebrow { padding-top: 0; }
+.work-heading-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding: 20px 0 28px; }
+.work-heading-row h1 { font-size: clamp(64px, 8vw, 104px); font-weight: 400; line-height: .9; letter-spacing: -.075em; margin: 0; }
+.work-heading-row h1 span { color: var(--work-accent); }
+.work-intro-copy { padding-bottom: 4px; }
+.work-intro-copy p { margin: 0; font-size: 12px; color: var(--color-muted); }
+.work-intro-copy p[lang="ja"] { font-family: var(--font-ja); font-size: 16px; color: var(--color-text); margin-bottom: 8px; }
+.work-list { display: grid; gap: clamp(64px, 8vw, 128px); }
+.work-entry-link { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: 40px; align-items: stretch; }
+.work-image { grid-column: 2; grid-row: 1; position: relative; overflow: hidden; height: clamp(160px, 40svh, 420px); }
+.work-image img { width: 100%; height: 100%; object-fit: contain; filter: none; transition: transform 600ms ease; }
+.work-image-label { position: absolute; right: 20px; bottom: 20px; background: var(--color-bg); padding: 10px 16px; font-size: 12px; }
+.work-caption { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; gap: 24px; align-items: flex-start; padding: 0; }
+.work-number { font-size: 12px; color: var(--work-accent); padding-top: 7px; }
+.work-title-group h2 { margin: 0; font-size: clamp(24px, 2.8vw, 38px); line-height: 1.1; font-weight: 400; letter-spacing: -.045em; overflow-wrap: anywhere; }
+.work-category { font-size: 11px; color: var(--color-muted); margin: 12px 0 0; letter-spacing: .04em; }
+.work-description { min-width: 0; margin: 0; font-family: var(--font-ja); font-size: 13px; line-height: 1.9; text-align: left; }
+.work-end { margin-top: 72px; padding: 24px 0 40px; align-items: baseline; }
+.work-end > span { color: var(--color-muted); }
+.work-end a { letter-spacing: 0; font-size: 14px; }
+.work-entry-link:focus-visible, .work-end a:focus-visible { outline: 2px solid var(--work-accent); outline-offset: 6px; }
+@media (hover: hover) {
+  .work-entry-link:hover .work-image img { transform: scale(1.025); }
+  .work-end a:hover { color: var(--work-accent); }
 }
-
-/* =========================================================
-   Header / Intro
-   ========================================================= */
-.collection {
-  padding: clamp(32px, 5vw, 72px) 0;
+@media (max-width: 600px) {
+  .work-heading-row { align-items: flex-start; flex-direction: column; padding: 16px 0 24px; gap: 16px; }
+  .work-eyebrow { font-size: 10px; }
+  .work-entry-link { grid-template-columns: 1fr; gap: 20px; }
+  .work-image { grid-column: 1; grid-row: 1; }
+  .work-caption { grid-column: 1; grid-row: 2; gap: 12px; padding-top: 0; }
+  .work-image { height: clamp(140px, 32svh, 280px); }
+  .work-image-label { right: 12px; bottom: 12px; font-size: 10px; padding: 8px 12px; }
+  .work-description { font-size: 12px; }
+  .work-end { flex-direction: column; gap: 16px; margin-top: 56px; }
 }
-
-/* =========================================================
-   Crossfade Mode
-   ========================================================= */
-.collection.crossfade-mode {
-  padding: 0;
-  position: relative;
-}
-
-.scroll-spacer {
-  height: 300vh; /* Creates scrollable area for 3 cards */
-  pointer-events: none;
-}
-
-/* Project link styles moved from HTML */
-.project-link {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer !important;
-  display: inline-block;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.project-title {
-  cursor: pointer !important;
-}
-.crossfade-viewport {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--gap);
-  padding: var(--pad);
-  padding-top: calc(var(--header-h) + var(--pad));
-  box-sizing: border-box;
-  pointer-events: none;
-}
-
-.crossfade-time {
-  position: relative;
-  padding-top: 2rem;
-}
-
-.time-text {
-  position: absolute;
-  top: 2rem;
-  left: 0;
-  font-size: 14px;
-  color: var(--muted);
-  opacity: 0;
-  transition: opacity 0.1s ease-out;
-}
-
-.time-text:first-child {
-  opacity: 1;
-}
-
-.crossfade-cards {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-}
-
-.crossfade-cards .project-card {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  transition: opacity 0.15s ease-out;
-  display: block;
-  grid-template-columns: none;
-}
-
-.crossfade-cards .project-card:first-child {
-  opacity: 1;
-}
-
-.crossfade-cards .project-inner {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(28px, 3vw, 56px);
-  align-items: center;
-}
-
-.crossfade-cards .project-thumb {
-  height: 100%;
-  max-height: 70vh;
-}
-
-.crossfade-cards .project-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Mobile: disable crossfade, stack normally */
-@media (max-width: 767px) {
-  .scroll-spacer {
-    display: none;
-  }
-
-  .crossfade-viewport {
-    position: relative;
-    height: auto;
-    grid-template-columns: 1fr;
-    padding-top: calc(var(--header-h) + var(--pad));
-  }
-
-  .crossfade-time {
-    display: none;
-  }
-
-  .crossfade-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .crossfade-cards .project-card {
-    position: relative;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
-
-  .crossfade-cards .project-inner {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-
-  .crossfade-cards .project-thumb {
-    max-height: 300px;
-  }
-}
-
-.collection-head {
-  padding: 18px 0;
-}
-
-.collection-title {
-  margin: 0 0 10px;
-  font-size: clamp(28px, 4vw, 44px);
-  letter-spacing: -0.02em;
-}
-
-.collection-subtitle {
-  margin: 0;
-  max-width: 70ch;
-  color: var(--muted);
-}
-
-/* =========================================================
-   List / Cards
-   ========================================================= */
-.collection-list {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding-left: var(--pad);
-  padding-right: var(--pad);
-  box-sizing: border-box;
-
-  /* Vertical spacing between cards */
-  gap: clamp(40px, 5vw, 60px);
-  padding-bottom: clamp(40px, 8vh, 120px);
-  scroll-snap-type: y mandatory;
-}
-
-/* Card shell */
-.project-card {
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  margin-left: 0;
-  /* background and box-shadow removed */
-  border-radius: 18px;
-  display: block;
-  /* grid-template-columns removed, now single column */
-  gap: unset;
-  align-items: unset;
-  /* Remove transform, will-change, transform-style */
-  scroll-snap-align: center;
-}
-
-.project-card:last-child {
-  margin-bottom: 0;
-}
-
-/* The actual card surface */
-.project-inner {
-  background: transparent;
-  display: flex;
-  flex-direction: row;
-  gap: 2.5rem;
-  padding: 2.25rem 1.5rem;
-  /* Remove transform, filter, transition */
-}
-
-/* Per-card blue-scale backgrounds */
-#proj-1 .project-inner {
-  background: transparent;
-}
-
-#proj-2 .project-inner {
-  background: transparent;
-}
-
-#proj-2 {
-  filter: blur(5px);
-}
-
-#proj-3 .project-inner {
-  background: transparent;
-}
-
-#proj-3 {
-  filter: blur(5px);
-}
-
-.blurred {
-  pointer-events: none;
-}
-
-/* Titlebar line as a design element */
-.project-titlebar {
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 14px;
-}
-
-.project-body {
-  flex: 1 1 0%;
-  min-width: 0;
-}
-
-.project-title {
-  height: auto;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  overflow-wrap: break-word;
-  hyphens: auto;
-}
-.project-desc {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--muted);
-  margin: 0 0 1.25rem 0;
-}
-
-/* Thumbnails: strict 16:9 */
-.project-thumb {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-
-.project-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.001);
-  filter: contrast(1.02) saturate(0.95);
-  transition:
-    transform 400ms ease,
-    filter 400ms ease;
-}
-
-/* Actions */
-.project-actions {
-  display: flex;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-}
-
-.btn-primary,
-.btn-secondary {
-  text-decoration: none;
-  padding: 0.85rem 1.4rem;
-  font-size: 0.92rem;
-  font-weight: 600;
-  transition:
-    transform 180ms ease,
-    background 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
-  text-align: center;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-}
-
-.btn-primary {
-  background-color: rgba(0, 0, 0, 0.92);
-  color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.92);
-}
-
-.project-card:not(.blurred) .btn-primary:hover {
-  background-color: rgba(0, 0, 0, 0.78);
-  border-color: rgba(0, 0, 0, 0.78);
-  transform: translateY(-1px);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: rgba(0, 0, 0, 0.84);
-  border: 1px solid rgba(0, 0, 0, 0.35);
-}
-
-.project-card:not(.blurred) .btn-secondary:hover {
-  background-color: rgba(0, 0, 0, 0.03);
-  border-color: rgba(0, 0, 0, 0.6);
-  transform: translateY(-1px);
-}
-
-/* Hover polish: calm lift */
-@media (hover: hover) and (pointer: fine) {
-  .project-card:not(.blurred):hover .project-thumb img {
-    transform: scale(1.03);
-    filter: contrast(1.05) saturate(1);
-  }
-}
-
-/* =========================================================
-   Desktop: sticky stacking
-   ========================================================= */
-@media (min-width: 768px) {
-  .collection-list {
-    padding-left: var(--pad);
-    padding-right: var(--pad);
-  }
-
-  .project-card {
-    /* Disable sticky stacking — keep cards in normal flow */
-    position: relative;
-    top: auto;
-    height: auto;
-    grid-template-columns: none;
-    padding: 2.25rem 1.5rem;
-    border-top: none;
-  }
-
-  /* Remove staggered stacking — no extra z-index or top offsets */
-
-  /* Center the inner card inside the sticky viewport */
-  .project-inner {
-    height: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-
-    /* Use row layout for inner content on desktop */
-    display: flex;
-    flex-direction: row;
-    gap: clamp(28px, 3vw, 56px);
-    align-items: center;
-
-    padding: 0 clamp(12px, 4vw, 48px);
-  }
-
-  /* Responsive tweak for smaller laptops */
-  @media (max-width: 1300px) {
-    .project-inner {
-      gap: clamp(18px, 3vw, 36px);
-    }
-  }
-
-  /* Desktop thumbnail sizing */
-  .project-thumb {
-    flex: 0 0 480px;
-    max-width: 480px;
-    width: 480px;
-    aspect-ratio: 16 / 9;
-  }
-
-  .project-title {
-    font-size: clamp(2.6rem, 4.2vw, 3.8rem);
-  }
-}
-
-/* =========================================================
-   Mobile: spacing polish
-   ========================================================= */
-@media (max-width: 767px) {
-  .project-card {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 520px) {
-  .project-inner {
-    padding: 1.75rem 1.1rem;
-    border-radius: 12px;
-  }
-
-  .project-title {
-    font-size: 1.55rem;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .work-motion-ready .work-intro,
+  .work-motion-ready .work-entry,
+  .work-motion-ready .work-end,
+  .work-motion-ready .work-entry .work-caption { opacity: 1; translate: 0; transition: none; }
+  .work-image img { transition: none; }
+  .work-entry-link:hover .work-image img { transform: none; }
 }

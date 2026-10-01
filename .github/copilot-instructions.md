@@ -1,52 +1,29 @@
-<!-- Copilot / AI agent instructions for the nuus_website repo -->
+# AI agent instructions — nuus_website
 
-# Copilot instructions — nuus_website
+This repository is the Nuus website, built with Astro 7 (Node.js 22.12.0 or newer). Keep changes in this website project separate from any Shopify work.
 
-Purpose
+When the user provides a GitHub issue URL or issue number for this repository, read that issue before making changes. Follow its requirements and acceptance criteria, and clarify any conflict with the user's latest instructions. Do not search for issues automatically on every task; if no issue is referenced, work from the user's request and repository context.
 
-- Help contributors and AI agents make safe, targeted edits for the Astro-based site.
+## Current structure
 
-Quick facts
+- `src/layouts/BaseLayout.astro` provides the shared header, footer, and global CSS imports.
+- `src/components/Header.astro` contains the navigation and logo; `src/styles/DesktopNav.css`, `src/styles/MobileNav.css`, and `public/js/main.js` control its appearance and behavior.
+- `src/pages/index.astro` and `src/styles/home.css` implement the homepage.
+- `src/pages/what/{real-copy,jijitsu,rabbit}.astro` are the current work pages. Their page-specific styles are `src/styles/projects/{real-copy,jijitsu,rabbit}-editorial.css`.
+- `src/styles/projects/editorial-shared.css` contains shared work-page typography and layout primitives. `src/styles/projects/next-project.css` contains the shared next-project section.
+- `src/pages/who/index.astro` and `src/pages/when/index.astro` use `src/styles/who.css` and `src/styles/when.css`.
+- Imported images and videos live in `src/assets`; URL-addressed assets and plain browser scripts live in `public`. Page scripts also live in `src/scripts`.
 
-- Framework: Astro (see package.json dependency). Use `npm run dev` / `npm run build` / `npm run preview`.
-- Repo entry points: pages under `src/pages`, reusable markup in `src/components`, and layout wrappers in `src/layouts`.
-- Public assets live in `public/assets` and are referenced by their absolute path (e.g. `/assets/...`).
+## Styling and tokens
 
-Architecture & conventions (important)
+- `src/styles/main.css` defines site-wide color, type, spacing, and layout tokens. Shared work-page tokens and components are in `src/styles/projects/editorial-shared.css`.
+- Inspect the actual page CSS before changing spacing or typography. Some values, including homepage and work-page outer padding, are still set directly in page CSS, so a change to a global token may not affect them.
+- **Before implementing a change where font or padding values could reuse an existing token or become a shared token, ask the owner whether to prioritize a token-based implementation.** Name the specific token or shared rule and the page-local alternative. Wait for their answer before making the related style change. Once they choose an approach for a task, use that choice without asking again for each declaration.
+- Keep one-off visual values local when the owner chooses a page-specific implementation. Do not silently replace a requested exact value with a nearby token.
+- Responsive breakpoints vary by component (currently 600, 699/700, 860, and 900px); inspect the relevant rules instead of assuming one site-wide breakpoint.
 
-- This is a static/site project using Astro server-side rendering at build time; prefer editing `.astro` files for page markup and layout concerns.
-- Layouts: use `src/layouts/BaseLayout.astro` as the site wrapper. Pages import layouts directly.
-- Components: small presentational units live in `src/components` (example: `src/components/Header.astro`).
-- Styles: global and page-specific CSS live in `src/styles`. Project-specific styles are under `src/styles/projects` (example: `src/styles/projects/real-copy.css`).
-- JS: minimal client behavior lives in the `js/` folder (e.g. `js/main.js`, `js/home.js`). Keep JS unobtrusive and DOM-focused.
-- Responsive breakpoints: the project commonly uses `@media (max-width: 900px)` patterns — preserve this when adjusting layout breakpoints.
+## Working on this site
 
-Patterns & examples to follow
-
-- Grid system: many pages use a 12-column CSS grid in `.gallery` and `grid-column: span N;` for tile placement (see `src/styles/projects/real-copy.css`).
-- Hero layouts: `.hero-grid` frequently uses two columns `200px 1fr` on desktop and collapses to `1fr` under 900px.
-- Vertical titles: some pages use `writing-mode: vertical-rl` and `transform: rotate(180deg)` (see `.title-vertical` in `src/styles/projects/real-copy.css`).
-- Aspect ratios: images and video containers commonly use `aspect-ratio: 16 / 9` or `4 / 3` in mobile rules — preserve these for consistent spacing.
-
-Developer workflows
-
-- Local dev: `npm install` then `npm run dev` — Astro dev server runs on `localhost` (see README for defaults).
-- Build & preview: `npm run build` then `npm run preview` for post-build checks.
-- Avoid introducing new build tools or changing `type: module` in package.json without explicit owner approval.
-
-What to change vs what to avoid
-
-- Change: page content under `src/pages`, style updates in `src/styles`, and small component adjustments in `src/components`.
-- Avoid: moving images out of `public/` (breaks existing paths), changing the global layout structure without updating affected pages, or adding large runtime JS bundles.
-
-Integration & dependencies
-
-- The project uses only Astro (see `package.json`). No server-side APIs or DB integrations are present in the repository.
-- External services (if added) should be documented in README or a new MD file at repo root.
-
-When in doubt
-
-- Run `npm run dev` locally and validate layout and responsiveness in the browser.
-- Use small, focused PRs: update one page or component at a time and include before/after screenshots for visual changes.
-
-If something is missing here or unclear, leave a short note in the PR description and ask for owner review.
+- Change Astro markup in `src/pages` or `src/components`, and change styling in the CSS file that owns the relevant page or shared component.
+- Preserve existing asset paths and behavior. Keep browser JavaScript small and relevant to the component or page.
+- Run `npm run build` after changes that could affect imports, page output, or shared styles. `npm run dev` starts the local preview; `npm run preview` serves a completed build.

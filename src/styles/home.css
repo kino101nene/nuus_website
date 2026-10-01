@@ -1,236 +1,66 @@
-@media (max-width: 900px) {
-  :root {
-    --max: 900px;
+.home-page {
+  --home-project-title-size-mobile: clamp(3rem, 14.5455vw, 4rem);
+  --home-work-space: 96px;
+  --home-project-gap: 64px;
+  --home-rabbit-padding-block: 60px;
+  --home-rabbit-padding-inline: 45px;
+  overflow-x: clip;
+}
+@media (min-width: 701px) {
+  .home-page {
+    --home-work-space: clamp(3rem, 6.6667vw, 6rem);
+    --home-project-gap: clamp(2rem, 4.4444vw, 4rem);
+    --home-rabbit-padding-block: clamp(1.875rem, 4.1667vw, 3.75rem);
+    --home-rabbit-padding-inline: clamp(1.40625rem, 3.125vw, 2.8125rem);
   }
 }
-/* css/home.css */
-
-/* ---------- Hero video (landing only) ---------- */
-.hero {
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+.home-hero { --home-hero-frame: 100svh; position: relative; height: var(--home-hero-frame); margin-top: calc(-1 * var(--header-h)); background: #000; }
+.home-hero-sticky { width: 100%; max-width: 1280px; height: var(--home-hero-frame); margin-inline: auto; overflow: hidden; background: #000; }
+.home-film { width: 100%; max-width: 1280px; height: 100%; margin-inline: auto; object-fit: contain; object-position: center; }
+.home-hero-scroll-link { position: absolute; z-index: 2; right: 80px; bottom: 40px; display: block; width: 45px; height: 45px; color: #ddd; filter: drop-shadow(0 1px 3px rgb(0 0 0 / 85%)); transition: color 250ms ease; }
+.home-hero-scroll-arrow { display: block; width: 100%; height: 100%; }
+@media (hover: hover) { .home-hero-scroll-link:hover { color: #fff; } }
+.home-editorial { position: relative; z-index: 1; max-width: 1800px; margin: 0 auto; padding: 0 var(--page-padding-inline-home) 64px; background: var(--color-bg); box-shadow: 0 0 0 100vmax var(--color-bg); clip-path: inset(0 -100vmax); }
+.home-work::after { content: ""; position: absolute; top: 0; left: calc(-1 * var(--header-gutter)); width: calc(100% + (var(--header-gutter) * 2)); height: .7px; background: var(--color-muted); opacity: .45; }
+.home-work { position: relative; z-index: 2; min-height: calc(100svh - var(--header-h)); scroll-margin-top: calc(var(--header-h) + 24px); padding-block: var(--home-work-space) 32px; background: var(--color-bg); box-shadow: 0 0 0 100vmax var(--color-bg); clip-path: inset(0 -100vmax); }
+.home-work-grid { display: grid; gap: var(--home-work-space); }
+.home-project { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--home-project-gap); align-items: center; }
+.home-project-image { display: block; overflow: hidden; aspect-ratio: 4 / 3; background: var(--color-soft); }
+.home-project-image img { width: 100%; height: 100%; object-fit: cover; filter: none; transition: transform 400ms ease; }
+.home-project-content { display: flex; flex-direction: column; align-items: flex-start; align-self: stretch; }
+.home-project-content .home-label { font-size: var(--text-16); color: #a9a9a9; letter-spacing: .015em; }
+.home-project-content h3 { font-family: var(--font-project-title); font-size: 86px; color: #000; font-weight: 400; letter-spacing: -.04em; margin: 0; overflow-wrap: anywhere; max-width: 100%; }
+.home-project-link { display: inline-flex; align-items: center; gap: 40px; margin-top: auto; color: #000; font-size: var(--text-24); letter-spacing: -.02em; }
+.home-project-link svg { flex-shrink: 0; }
+.home-project--rabbit { position: relative; left: 50%; width: min(calc(100% + 200px), 100vw); min-height: 0; aspect-ratio: 1440 / 718; transform: translateX(-50%); overflow: hidden; background: #000; }
+.home-project--rabbit .home-project-image { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; }
+.home-project--rabbit .home-project-content { position: absolute; inset: 0; justify-content: flex-end; padding: var(--home-rabbit-padding-block) var(--home-rabbit-padding-inline); color: #fff; }
+.home-project--rabbit .home-project-content { pointer-events: none; }
+.home-project--rabbit .home-project-content a { pointer-events: auto; }
+.home-project--rabbit .home-project-content .home-label { color: inherit; }
+.home-project--rabbit .home-project-content h3 { color: #fff; }
+.home-project--rabbit .home-project-content h3 a { color: inherit; }
+.home-project--rabbit { margin-top: var(--home-work-space); }
+.home-project-placeholder { aspect-ratio: 4 / 3; background: #e9e9e9; }
+.home-page a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }
+@media (hover: hover) {
+  .home-editorial a:hover { color: var(--color-accent); }
+  .home-project:has(a:hover) img { transform: scale(1.025); }
 }
-
-/* Landing hero needs full-bleed container */
-.hero .container {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  max-width: none;
-}
-
-.hero-grid {
-  width: 100%;
-}
-
-.hero-video {
-  position: relative;
-  width: 100%;
-  height: 100svh; /* better on mobile than 100vh */
-  overflow: hidden;
-  border: none; /* remove outline */
-  box-shadow: none; /* remove outline feel */
-  background: transparent;
-}
-
-.hero-media {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  max-width: 100vw;
-  max-height: 100svh;
-}
-
-.hero-video::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.42),
-    rgba(0, 0, 0, 0.12) 55%,
-    rgba(0, 0, 0, 0.06)
-  );
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* ---------- Alien source list (hidden data) ---------- */
-.alien-grid {
-  display: none;
-}
-
-/* ---------- Glitch overlay (ON TOP of hero video) ---------- */
-/* Uses .glitch-stage--hero class, not an ID */
-.glitch-stage--hero {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none; /* allow video interaction */
-  opacity: 0;
-  transition: opacity 240ms ease;
-}
-
-.glitch-stage--hero.is-active {
-  opacity: 1;
-}
-
-/* Spawned stickers */
-.glitch-sticker {
-  position: absolute;
-  z-index: 1;
-  opacity: 0;
-  animation: stickerIn 120ms ease forwards;
-}
-
-.glitch-sticker img {
-  width: var(--w, 120px);
-  height: auto;
-  display: block;
-}
-
-@keyframes stickerIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Desktop hero - show video only */
-.hero-media-desktop {
-  display: block;
-}
-
-.mobile-hero-media {
-  display: none;
-}
-
-/* Mobile hero frame (overlay, hidden by default) */
-.mobile-hero-frame {
-  position: absolute;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 4; /* above media and stickers */
-  pointer-events: none;
-}
-
-.mobile-hero-frame::before {
-  content: "";
-  display: block;
-  aspect-ratio: 9 / 16;
-  width: 54vw; /* roughly center rectangle */
-  max-height: 80vh;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.24);
-}
-
-/* Mobile hero nav (hidden by default) */
-.mobile-hero-nav {
-  position: absolute;
-  inset: 0;
-  display: none;
-  z-index: 5;
-  pointer-events: none; /* let hero still scroll/tap */
-}
-
-.mobile-hero-nav-item {
-  position: absolute;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-/* Mobile adjustments */
-@media (max-width: 600px) {
-  /* Hide desktop video on mobile */
-  .hero-media-desktop {
-    display: none;
-  }
-
-  .hero-video {
-    height: 100svh;
-    border-radius: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Show mobile wrapper with vertical stack */
-  .mobile-hero-media {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100svh;
-    overflow: hidden;
-  }
-
-  /* Each GIF takes equal space */
-  .hero-media-mobile {
-    flex: 1;
-    width: 100%;
-    min-height: 0; /* Allow flex shrinking */
-    height: auto;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-  }
-
-  /* Black and white filter for first and third GIF */
-  .hero-media-bw {
-    filter: grayscale(100%);
-  }
-
-  /* Position adjustments */
-  .hero-media-bw:first-child {
-    object-position: left center;
-  }
-
-  .hero-media-bw:last-child {
-    object-position: right center;
-  }
-
-  /* Adjust gradient overlay for mobile */
-  .hero-video::after {
-    display: none;
-  }
-
-  .mobile-hero-frame {
-    display: flex;
-  }
-
-  .mobile-hero-nav {
-    display: block;
-  }
-
-  .mobile-hero-nav-item {
-    pointer-events: auto;
-  }
-
-  /* Frame is 54vw wide and centered: left edge ≈23vw, right edge ≈77vw */
-  /* First link: near top-left outside frame */
-  .mobile-hero-nav-item:nth-child(1) {
-    top: 16vh;
-    left: 16vw;
-  }
-
-  /* Second link: along top edge near right side */
-  .mobile-hero-nav-item:nth-child(2) {
-    top: 16vh;
-    right: 16vw;
-  }
-
-  /* Third link: halfway down along right edge */
-  .mobile-hero-nav-item:nth-child(3) {
-    top: 50vh;
-    right: 16vw;
-    transform: rotate(90deg);
-    transform-origin: right center;
-  }
+@media (max-width: 700px) {
+  .home-editorial { padding-inline: var(--page-padding-inline-home); }
+  .home-work { padding-block-start: var(--space-48); }
+  .home-hero { --home-hero-frame: 52.734375vw; }
+  .home-hero-scroll-link { display: none; }
+  .home-project-content h3 { font-size: var(--home-project-title-size-mobile); }
+  .home-project:not(.home-project--rabbit) { grid-template-columns: 1fr; row-gap: 16px; }
+  .home-project:not(.home-project--rabbit) > .home-project-content { display: contents; }
+  .home-project:not(.home-project--rabbit) .home-label { order: 1; }
+  .home-project:not(.home-project--rabbit) > .home-project-image,
+  .home-project:not(.home-project--rabbit) > .home-project-placeholder { order: 2; }
+  .home-project:not(.home-project--rabbit) h3 { order: 3; }
+  .home-project:not(.home-project--rabbit) .home-project-link { order: 4; margin-top: 0; }
+  .home-project:not(.home-project--rabbit)::after { content: ""; order: 5; width: 100%; border-top: 1px solid currentColor; }
+  .home-project--rabbit { width: calc(100% + 40px); aspect-ratio: 16 / 9; }
+  .home-project--rabbit .home-project-content { padding: 32px 20px; border-bottom: 1px solid currentColor; }
 }

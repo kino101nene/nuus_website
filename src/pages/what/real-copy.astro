@@ -1,272 +1,139 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
-// @ts-ignore
-import img1 from "../../assets/real-copy/contents/IMG_1652.JPG";
-// @ts-ignore
-import img2 from "../../assets/real-copy/contents/IMG_8360.JPG";
-// @ts-ignore
-import img3 from "../../assets/real-copy/contents/IMG_8375.JPG";
-// @ts-ignore
-import img4 from "../../assets/real-copy/contents/IMG_8407.JPG";
-// @ts-ignore
-import videoSrc from "../../assets/real-copy/contents/real_copy_compare.mp4";
-import "../../styles/projects/real-copy.css";
+import LoopVideo from "../../components/LoopVideo.astro";
+import alienLanguageText from "../../data/alien-language.json";
 
-const gallery = [
-  img1,
-  img2,
-  img3,
-  img4,
-];
+// @ts-ignore
+import img1 from "../../assets/real-copy/contents/IMG_8360.JPG";
+// @ts-ignore
+import img2 from "../../assets/real-copy/contents/IMG_8375.JPG";
+// @ts-ignore
+import img5 from "../../assets/real-copy/contents/IMG_8420.JPG";
+// @ts-ignore
+import img6 from "../../assets/real-copy/contents/LINE_ALBUM_7_230917_2.jpg";
+// @ts-ignore
+import conceptScreenshot from "../../assets/real-copy/contents/room-overview.JPG";
+import conceptNote from "../../assets/real-copy/contents/overlay/concept-note.png";
+import jijitsuGif1 from "../../assets/media/loops/rabbit-visitor-1.mp4";
+import jijitsuGif2 from "../../assets/media/loops/rabbit-visitor-2.mp4";
+import jijitsuGif3 from "../../assets/media/loops/rabbit-visitor-3.mp4";
+import jijitsuPoster1 from "../../assets/media/posters/rabbit-visitor-1.jpg";
+import jijitsuPoster2 from "../../assets/media/posters/rabbit-visitor-2.jpg";
+import jijitsuPoster3 from "../../assets/media/posters/rabbit-visitor-3.jpg";
+// @ts-ignore
+import banana from "../../assets/real-copy/contents/banana.png";
+// @ts-ignore
+import videoSrc from "../../assets/media/loops/real-copy.mp4";
+import videoPoster from "../../assets/media/posters/real-copy.jpg";
+// @ts-ignore
+import overlayBox from "../../assets/real-copy/contents/overlay/box-sketch.png";
 
-const title = "Real_Copy";
+import "../../styles/projects/real-copy-editorial.css";
+
+const title = "REAL_copy";
+const alienLanguageImages = Object.entries(import.meta.glob("../../assets/real-copy/contents/alien_languages_png/*.png", { eager: true, import: "default", query: "?url" })).sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true })).map(([, src]) => src);
+
+const gallery = [img1, img2, null, null, img5, img6];
+
 ---
 
-<BaseLayout title={`${title} — Nuus`} description="Project page" current="what">
-  <main class="project project--wide" id="top">
-    <section class="hero-grid">
-      <!-- LEFT: vertical title -->
-      <div class="hero-title">
-        <h1 class="title-vertical">{title}</h1>
+<BaseLayout bodyClass="real-copy-page" title={`${title} — Nuus`} description="VRと現実の境界を問い直すインスタレーション、REAL_copy。" current="what">
+  <div class="rc-banana-layer" aria-hidden="true"><OptimizedImage src={banana} alt="" loading="eager" /></div>
+  <article class="project-editorial rc-project" aria-labelledby="rc-title">
+    <!-- Temporarily disabled: alien language overlay. -->
+    <!-- <div class="rc-alien-language-wrap" aria-hidden="true">
+      <div class="rc-alien-language">
+        {alienLanguageImages.map((src, index) => <div class={`rc-alien-item${index === 0 ? " is-active" : ""}`}><img src={src} alt="" loading="lazy" /><span>{alienLanguageText[index]?.text}</span></div>)}
       </div>
+    </div> -->
+    <div class="rc-overview">
+      <div class="rc-title-heading"><h1 id="rc-title" class="project-hero-title">REAL_copy</h1></div>
+      <header class="rc-intro">
+        <div class="rc-title-row">
+          <section class="project-split project-hero-details rc-title-experience" aria-label="作品情報" lang="ja">
+            <div class="project-eyebrow"><div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span class="project-eyebrow-value">2022</span></div><div class="project-eyebrow-pair"><span class="project-eyebrow-title">PLACE</span><span class="project-eyebrow-value">TOKYO</span></div><div class="project-eyebrow-pair"><span class="project-eyebrow-title">CREDIT</span><span class="project-eyebrow-value">AI, nene, Seiya, Michael</span></div></div>
+            <div class="rc-prose project-hero-prose"><p>来場者は作品を見ないままVRゴーグルを装着する。<br />目の前に現れるのは、木の壁、枯山水の庭、テーブルと椅子、そして巨大な木の箱。<br />箱の中へ進むと壁一面に映像が流れ、中央の穴を覗くとさらに別の映像が現れる。<br /><br>VRを外すと、そこには先ほどの世界の痕跡が残されている。木屑や設計図、皿、フォーク、バナナ——VRの中にあったものが、少し違う姿で現実にも存在している。</p></div>
+          </section>
+        </div>
+      </header>
 
-      <!-- RIGHT: video + description -->
-      <div class="hero-main">
-        <div class="video-wrap">
-          <video
-            class="video"
-            src={videoSrc}
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          ></video>
+      <div class="rc-narrative">
+        <div class="rc-gallery-stage">
+          <div class="rc-gallery-overlay" aria-hidden="true">
+            <img src={overlayBox.src} alt="" />
+            <img class="rc-gallery-concept-note" src={conceptNote.src} alt="" />
+          </div>
+        <div class="rc-media-gallery" aria-label="REAL_copy 映像・展示記録">
+          {gallery.slice(0, 2).map((src, index) => (
+            <figure class="rc-shot">
+              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`REAL_copy 展示記録 ${index + 1}`} loading="lazy" /></div></div>
+            </figure>
+          ))}
+
+          <figure class="rc-film">
+            <div class="rc-collage-hover"><div class="rc-media-frame"><LoopVideo src={videoSrc} poster={videoPoster.src} alt="REAL_copy — プロジェクト映像" /></div></div>
+          </figure>
+
+          {gallery.slice(2).map((src, index) => (
+            src ? <figure class="rc-shot">
+              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`REAL_copy 展示記録 ${index + 3}`} loading="lazy" /></div></div>
+            </figure> : <figure class="rc-shot rc-shot-empty" aria-hidden="true"></figure>
+          ))}
+        </div>
         </div>
 
-        <div class="desc">
-          <div class="desc-dropdown">
-            <div class="desc-dropdown-header">
-              <span class="desc-dropdown-icon">+</span>
-              <span class="desc-dropdown-title">体験</span>
-            </div>
-            <div class="desc-dropdown-content">
-              <p class="desc-lead">
-                来場者は、作品を見ずに所定の位置まで誘導され、VRゴーグルを装着する。
-                目の前に広がるのは、木の壁、枯山水の庭、テーブルと椅子—— そして巨大な木の箱。
-              </p>
-            </div>
-          </div>
-
-          <div class="desc-dropdown">
-            <div class="desc-dropdown-header">
-              <span class="desc-dropdown-icon">+</span>
-              <span class="desc-dropdown-title">展開</span>
-            </div>
-            <div class="desc-dropdown-content">
-              <p class="desc-lead">
-                やがて、観客はその箱の中へと誘導される。箱の中では、壁一面に映像が流れ、中央の箱の穴を覗くと、さらに別の映像が見える。
-                VRを外すと、そこには実際には存在しないはずのVRの世界の痕跡 が残されている。床には木屑や設計図、バーコードのような白黒の紙が散らばり、テーブルにはVRの中と同じ皿、フォーク、バナナが置かれている。
-              </p>
-            </div>
-          </div>
-
-          <div class="desc-dropdown">
-            <div class="desc-dropdown-header">
-              <span class="desc-dropdown-icon">+</span>
-              <span class="desc-dropdown-title">コンセプト</span>
-            </div>
-            <div class="desc-dropdown-content">
-              <p class="desc-lead">
-                REAL_copy. は、VRが「リアルのモデル」として現実に重なることで、現実とは何か？という問いを観客に投げかけるインスタレーションである。
-                VRと現実が共存することで、視覚だけでなく、触覚・嗅覚・聴覚といった感覚までもが共有され、両者の境界が揺らぎ、観客のリアルに対する認識が変容していく。
-                現実空間には、VR内で見たものと対応する「机」「椅子」「コップ」「壁」が配置されているが、VRと現実での見た目や存在感は意図的にズレている。
-                これにより、「現実はリアルであるべき」「VRは非現実的であるべき」という固定概念が揺さぶられ、観客は無意識のうちに「リアル（アクチュアル）」と「リアル（本質）」を再考させられる。
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="desc-meta">
-          <p><span>展示時期</span> 2022年　8月</p>
-          <p><span>場所</span> 表参道, 東京</p>
-          <p><span>Role</span> Concept, Dev, Design</p>
-        </div>
       </div>
-    </section>
-
-    <!-- GALLERY UNDER ALL -->
-   <section class="gallery" aria-label="Gallery">
-  {gallery.map((src) => (
-    <figure class="shot">
-      <div class="shot-frame">
-        <OptimizedImage
-          class="shot-img"
-          src={src}
-          alt="Real Copy documentation"
-          loading="lazy"
-        />
-      </div>
-    </figure>
-  ))}
-</section>
-
-    <div class="gallery-scroll-indicator">
-      <div class="gallery-scroll-track"></div>
-      <div class="gallery-scroll-slider"></div>
+      <section class="rc-mobile-experience rc-prose project-hero-prose" lang="ja"><p>来場者は作品を見ないままVRゴーグルを装着する。<br />目の前に現れるのは、木の壁、枯山水の庭、テーブルと椅子、そして巨大な木の箱。<br />箱の中へ進むと壁一面に映像が流れ、中央の穴を覗くとさらに別の映像が現れる。<br /><br />VRを外すと、そこには先ほどの世界の痕跡が残されている。木屑や設計図、皿、フォーク、バナナ——VRの中にあったものが、少し違う姿で現実にも存在している。</p></section>
     </div>
 
-  </main>
+    <section class="rc-text-section rc-concept" lang="ja">
+      <div class="rc-concept-media">
+        <div class="rc-concept-side">
+          <OptimizedImage src={conceptScreenshot} alt="REAL_copyのルームオーバービュー" loading="lazy" />
+        </div>
+      </div>
+      <div class="rc-concept-label project-soft-reveal project-soft-reveal--title-slow">五感を分解する</div>
+      <div class="rc-prose project-soft-reveal project-soft-reveal--body"><p>REAL_copy は、VRと現実を重ね合わせ、その境界を曖昧にするインスタレーションである。<br><br>視覚だけでなく、触覚・嗅覚・聴覚までを共有しながら、「何を現実として認識しているのか」を問い直す。</p></div>
+    </section>
+
+      <div class="project-next">
+        <div class="project-next-project-row">
+          <div class="project-next-copy">
+            <div class="project-next-content">
+              <span class="project-next-kicker">他の作品</span>
+              <div class="project-next-link">
+                <a class="project-next-title" href="/what/jijitsu">jijitsu</a>
+                <a class="project-next-action" href="/what/jijitsu" aria-label="jijitsu プロジェクトを見る"><span>Check now</span><svg class="project-next-arrow" viewBox="0 0 24 18" width="24" height="18" aria-hidden="true">
+                <g transform="scale(1 .75)"><path fill="currentColor" d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" /></g>
+                </svg></a>
+              </div>
+            </div>
+          </div>
+          <a class="project-next-gifs" href="/what/jijitsu" aria-label="jijitsu プロジェクトを見る"><span class="project-next-thumb"><LoopVideo src={jijitsuGif1} poster={jijitsuPoster1.src} alt="" /></span><span class="project-next-thumb"><LoopVideo src={jijitsuGif2} poster={jijitsuPoster2.src} alt="" /></span><span class="project-next-thumb"><LoopVideo src={jijitsuGif3} poster={jijitsuPoster3.src} alt="" /></span></a>
+        </div>
+      </div>
+  </article>
+  <script>
+    const gallery = document.querySelector('.rc-media-gallery');
+    if (gallery) {
+      const items = [...gallery.querySelectorAll(':scope > figure')];
+      const setActive = (item) => items.forEach((figure) => figure.classList.toggle('is-active', figure === item));
+      setActive(items[2]);
+      items.forEach((item) => item.addEventListener('mouseenter', () => setActive(item)));
+    }
+    /* Temporarily disabled with the overlay markup above.
+    const alienImages = [...document.querySelectorAll('.rc-alien-language .rc-alien-item')];
+    if (alienImages.length > 1) {
+      const updateAlien = () => {
+        const index = Math.floor(window.scrollY / Math.max(window.innerHeight * 0.1, 1)) % alienImages.length;
+        alienImages.forEach((image, i) => image.classList.toggle('is-active', i === index));
+      };
+      window.addEventListener('scroll', updateAlien, { passive: true });
+      updateAlien();
+    }
+    */
+    import "../../scripts/next-project";
+    import "../../scripts/soft-reveal";
+  </script>
 </BaseLayout>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Hide header on scroll only on desktop (no hide on mobile)
-    const siteHeader = document.querySelector('.site-header');
-    const mqDesktop = window.matchMedia('(min-width: 601px)');
-
-    if (siteHeader && mqDesktop.matches) {
-      const handleHeaderScroll = () => {
-        const scrollThreshold = window.innerHeight * 0.2;
-
-        if (window.scrollY > scrollThreshold) {
-          siteHeader.classList.add('header-hidden');
-        } else {
-          siteHeader.classList.remove('header-hidden');
-        }
-      };
-
-      window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-      handleHeaderScroll(); // Initial check
-    }
-
-    // Dropdown functionality - toggle on hover (desktop) or click (mobile)
-    const dropdowns = document.querySelectorAll('.desc-dropdown');
-    const isMobile = window.matchMedia('(max-width: 600px)');
-
-    dropdowns.forEach((dropdown) => {
-      const header = dropdown.querySelector('.desc-dropdown-header');
-      const icon = dropdown.querySelector('.desc-dropdown-icon');
-      
-      const toggleDropdown = () => {
-        const isOpen = dropdown.classList.toggle('is-open');
-        if (icon) icon.textContent = isOpen ? '•' : '+';
-      };
-
-      header?.addEventListener('click', toggleDropdown);
-    });
-
-    // Custom gallery scroll indicator
-    const gallery = document.querySelector('.gallery') as HTMLElement;
-    const slider = document.querySelector('.gallery-scroll-slider') as HTMLElement;
-    const track = document.querySelector('.gallery-scroll-track') as HTMLElement;
-    const indicator = document.querySelector('.gallery-scroll-indicator') as HTMLElement;
-
-    if (gallery && slider && track && indicator) {
-      let isDragging = false;
-      let startX = 0;
-      let startScrollLeft = 0;
-
-      const updateSlider = () => {
-        if (isDragging) return;
-        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
-        const scrollLeft = gallery.scrollLeft;
-        const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
-        
-        const sliderWidth = slider.offsetWidth;
-        const trackWidth = track.offsetWidth;
-        const maxMove = trackWidth - sliderWidth;
-        
-        slider.style.transform = `translateX(${progress * maxMove}px) translateY(-50%)`;
-      };
-
-      // Drag to scroll
-      const onMouseDown = (e: MouseEvent) => {
-        isDragging = true;
-        startX = e.clientX;
-        startScrollLeft = gallery.scrollLeft;
-        slider.style.cursor = 'grabbing';
-        e.preventDefault();
-      };
-
-      const onMouseMove = (e: MouseEvent) => {
-        if (!isDragging) return;
-        
-        const sliderWidth = slider.offsetWidth;
-        const trackWidth = track.offsetWidth;
-        const maxMove = trackWidth - sliderWidth;
-        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
-        
-        const deltaX = e.clientX - startX;
-        const scrollRatio = scrollWidth / maxMove;
-        
-        gallery.scrollLeft = startScrollLeft + deltaX * scrollRatio;
-        
-        // Update slider position while dragging
-        const progress = scrollWidth > 0 ? gallery.scrollLeft / scrollWidth : 0;
-        slider.style.transform = `translateX(${progress * maxMove}px) translateY(-50%)`;
-      };
-
-      const onMouseUp = () => {
-        isDragging = false;
-        slider.style.cursor = 'grab';
-      };
-
-      // Click on track to jump
-      const onTrackClick = (e: MouseEvent) => {
-        if (e.target === slider) return;
-        
-        const trackRect = track.getBoundingClientRect();
-        const clickX = e.clientX - trackRect.left;
-        const sliderWidth = slider.offsetWidth;
-        const trackWidth = track.offsetWidth;
-        const maxMove = trackWidth - sliderWidth;
-        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
-        
-        // Center slider on click position
-        const targetPos = Math.max(0, Math.min(clickX - sliderWidth / 2, maxMove));
-        const progress = targetPos / maxMove;
-        
-        gallery.scrollLeft = progress * scrollWidth;
-      };
-
-      slider.addEventListener('mousedown', onMouseDown);
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-      indicator.addEventListener('click', onTrackClick);
-
-      // Touch support
-      slider.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        startX = e.touches[0].clientX;
-        startScrollLeft = gallery.scrollLeft;
-      }, { passive: true });
-
-      document.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        
-        const sliderWidth = slider.offsetWidth;
-        const trackWidth = track.offsetWidth;
-        const maxMove = trackWidth - sliderWidth;
-        const scrollWidth = gallery.scrollWidth - gallery.clientWidth;
-        
-        const deltaX = e.touches[0].clientX - startX;
-        const scrollRatio = scrollWidth / maxMove;
-        
-        gallery.scrollLeft = startScrollLeft + deltaX * scrollRatio;
-        
-        const progress = scrollWidth > 0 ? gallery.scrollLeft / scrollWidth : 0;
-        slider.style.transform = `translateX(${progress * maxMove}px) translateY(-50%)`;
-      }, { passive: true });
-
-      document.addEventListener('touchend', () => {
-        isDragging = false;
-      });
-
-      gallery.addEventListener('scroll', updateSlider, { passive: true });
-      window.addEventListener('resize', updateSlider);
-      updateSlider();
-    }
-  });
-</script>

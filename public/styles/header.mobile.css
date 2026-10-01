@@ -1,0 +1,102 @@
+/* Mobile-specific header styles (served from /styles/header.mobile.css) */
+
+/* ---------- Mobile toggle (unchanged) ---------- */
+.mobile-toggle {
+  display: none;
+  appearance: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.94);
+  color: rgba(0, 0, 0, 0.9);
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-toggle:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.mobile-toggle:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.25);
+  outline-offset: 3px;
+}
+
+.mobile-toggle-box {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18px;
+  height: 16px;
+}
+
+.mobile-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+/* Responsive mobile panel rules */
+@media (max-width: 860px) {
+  .mobile-toggle {
+    display: inline-flex !important;
+    position: absolute;
+    top: 18px;
+    right: var(--page-x);
+    z-index: 10001;
+  }
+
+  .mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(330px, 90vw);
+    max-width: 330px;
+    padding: calc(var(--space-md) * 1.5) var(--page-x) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: -24px 0 56px rgba(0, 0, 0, 0.12);
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 220ms ease,
+      opacity 220ms ease;
+    z-index: 9998;
+  }
+
+  .mobile-menu-panel.is-open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Ensure desktop nav is hidden on mobile (overrides src/styles/header.css !important rules) */
+  .desktop-nav {
+    display: none !important;
+  }
+  .header-right {
+    display: none !important;
+  }
+
+  /* Explicit helpers for show/hide when both header markups are present */
+  .mobile-only {
+    display: block !important;
+  }
+  .desktop-only {
+    display: none !important;
+  }
+}

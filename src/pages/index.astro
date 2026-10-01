@@ -1,256 +1,68 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
-// @ts-ignore
-import heroImageMobile from "../assets/home/hero-image-mobile.webp";
-// @ts-ignore
-import homeVideoMobile from "../assets/home/home-video-mobile.gif";
-// @ts-ignore
-import alien1 from "../assets/home/alien_languages_png/alien_languages1.png";
-// @ts-ignore
-import alien2 from "../assets/home/alien_languages_png/alien_languages2.png";
-// @ts-ignore
-import alien3 from "../assets/home/alien_languages_png/alien_languages3.png";
-// @ts-ignore
-import alien4 from "../assets/home/alien_languages_png/alien_languages4.png";
-// @ts-ignore
-import alien5 from "../assets/home/alien_languages_png/alien_languages5.png";
-// @ts-ignore
-import alien6 from "../assets/home/alien_languages_png/alien_languages6.png";
-// @ts-ignore
-import alien7 from "../assets/home/alien_languages_png/alien_languages7.png";
-// @ts-ignore
-import alien8 from "../assets/home/alien_languages_png/alien_languages8.png";
-// @ts-ignore
-import alien9 from "../assets/home/alien_languages_png/alien_languages9.png";
-// @ts-ignore
-import alien10 from "../assets/home/alien_languages_png/alien_languages10.png";
-// @ts-ignore
-import alien11 from "../assets/home/alien_languages_png/alien_languages11.png";
-// @ts-ignore
-import alien12 from "../assets/home/alien_languages_png/alien_languages12.png";
-// @ts-ignore
-import homeVideo from "../assets/home/home-video.mp4";
+import LoopVideo from "../components/LoopVideo.astro";
+import optimizedHomeVideo from "../assets/media/loops/home-nuus-sum.mp4";
+import heroPoster from "../assets/home/hero-image-mobile.webp";
+import realCopy from "../assets/real-copy/thumbnails/IMG_8366 (1).JPG";
+import jijitsu from "../assets/jijitsu/thumbnails/IMG_3734.jpg";
+import rabbit from "../assets/rabbit/thumbnails/scene8_5_bed.jpg";
+import whenThumbnail from "../assets/when/IMG_3878.JPG";
 import "../styles/home.css";
 ---
-
-<BaseLayout bodyClass="overlay-header" title="Nuus" description="Nuus — creative group." current="home">
-  <style>
-    /* Translucent full-screen overlay to indicate site is under construction */
-    #site-overlay{
-      position:fixed;
-      inset:0;
-      background: rgba(255,255,255,0.86);
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:auto;
-    }
-
-    #site-overlay .overlay-content{
-      text-align:center;
-      color:#111;
-      max-width:720px;
-      padding:2rem 2.5rem;
-      backdrop-filter: blur(4px);
-    }
-
-    #site-overlay h2{margin:0 0 .5rem;font-size:1.5rem}
-    #site-overlay p{margin:0;opacity:.85}
-      #site-overlay a{
-        color: #0a66c2;
-        text-decoration: underline;
-        font-weight:600;
-        display:inline-block;
-        margin-top:0.75rem;
-        pointer-events:auto;
-      }
-
-    @media (max-width:600px){
-      #site-overlay .overlay-content{padding:1rem 1.25rem}
-      #site-overlay h2{font-size:1.1rem}
-    }
-  </style>
-
-  <div id="site-overlay" role="dialog" aria-modal="true" tabindex="-1">
-    <div class="overlay-content">
-      <p>現在このウェブサイトは改修中です</p>
-      <p>お問合せの際は<a href="https://www.instagram.com/nuus___/reels/" >Instagram</a>のDMにてお願いします</p>
+<BaseLayout bodyClass="home-page" title="Nuus" description="本質と現象にN軸をもって作品を作るクリエイティブ集団、Nuus。" current="home">
+  <section class="home-hero" aria-label="Nuus introduction">
+    <div class="home-hero-sticky">
+      <LoopVideo class="home-film" src={optimizedHomeVideo} poster={heroPoster.src} alt="Nuusのイントロ映像" />
     </div>
-  </div>
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-video" role="region" aria-label="Intro video banner">
-        <!-- Desktop video -->
-        <video 
-          id="heroVideo"
-          class="hero-media hero-media-desktop" 
-          autoplay 
-          muted 
-          playsinline 
-          preload="auto"
-          webkit-playsinline
-        >
-          <source src={homeVideo} type="video/mp4" />
-        </video>
+    <a class="home-hero-scroll-link" href="#home-work" aria-label="Selected workへ移動">
+      <svg class="home-hero-scroll-arrow" viewBox="0 0 511.93 511.93" aria-hidden="true"><path fill="currentColor" d="M476.738 280.436c-4.16-4.16-10.88-4.16-15.04 0l-195.2 195.2V10.996c0-5.333-3.84-10.133-9.067-10.88-6.613-.96-12.267 4.16-12.267 10.56v464.96l-195.093-195.2c-4.267-4.053-10.987-3.947-15.04.213-3.947 4.16-3.947 10.667 0 14.827L248.365 508.81c4.16 4.16 10.88 4.16 15.04 0l213.333-213.333c4.16-4.054 4.16-10.881 0-15.041Z" /></svg>
+    </a>
+  </section>
 
-        <!-- Mobile hero stack -->
-        <div class="mobile-hero-media">
-          <OptimizedImage
-            src={heroImageMobile}
-            alt="Hero top"
-            class="hero-media hero-media-mobile hero-media-bw"
-            loading="eager"
-            fetchpriority="high"
-          />
-          
-          <OptimizedImage
-            src={homeVideoMobile}
-            alt="Hero animation"
-            class="hero-media hero-media-mobile"
-            loading="eager"
-          />
-          
-          <OptimizedImage
-            src={heroImageMobile}
-            alt="Hero bottom"
-            class="hero-media hero-media-mobile hero-media-bw"
-            loading="lazy"
-          />
+  <div class="home-editorial">
+    <section class="home-work" id="home-work" aria-label="Selected work">
+      <div class="home-work-grid">
+        <article class="home-project">
+          <a class="home-project-image" href="/what/real-copy" aria-label="REAL_copyの詳細を見る"><OptimizedImage src={realCopy} alt="REAL_copy — project documentation" /></a>
+          <div class="home-project-content">
+            <span class="home-label">EXHIBTION</span>
+            <h3><a href="/what/real-copy">REAL_copy</a></h3>
+            <a class="home-project-link" href="/what/real-copy">
+              <svg width="24" height="24" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.314L69.657 197.657a8 8 0 0 1-11.314-11.314L172.686 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8Z" /></svg>
+              <span>View more</span>
+            </a>
+          </div>
+        </article>
+        <article class="home-project">
+          <div class="home-project-content">
+            <span class="home-label">EXHIBTION</span>
+            <h3><a href="/what/jijitsu">jijitsu</a></h3>
+            <a class="home-project-link" href="/what/jijitsu">
+              <svg width="24" height="24" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.314L69.657 197.657a8 8 0 0 1-11.314-11.314L172.686 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8Z" /></svg>
+              <span>View more</span>
+            </a>
+          </div>
+          <a class="home-project-image" href="/what/jijitsu" aria-label="jijitsuの詳細を見る"><OptimizedImage src={jijitsu} alt="jijitsu — exhibition documentation" /></a>
+        </article>
+      </div>
+      <div class="home-work-grid">
+      <article class="home-project home-project--rabbit">
+          <a class="home-project-image" href="/what/rabbit" aria-label="rabbit, habbit, kubidの詳細を見る"><OptimizedImage src={rabbit} alt="rabbit, habbit, kubid — film still" /></a>
+        <div class="home-project-content">
+          <span class="home-label">MEDIA ART</span>
+          <h3><a href="/what/rabbit">rabbit, habbit, kubid</a></h3>
         </div>
-
-        <div class="mobile-hero-frame" aria-hidden="true"></div>
-
-        <nav class="mobile-hero-nav" aria-label="Primary navigation (mobile hero)">
-          <a class="mobile-hero-nav-item" href="/what">具現化したアイデア</a>
-          <a class="mobile-hero-nav-item" href="/who">脳</a>
-          <a class="mobile-hero-nav-item" href="/when">今考えてること</a>
-        </nav>
-
-        <div
-          class="glitch-stage glitch-stage--hero"
-          id="glitchStageHero"
-          aria-hidden="true"
-        ></div>
+      </article>
+      <article class="home-project" id="home-video-game" aria-label="Video Game project coming soon">
+        <div class="home-project-image" aria-hidden="true"><OptimizedImage src={whenThumbnail} alt="" /></div>
+        <div class="home-project-content">
+          <span class="home-label">VIDEO GAME</span>
+          <h3>Coming soon</h3>
+        </div>
+      </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="alien-section">
-    <div class="container">
-      <div class="alien-grid" id="alienGrid" aria-label="Alien language images">
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien1}
-            alt="Alien language 1"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 1</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien2}
-            alt="Alien language 2"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 2</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien3}
-            alt="Alien language 3"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 3</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien4}
-            alt="Alien language 4"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 4</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien5}
-            alt="Alien language 5"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 5</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien6}
-            alt="Alien language 6"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 6</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien7}
-            alt="Alien language 7"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 7</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien8}
-            alt="Alien language 8"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 8</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien9}
-            alt="Alien language 9"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 9</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien10}
-            alt="Alien language 10"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 10</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien11}
-            alt="Alien language 11"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 11</figcaption>
-        </figure>
-
-        <figure class="alien-item">
-          <OptimizedImage
-            src={alien12}
-            alt="Alien language 12"
-            loading="lazy"
-          />
-          <figcaption class="alien-meta">Meta text for 12</figcaption>
-        </figure>
-      </div>
-
-      <div class="glitch-stage" id="glitchStageAlien" aria-hidden="true"></div>
-    </div>
-  </section>
-  <script src="/js/home.js" defer></script>
+  </div>
 </BaseLayout>
