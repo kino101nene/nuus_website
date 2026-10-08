@@ -1,6 +1,6 @@
 # Nuus website
 
-Astro 5 site for Nuus.
+Nuus website built with Astro 7. Requires Node.js 22.12.0 or newer.
 
 ## Development
 
@@ -11,14 +11,13 @@ npm run dev
 
 `npm run build` generates the static site in `dist/`. `npm run preview` serves that build locally.
 
+Japanese is the default language at the existing URLs. English pages use the `/en/` prefix. Both languages share page components, styles, and media; localized copy lives in `src/i18n/`.
+
 ## Structure
 
-- `src/pages/index.astro`: homepage; styles in `src/styles/home.css`.
-- `src/pages/what/real-copy.astro`, `jijitsu.astro`, `rabbit.astro`: current work pages; each imports its matching `*-editorial.css` file from `src/styles/projects/`.
-- `src/pages/who/index.astro`, `src/pages/when/index.astro`: other site pages.
-- `src/layouts/BaseLayout.astro`: shared page shell, header, footer, and global styles.
-- `src/components/`: shared Astro components.
+- `src/pages/`: Japanese routes and their `/en/` counterparts.
+- `src/components/`: shared page components, navigation, and language switcher.
+- `src/i18n/`: locale-specific copy and route helpers.
+- `src/layouts/BaseLayout.astro`: shared page shell, metadata, header, and footer.
 - `src/styles/main.css`: site-wide design tokens and base styles. `src/styles/projects/editorial-shared.css` and `next-project.css` provide shared work-page styles.
 - `src/assets/`: imported media. `public/`: assets and scripts served by URL.
-
-AI agent guidance is in [`.github/copilot-instructions.md`](.github/copilot-instructions.md) and [`AGENTS.md`](AGENTS.md).
