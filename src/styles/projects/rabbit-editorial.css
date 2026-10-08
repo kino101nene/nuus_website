@@ -64,6 +64,7 @@ body.rabbit-screening {
   .rb-film-ticks { display: none; }
 }
 .rb-behind { max-width: 1100px; margin-inline: auto !important; }
+.rb-hero-prose .rb-visual-word { display: inline-block; white-space: nowrap; }
 .rb-behind--mobile { display: none; }
 .rb-film-ticks { display: none; }
 .rb-film-ticks-track { position: absolute; top: 7px; bottom: 7px; left: 50%; width: 2px; background: rgb(210 209 214 / 50%); transform: translateX(-50%); }

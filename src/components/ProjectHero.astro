@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from "astro";
+import type { Locale } from "../i18n/routes";
 import OptimizedImage from "./OptimizedImage.astro";
 
 interface HeroParagraph {
@@ -10,6 +11,7 @@ interface HeroParagraph {
 
 interface Props {
   variant: "jj" | "rb";
+  locale?: Locale;
   titleLines: string[];
   titleAccent?: string;
   image?: ImageMetadata;
@@ -20,11 +22,12 @@ interface Props {
   year: string;
   place: string;
   credit: string;
-  paragraphs: HeroParagraph[];
+  paragraphs: readonly HeroParagraph[];
 }
 
 const {
   variant,
+  locale = "ja",
   titleLines,
   titleAccent = "",
   image,
@@ -70,19 +73,19 @@ const titleText = titleLines.join("\n");
     </div>
   )}
 
-  <section class={`project-split ${pageClass}-hero-details`} aria-label="作品情報">
+  <section class={`project-split ${pageClass}-hero-details`} aria-label={locale === "ja" ? "作品情報" : "Project details"}>
     <div class="project-eyebrow">
       <div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span class="project-eyebrow-value">{year}</span></div>
       <div class="project-eyebrow-pair"><span class="project-eyebrow-title">PLACE</span><span class="project-eyebrow-value">{place}</span></div>
       <div class="project-eyebrow-pair"><span class="project-eyebrow-title">CREDIT</span><span class="project-eyebrow-value">{credit}</span></div>
     </div>
-    <div class={`project-hero-prose ${pageClass}-hero-prose ${pageClass}-prose`} lang="ja">
+    <div class={`project-hero-prose ${pageClass}-hero-prose ${pageClass}-prose`} lang={locale}>
       {paragraphs.map(({ before, emphasis, after }) => <p>{before}{emphasis && <span class={`${pageClass}-hero-emphasis`}>{emphasis}</span>}{after}</p>)}
     </div>
   </section>
 </div>
 
-<section class={`${pageClass}-hero-mobile` } aria-label="作品ヒーロー">
+<section class={`${pageClass}-hero-mobile` } aria-label={locale === "ja" ? "作品ヒーロー" : "Project introduction"}>
   <div class={`${pageClass}-mobile-heading`}>
     <div class="project-eyebrow">
       <div class="project-eyebrow-pair"><span class="project-eyebrow-title">YEAR</span><span class="project-eyebrow-value">{year}</span></div>
@@ -100,7 +103,7 @@ const titleText = titleLines.join("\n");
       ? <OptimizedImage src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
       : <img src={image.src} alt={imageAlt} width={image.width} height={image.height} loading="eager" fetchpriority="high" />)}
   </div>
-  <div class={`project-hero-prose ${pageClass}-hero-prose ${pageClass}-prose`} lang="ja">
+  <div class={`project-hero-prose ${pageClass}-hero-prose ${pageClass}-prose`} lang={locale}>
     {paragraphs.map(({ before, emphasis, after }) => <p>{before}{emphasis && <span class={`${pageClass}-hero-emphasis`}>{emphasis}</span>}{after}</p>)}
   </div>
 </section>

@@ -30,6 +30,7 @@ body.jijitsu-page {
 .jj-hero-details { margin-block: clamp(64px, 8vw, 128px) 0; }
 .jj-hero-prose { width: 100%; max-width: none; margin: 0; color: var(--color-muted); font-family: var(--project-font-ja); font-size: var(--project-hero-copy-size); line-height: var(--project-hero-copy-leading); letter-spacing: var(--project-hero-copy-tracking); }
 .jj-hero-prose.is-line-motion-ready .jj-visual-char { display: inline-block; opacity: 0; filter: blur(var(--project-hero-line-blur)); transform: translateY(var(--project-hero-line-distance)); transition: opacity var(--project-hero-line-duration) var(--project-hero-line-ease), filter var(--project-hero-line-duration) var(--project-hero-line-ease), transform var(--project-hero-line-duration) var(--project-hero-line-ease); transition-delay: var(--line-delay, 0ms); }
+.jj-hero-prose .jj-visual-word { display: inline-block; white-space: nowrap; }
 .jj-hero-prose.is-line-motion-ready.is-in-view .jj-visual-char { opacity: 1; filter: blur(0); transform: translateY(0); }
 .jj-hero-emphasis { color: var(--color-text); }
 .jj-room-gifs { margin-top: 0; padding-block: var(--space-3xl) 0; }

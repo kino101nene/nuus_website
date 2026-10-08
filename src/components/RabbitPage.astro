@@ -1,0 +1,258 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import OptimizedImage from "./OptimizedImage.astro";
+import LoopVideo from "./LoopVideo.astro";
+import ProjectHero from "./ProjectHero.astro";
+import { rabbitCopy } from "../i18n/rabbit";
+import { getPageHref, type Locale } from "../i18n/routes";
+
+import "../styles/projects/rabbit-editorial.css";
+import realCopyNext1 from "../assets/real-copy/thumbnails/IMG_8366 (1).JPG";
+import realCopyNext2 from "../assets/real-copy/contents/IMG_8400.JPG";
+import realCopyNext3 from "../assets/real-copy/thumbnails/IMG_1651.JPG";
+
+import visitor1Video from "../assets/media/loops/rabbit-visitor-1.mp4";
+import visitor3Video from "../assets/media/loops/rabbit-visitor-3.mp4";
+import visitor4Video from "../assets/media/loops/rabbit-visitor-4.mp4";
+import visitor1Poster from "../assets/media/posters/rabbit-visitor-1.jpg";
+import visitor3Poster from "../assets/media/posters/rabbit-visitor-3.jpg";
+import visitor4Poster from "../assets/media/posters/rabbit-visitor-4.jpg";
+import rabbit1Video from "../assets/media/loops/rabbit-1.mp4";
+import rabbit2Video from "../assets/media/loops/rabbit-2.mp4";
+import rabbit3Video from "../assets/media/loops/rabbit-3.mp4";
+import rabbit4Video from "../assets/media/loops/rabbit-4.mp4";
+import rabbit5Video from "../assets/media/loops/rabbit-5.mp4";
+import rabbit6Video from "../assets/media/loops/rabbit-6.mp4";
+import rabbit7Video from "../assets/media/loops/rabbit-7.mp4";
+import rabbit1Poster from "../assets/media/posters/rabbit-1.jpg";
+import rabbit2Poster from "../assets/media/posters/rabbit-2.jpg";
+import rabbit3Poster from "../assets/media/posters/rabbit-3.jpg";
+import rabbit4Poster from "../assets/media/posters/rabbit-4.jpg";
+import rabbit5Poster from "../assets/media/posters/rabbit-5.jpg";
+import rabbit6Poster from "../assets/media/posters/rabbit-6.jpg";
+import rabbit7Poster from "../assets/media/posters/rabbit-7.jpg";
+
+// @ts-ignore
+import rabbitBehind from "../assets/rabbit/rabbit_behind.png";
+
+const { locale } = Astro.props as { locale: Locale };
+const copy = rabbitCopy[locale];
+const realCopyHref = getPageHref(locale, "realCopy");
+const filmVideos = [
+  { src: rabbit1Video, poster: rabbit1Poster.src },
+  { src: rabbit2Video, poster: rabbit2Poster.src },
+  { src: rabbit3Video, poster: rabbit3Poster.src },
+  { src: rabbit4Video, poster: rabbit4Poster.src },
+  { src: rabbit5Video, poster: rabbit5Poster.src },
+  { src: rabbit6Video, poster: rabbit6Poster.src },
+  { src: rabbit7Video, poster: rabbit7Poster.src },
+];
+
+---
+
+<BaseLayout bodyClass="rabbit-screening" title={copy.seoTitle} description={copy.description} current="what" locale={locale} alternatePath="what/rabbit">
+  <article class="project-editorial rb-project" aria-label={copy.title}>
+    <ProjectHero
+      variant="rb"
+      locale={locale}
+      titleLines={["rabbit,", "habbit, kubid"]}
+      imageAlt={copy.heroVideoAlt}
+      videoSrc={rabbit1Video}
+      videoPoster={rabbit1Poster.src}
+      year="2023"
+      place="TOYAMA"
+      credit="AI, nene, Alex"
+      paragraphs={copy.heroParagraphs}
+    />
+
+    <section class="rb-chapter" aria-label={copy.visitorGalleryLabel}>
+      <div class="rb-chapter-gallery">
+        <figure><LoopVideo src={visitor1Video} poster={visitor1Poster} alt={`${copy.visitorVideoAltPrefix} 1`} seamlessPoster /></figure>
+        <div class="rb-chapter-gallery-bottom">
+          <figure class="rb-crop-bottom-3"><LoopVideo src={visitor3Video} poster={visitor3Poster} alt={`${copy.visitorVideoAltPrefix} 3`} seamlessPoster /></figure>
+          <figure><LoopVideo src={visitor4Video} poster={visitor4Poster} alt={`${copy.visitorVideoAltPrefix} 4`} seamlessPoster /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-split project-concept rb-concept-feature" aria-labelledby="rb-concept" lang={locale}>
+      <h2 id="rb-concept" class="project-soft-reveal project-soft-reveal--title-slow">{copy.conceptHeadingLines[0]}<br />{copy.conceptHeadingLines[1]}</h2>
+      <div class="project-prose rb-concept-prose project-soft-reveal project-soft-reveal--body">
+        {copy.conceptParagraphs.map(({ before, emphasis, after }) => <p>{before}{emphasis && <span class="rb-concept-emphasis">{emphasis}</span>}{after}</p>)}
+      </div>
+    </section>
+
+    <div class="rb-film-wrap">
+      <section class="rb-chapter" aria-label="rabbit, habbit, kubid">
+        <div class="rb-chapter-gallery rb-chapter-gallery--film">
+          <div class="rb-film-stage">
+            <div class="rb-film-frame">
+              <div class="rb-film-strip">
+              {filmVideos.map((video, index) => <figure class:list={{ "is-active": index === 0 }}><LoopVideo src={video.src} poster={video.poster} alt={`${copy.filmVideoAltPrefix} ${index + 1}`} scrollControlled /></figure>)}
+              </div>
+            </div>
+            <figure class="rb-behind rb-behind--mobile"><OptimizedImage src={rabbitBehind} alt={copy.rabbitBehindAlt} /></figure>
+            <div class="rb-film-ticks" aria-hidden="true">
+              <span class="rb-film-ticks-track"></span>
+              <span class="rb-film-ticks-fill"></span>
+              <span class="rb-film-ticks-end"></span>
+              <span class="rb-film-ticks-thumb"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <div class="project-next">
+      <div class="project-next-project-row">
+        <div class="project-next-copy">
+          <div class="project-next-content">
+            <span class="project-next-kicker">{copy.nextKicker}</span>
+            <div class="project-next-link">
+              <a class="project-next-title" href={realCopyHref}>REAL_copy</a>
+              <a class="project-next-action" href={realCopyHref} aria-label={copy.nextLinkLabel}><span>{copy.nextAction}</span><svg class="project-next-arrow" viewBox="0 0 24 18" width="24" height="18" aria-hidden="true">
+              <g transform="scale(1 .75)"><path fill="currentColor" d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" /></g>
+              </svg></a>
+            </div>
+          </div>
+        </div>
+        <a class="project-next-gifs" href={realCopyHref} aria-label={copy.nextLinkLabel}>
+          <span class="project-next-thumb"><OptimizedImage src={realCopyNext1} alt="" /></span>
+          <span class="project-next-thumb"><OptimizedImage src={realCopyNext2} alt="" /></span>
+          <span class="project-next-thumb"><OptimizedImage src={realCopyNext3} alt="" /></span>
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<script>
+  import "../scripts/next-project";
+  import "../scripts/soft-reveal";
+
+  const filmGallery = document.querySelector<HTMLElement>(".rb-chapter-gallery--film");
+  const filmStage = filmGallery?.querySelector<HTMLElement>(".rb-film-stage");
+  const filmFrame = filmGallery?.querySelector<HTMLElement>(".rb-film-frame");
+  const filmStrip = filmGallery?.querySelector<HTMLElement>(".rb-film-strip");
+  if (filmGallery && filmStage && filmFrame && filmStrip) {
+    const slides = [...filmStrip.querySelectorAll<HTMLElement>("figure")];
+    let filmVisible = false;
+    let activeIndex = 0;
+    const syncFilmPlayback = () => slides.forEach((slide, index) => {
+      const video = slide.querySelector<HTMLVideoElement>("video");
+      if (!video) return;
+      if (filmVisible && document.visibilityState === "visible" && index === activeIndex) {
+        void video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+    const filmVisibilityObserver = new IntersectionObserver(([entry]) => {
+      filmVisible = entry.isIntersecting;
+      syncFilmPlayback();
+    }, { threshold: 0.01 });
+    filmVisibilityObserver.observe(filmGallery);
+    document.addEventListener("visibilitychange", syncFilmPlayback);
+    window.addEventListener("pagehide", () => slides.forEach((slide) => slide.querySelector("video")?.pause()));
+    const ticks = filmStage.querySelector<HTMLElement>(".rb-film-ticks");
+    const ticksFill = ticks?.querySelector<HTMLElement>(".rb-film-ticks-fill");
+    const ticksEnd = ticks?.querySelector<HTMLElement>(".rb-film-ticks-end");
+    const ticksThumb = ticks?.querySelector<HTMLElement>(".rb-film-ticks-thumb");
+    const mobile = window.matchMedia("(max-width: 700px)");
+    const update = () => {
+      const mobileView = mobile.matches;
+      const paddingTop = parseFloat(getComputedStyle(filmGallery).paddingTop) || 0;
+      const stickyTop = parseFloat(getComputedStyle(filmStage).top) || 0;
+      const stripTravel = filmFrame.getBoundingClientRect().height * (slides.length - 1);
+      const travel = mobileView ? filmStage.offsetHeight * (slides.length - 1) : stripTravel;
+      filmGallery.style.height = (paddingTop + filmStage.offsetHeight + travel) + "px";
+      const distance = stickyTop - filmGallery.getBoundingClientRect().top - paddingTop;
+      const progress = Math.min(1, Math.max(0, distance / Math.max(1, travel)));
+      const active = Math.round(progress * (slides.length - 1));
+      activeIndex = active;
+      filmStrip.style.transform = mobileView ? "none" : "translateY(" + (-active * filmFrame.getBoundingClientRect().height) + "px)";
+      slides.forEach((slide, index) => slide.classList.toggle("is-active", index === active));
+      syncFilmPlayback();
+      if (ticks && ticksFill && ticksEnd && ticksThumb) {
+        const indicatorTravel = ticks.clientHeight * progress;
+        ticksThumb.style.transform = "translate(-50%, calc(-50% + " + indicatorTravel + "px))";
+        ticksFill.style.height = indicatorTravel + "px";
+        ticks.classList.toggle("is-complete", progress >= 0.999);
+      }
+    };
+    let pending = false;
+    const schedule = () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => { pending = false; update(); });
+    };
+    new ResizeObserver(schedule).observe(filmStage);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    mobile.addEventListener("change", schedule);
+    update();
+  }
+
+  const heroProses = [...document.querySelectorAll<HTMLElement>('.rb-hero-prose')];
+  if (heroProses.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const english = document.documentElement.lang === 'en';
+    heroProses.forEach((heroProse) => {
+      const textNodes = [...heroProse.querySelectorAll('p')].flatMap((element) =>
+        [...element.childNodes].filter((node) => node.nodeType === Node.TEXT_NODE && node.textContent)
+      );
+      textNodes.forEach((node) => {
+        const fragment = document.createDocumentFragment();
+        const addCharacters = (parent: Node, text: string) => {
+          for (const character of text) {
+            const span = document.createElement('span');
+            span.className = 'rb-visual-char';
+            span.textContent = character;
+            parent.appendChild(span);
+          }
+        };
+        if (english) {
+          for (const token of (node.textContent ?? '').match(/\s+|\S+/gu) ?? []) {
+            if (/^\s+$/u.test(token)) {
+              fragment.appendChild(document.createTextNode(token));
+            } else {
+              const word = document.createElement('span');
+              word.className = 'rb-visual-word';
+              addCharacters(word, token);
+              fragment.appendChild(word);
+            }
+          }
+        } else {
+          addCharacters(fragment, node.textContent ?? '');
+        }
+        node.replaceWith(fragment);
+      });
+    });
+
+    const updateVisualLines = () => heroProses.forEach((heroProse) => {
+      if (!heroProse.getClientRects().length) return;
+      const lineTops: number[] = [];
+      heroProse.querySelectorAll<HTMLElement>('.rb-visual-char').forEach((character) => {
+        const top = character.getBoundingClientRect().top;
+        let lineIndex = lineTops.findIndex((lineTop) => Math.abs(lineTop - top) < 2);
+        if (lineIndex === -1) {
+          lineIndex = lineTops.length;
+          lineTops.push(top);
+        }
+        const stagger = parseFloat(getComputedStyle(heroProse).getPropertyValue('--project-hero-line-stagger')) || 90;
+        character.style.setProperty('--line-delay', `${lineIndex * stagger}ms`);
+      });
+      heroProse.classList.add('is-line-motion-ready');
+    });
+
+    updateVisualLines();
+    requestAnimationFrame(updateVisualLines);
+    document.fonts.ready.then(updateVisualLines);
+    window.addEventListener('resize', updateVisualLines);
+    const proseResizeObserver = new ResizeObserver(updateVisualLines);
+    heroProses.forEach((heroProse) => proseResizeObserver.observe(heroProse));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => target.classList.toggle('is-in-view', isIntersecting));
+    }, { threshold: 0.25 });
+    heroProses.forEach((heroProse) => observer.observe(heroProse));
+  }
+</script>
