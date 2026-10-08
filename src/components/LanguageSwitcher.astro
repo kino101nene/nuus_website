@@ -1,0 +1,24 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const { locale, path } = Astro.props as { locale: "ja" | "en"; path: string };
+---
+
+<div class="language-switch" role="group" aria-label={locale === "ja" ? "言語を切り替える" : "Switch language"}>
+  <a href={getRelativeLocaleUrl("ja", path)} hreflang="ja" lang="ja" aria-label={locale === "ja" ? "日本語" : "Japanese"} aria-current={locale === "ja" ? "page" : undefined} data-language-switch>JA</a>
+  <span aria-hidden="true">/</span>
+  <a href={getRelativeLocaleUrl("en", path)} hreflang="en" lang="en" aria-label={locale === "ja" ? "英語" : "English"} aria-current={locale === "en" ? "page" : undefined} data-language-switch>EN</a>
+</div>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-language-switch]");
+  const syncHash = () => links.forEach((link) => { link.hash = window.location.hash; });
+  syncHash();
+  window.addEventListener("hashchange", syncHash);
+</script>
+
+<style>
+  .language-switch { display: flex; align-items: center; gap: var(--space-xs); color: #fff; }
+  .language-switch a { color: inherit; text-decoration: none; }
+  .language-switch a[aria-current="page"] { text-decoration: underline; text-underline-offset: 0.2em; }
+</style>

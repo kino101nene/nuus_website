@@ -1,17 +1,21 @@
 ---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { getPageHref, type Locale } from "../i18n/routes";
+
 const { pathname } = Astro.url;
+const { locale = "ja", alternatePath } = Astro.props as { locale?: Locale; alternatePath?: string };
 const links = [
-  { href: "/#home-work", en: "What was", ja: "具現化したアイデア" },
-  { href: "/who", en: "Who is", ja: "脳" },
-  { href: "/#home-video-game", en: "When will be", ja: "今考えてること" },
+  { href: getPageHref(locale, "home", "home-work"), en: "What was", ja: "具現化したアイデア" },
+  { href: getPageHref(locale, "who"), en: "Who is", ja: "脳" },
+  { href: getPageHref(locale, "home", "home-video-game"), en: "When will be", ja: "今考えてること" },
 ];
-const active = (href: string) => href === "/#home-work"
-  ? pathname.startsWith("/what/")
-  : pathname === href || pathname.startsWith(`${href}/`);
+const active = (href: string) => href.endsWith("#home-work")
+  ? pathname.startsWith("/what/") || pathname.startsWith("/en/what/")
+  : pathname.replace(/\/$/, "") === href.replace(/\/$/, "");
 ---
 <header class="site-header">
   <div class="header-inner">
-    <a href="/" class="logo-link" aria-label="Nuus home">
+    <a href={getPageHref(locale, "home")} class="logo-link" aria-label={locale === "ja" ? "Nuus ホーム" : "Nuus home"}>
       <svg class="logo" viewBox="0 0 3397 1008" role="img" aria-label="Nuus">
         <use class="logo-glyph" href="/assets/header/nuus_logo_bl.svg#glyph-n" />
         <use class="logo-glyph logo-glyph--secondary" href="/assets/header/nuus_logo_bl.svg#glyph-u1" />
@@ -19,20 +23,22 @@ const active = (href: string) => href === "/#home-work"
         <use class="logo-glyph logo-glyph--secondary" href="/assets/header/nuus_logo_bl.svg#glyph-s" />
       </svg>
     </a>
-    <nav class="desktop-nav" aria-label="Primary">
+    <nav class="desktop-nav" aria-label={locale === "ja" ? "メインナビゲーション" : "Primary navigation"}>
       {links.map(link => (
         <a class="nav-item" href={link.href} aria-current={active(link.href) ? "page" : undefined}>
           <span class="nav-en">{link.en}</span><span class="nav-ja" lang="ja">{link.ja}</span>
         </a>
       ))}
+      {alternatePath !== undefined && <LanguageSwitcher locale={locale} path={alternatePath} />}
     </nav>
     <button class="mobile-toggle" type="button" aria-expanded="false" aria-controls="mobile-navigation">Menu <span aria-hidden="true">+</span></button>
-    <nav id="mobile-navigation" class="mobile-menu-panel" aria-label="Mobile primary" hidden>
+    <nav id="mobile-navigation" class="mobile-menu-panel" aria-label={locale === "ja" ? "モバイルナビゲーション" : "Mobile navigation"} hidden>
       {links.map(link => (
         <a class="nav-item" href={link.href} aria-current={active(link.href) ? "page" : undefined}>
           <span class="nav-en">{link.en}</span><span class="nav-ja" lang="ja">{link.ja}</span>
         </a>
       ))}
+      {alternatePath !== undefined && <LanguageSwitcher locale={locale} path={alternatePath} />}
     </nav>
   </div>
 </header>

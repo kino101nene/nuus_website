@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import OptimizedImage from "./OptimizedImage.astro";
+import LoopVideo from "./LoopVideo.astro";
+import { whoCopy } from "../i18n/who";
+// @ts-ignore
+import nuusDiagram from "../assets/who/nuus_diagram.png";
+// @ts-ignore
+import seiyaIcon from "../assets/who/profiles/seiya-icon.JPG";
+// @ts-ignore
+import aiIcon from "../assets/media/loops/who-ai-icon.mp4";
+import aiIconPoster from "../assets/media/posters/who-ai-icon.jpg";
+// @ts-ignore
+import neneIcon from "../assets/who/profiles/nene-icon.JPG";
+import "../styles/who.css";
+
+const { locale } = Astro.props as { locale: "ja" | "en" };
+const copy = whoCopy[locale];
+const members = [
+  { image: seiyaIcon, name: "Seiya", role: "management" },
+  { video: aiIcon, poster: aiIconPoster.src, name: "Ai", role: "art director/creative" },
+  { image: neneIcon, name: "nene", role: "creative technologist" }
+];
+---
+
+<BaseLayout bodyClass="who-page" title={copy.title} description={copy.description} current="who" locale={locale} alternatePath="who">
+  <article class="who-editorial" aria-labelledby="who-title">
+    <header class="who-intro">
+      <h1 id="who-title">{copy.heading}</h1>
+    </header>
+
+    <section class="who-members" aria-label={copy.membersLabel}>
+      <div class="who-member-grid">
+        {members.map((member) => (
+          <figure>
+            <div class="who-member-visual">{member.video ? <LoopVideo src={member.video} poster={member.poster} alt={member.name} /> : member.image && <OptimizedImage src={member.image} alt={member.name} />}<span class="who-member-role">{member.role}</span></div>
+            <figcaption><span>{member.name}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+      <button class="who-member-arrow who-member-arrow--prev" type="button" aria-label={copy.previousMember} hidden>
+        <img src="/assets/arrow-next.svg" alt="" aria-hidden="true" />
+      </button>
+      <button class="who-member-arrow who-member-arrow--next" type="button" aria-label={copy.nextMember}>
+        <img src="/assets/arrow-next.svg" alt="" aria-hidden="true" />
+      </button>
+    </section>
+
+    <div class="who-statement project-soft-reveal project-soft-reveal--body" lang={locale}>
+      <h2 class="who-statement-title" lang="en">{copy.statementHeading}</h2>
+      <p>{copy.statementBefore}<span class="who-statement-emphasis">{copy.statementEmphasis}</span>{copy.statementAfter}<br />{copy.statementSecondLine}</p>
+    </div>
+    <section class="who-perspective" aria-label={copy.diagramLabel}>
+      <OptimizedImage src={nuusDiagram} alt={copy.diagramAlt} />
+    </section>
+  </article>
+</BaseLayout>
+
+<script>
+  import "../scripts/soft-reveal";
+  import "../scripts/who-member-carousel";
+</script>
