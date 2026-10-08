@@ -16,12 +16,10 @@ const active = (href: string) => href.endsWith("#home-work")
 <header class="site-header">
   <div class="header-inner">
     <a href={getPageHref(locale, "home")} class="logo-link" aria-label={locale === "ja" ? "Nuus ホーム" : "Nuus home"}>
-      <svg class="logo" viewBox="0 0 3397 1008" role="img" aria-label="Nuus">
-        <use class="logo-glyph" href="/assets/header/nuus_logo_bl.svg#glyph-n" />
-        <use class="logo-glyph logo-glyph--secondary" href="/assets/header/nuus_logo_bl.svg#glyph-u1" />
-        <use class="logo-glyph logo-glyph--secondary" href="/assets/header/nuus_logo_bl.svg#glyph-u2" />
-        <use class="logo-glyph logo-glyph--secondary" href="/assets/header/nuus_logo_bl.svg#glyph-s" />
-      </svg>
+      <span class="logo" aria-hidden="true">
+        <img class="logo-image" src="/assets/header/nuus_logo_bl.svg" alt="" />
+        <img class="logo-image logo-image--first" src="/assets/header/nuus_logo_bl.svg" alt="" />
+      </span>
     </a>
     <nav class="desktop-nav" aria-label={locale === "ja" ? "メインナビゲーション" : "Primary navigation"}>
       {links.map(link => (

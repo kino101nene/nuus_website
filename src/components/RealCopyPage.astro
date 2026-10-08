@@ -62,7 +62,7 @@ const gallery = [img1, img2, null, null, img5, img6];
         <div class="rc-media-gallery" aria-label={copy.galleryLabel}>
           {gallery.slice(0, 2).map((src, index) => (
             <figure class="rc-shot">
-              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`${copy.galleryImageAlt} ${index + 1}`} loading="lazy" width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 50vw, 49vw" /></div></div>
+              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={copy.galleryImageAlts[index]} loading="lazy" width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 50vw, 49vw" /></div></div>
             </figure>
           ))}
 
@@ -72,7 +72,7 @@ const gallery = [img1, img2, null, null, img5, img6];
 
           {gallery.slice(2).map((src, index) => (
             src ? <figure class="rc-shot">
-              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={`${copy.galleryImageAlt} ${index + 3}`} loading="lazy" width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 50vw, 49vw" /></div></div>
+              <div class="rc-collage-hover"><div class="rc-media-frame"><OptimizedImage src={src} alt={copy.galleryImageAlts[index]} loading="lazy" width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 50vw, 49vw" /></div></div>
             </figure> : <figure class="rc-shot rc-shot-empty" aria-hidden="true"></figure>
           ))}
         </div>

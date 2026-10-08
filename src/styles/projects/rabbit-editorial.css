@@ -15,7 +15,6 @@ body.rabbit-screening {
   background: var(--color-bg);
   color: var(--color-text);
 }
-.rabbit-screening .site-header .logo { filter: invert(1); }
 .rabbit-screening .site-header .nav-item[aria-current="page"] { color: var(--color-accent); }
 .rabbit-screening a:focus-visible, .rabbit-screening button:focus-visible, .rabbit-screening summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }
 .rb-project { position: relative; max-width: 1800px; margin: calc(-1 * var(--header-h)) auto 0; padding: var(--rb-hero-height) calc(var(--header-gutter) * 2) 64px; }

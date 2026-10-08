@@ -1,7 +1,7 @@
 export const whoCopy = {
   ja: {
-    title: "Who — Nuus",
-    description: "本質と現象にN軸をもって作品を作るクリエイティブ集団、Nuus。",
+    title: "Nuusのメンバーと考え方 — Nuus",
+    description: "Nuusのメンバーと、本質・現象をN軸から捉えて空間や体験をつくる考え方を紹介。",
     heading: "The brains behind",
     membersLabel: "Members",
     previousMember: "Previous member",
@@ -16,8 +16,8 @@ export const whoCopy = {
   },
   // DRAFT TRANSLATION: conceptual copy requires editorial review before final publication.
   en: {
-    title: "Who — Nuus",
-    description: "Nuus creates spaces and experiences through an N-axis perspective on essence and phenomena.",
+    title: "People and Perspective | Nuus",
+    description: "Meet the people behind Nuus and explore how they create spaces and experiences through an N-axis perspective.",
     heading: "The brains behind",
     membersLabel: "Members",
     previousMember: "Previous member",
