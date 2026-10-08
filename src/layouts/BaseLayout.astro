@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Analytics from "@vercel/analytics/astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getPageHref, type Locale } from "../i18n/routes";
+import { socialImages } from "../i18n/social";
 
 import "../styles/main.css";
 import "../styles/DesktopNav.css";
@@ -17,6 +18,8 @@ const {
 const locale = (Astro.props.locale ?? Astro.currentLocale ?? "ja") as Locale;
 const siteOrigin = Astro.site?.origin;
 const canonical = siteOrigin ? new URL(Astro.url.pathname, siteOrigin).href : Astro.url.pathname;
+const socialImage = alternatePath === undefined ? undefined : socialImages[alternatePath];
+const socialImageUrl = socialImage && siteOrigin ? new URL(socialImage.path, siteOrigin).href : undefined;
 const alternates = alternatePath !== undefined
   ? (["ja", "en"] as const).map((language) => ({
       language,
@@ -25,6 +28,29 @@ const alternates = alternatePath !== undefined
         : getRelativeLocaleUrl(language, alternatePath)
     }))
   : [];
+const homepageStructuredData = current === "home" && siteOrigin
+  ? JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${siteOrigin}/#website`,
+          url: `${siteOrigin}/`,
+          name: "Nuus",
+          publisher: { "@id": `${siteOrigin}/#organization` },
+          inLanguage: ["ja", "en"]
+        },
+        {
+          "@type": "Organization",
+          "@id": `${siteOrigin}/#organization`,
+          name: "Nuus",
+          url: `${siteOrigin}/`,
+          logo: `${siteOrigin}/assets/header/nuus_logo_bl.svg`,
+          sameAs: ["https://www.instagram.com/nuus___/"]
+        }
+      ]
+    }).replace(/</g, "\\u003c")
+  : undefined;
 ---
 
 <html lang={locale}>
@@ -38,11 +64,25 @@ const alternates = alternatePath !== undefined
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <meta property="og:locale" content={locale === "ja" ? "ja_JP" : "en_US"} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nuus" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
+    {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
+    {socialImageUrl && <meta property="og:image:type" content="image/jpeg" />}
+    {socialImageUrl && <meta property="og:image:width" content="1200" />}
+    {socialImageUrl && <meta property="og:image:height" content="630" />}
+    {socialImage && <meta property="og:image:alt" content={socialImage.alt[locale]} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
+    {socialImage && <meta name="twitter:image:alt" content={socialImage.alt[locale]} />}
     <link rel="canonical" href={canonical} />
     {alternates.map(({ language, href }) => <link rel="alternate" hreflang={language} href={href} />)}
     {alternatePath !== undefined && <meta property="og:locale:alternate" content={locale === "ja" ? "en_US" : "ja_JP"} />}
+    {homepageStructuredData && <script type="application/ld+json" set:html={homepageStructuredData} />}
   </head>
 
   <body class={Astro.props.bodyClass}>

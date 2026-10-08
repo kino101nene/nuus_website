@@ -21,8 +21,7 @@
     height: 1px;
     background: #d9d9d9;
   }
-  body.mobile-menu-open .site-header .logo { filter: invert(1); }
-  body.mobile-menu-open .site-header .logo-glyph { opacity: 1 !important; }
+  body.mobile-menu-open .site-header .logo-image { opacity: 1 !important; }
   body.mobile-menu-open .mobile-toggle { filter: none; color: #fff !important; }
   body.mobile-menu-open { overflow: hidden; }
   .footer { margin-top: 0; padding-block: 16px; }

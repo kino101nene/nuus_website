@@ -131,7 +131,7 @@ const wantedGallery = [
         <div class="jj-chapter-content">
           <div class="jj-chapter-description jj-prose" lang={locale}>{copy.dreamParagraphs.map(text => <p>{text}</p>)}</div>
           <div class="jj-posters jj-dream-gallery">
-            {[{ src: mapImg, title: "Dream map" }, { src: lettersImg, title: "Letters" }, { src: orangeDogImg, title: "Orange dog" }, { src: soilImg, title: "Soil" }].map((item) => <figure><OptimizedImage src={item.src} alt={`${copy.dreamImageAltPrefix} ${item.title}`} width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 78vw, 32vw" /></figure>)}
+            {[mapImg, lettersImg, orangeDogImg, soilImg].map((src, index) => <figure><OptimizedImage src={src} alt={copy.dreamImageAlts[index]} width={1600} widths={[400, 800, 1200, 1600]} sizes="(max-width: 600px) 78vw, 32vw" /></figure>)}
           </div>
           <div class="jj-posters-progress" aria-hidden="true">
             <span class="jj-posters-progress-track"></span>

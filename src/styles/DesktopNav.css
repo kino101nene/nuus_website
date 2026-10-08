@@ -11,12 +11,13 @@ body > main { padding-bottom: 0; }
 .site-header { position: fixed; inset: 0 0 auto; height: var(--header-h); z-index: 9999; border-bottom: 0; background: transparent; transition: transform 240ms ease; mix-blend-mode: difference; }
 body.footer-visible .site-header { transform: translateY(-100%); }
 .header-inner { box-sizing: border-box; height: 100%; max-width: 1800px; margin-inline: auto; padding: 0 var(--header-gutter); display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-.site-header .logo { width: 128px; height: auto; filter: invert(1); mix-blend-mode: difference; }
+.site-header .logo { position: relative; display: block; width: 128px; aspect-ratio: 3397 / 1008; }
 .logo-link { flex-shrink: 0; }
-.site-header .logo-glyph { transition: opacity var(--header-logo-scroll-duration) var(--header-logo-scroll-ease); }
+.site-header .logo-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; filter: invert(1); transition: opacity var(--header-logo-scroll-duration) var(--header-logo-scroll-ease); }
+.site-header .logo-image--first { clip-path: inset(0 72% 0 0); }
 .site-header .logo { transform-box: fill-box; transform-origin: left center; transition: transform var(--header-logo-scroll-duration) var(--header-logo-scroll-ease); }
 .site-header.is-scrolled .logo { transform: scale(1.12); }
-.site-header.is-scrolled .logo-glyph--secondary { opacity: .35; }
+.site-header.is-scrolled .logo-image:not(.logo-image--first) { opacity: .35; }
 .desktop-nav { display: flex; align-items: center; gap: clamp(28px, 4vw, 64px); height: 100%; }
 .site-header .nav-item { position: relative; display: flex; flex-direction: column; gap: 2px; justify-content: center; text-decoration: none; color: var(--color-text); }
 .desktop-nav .nav-item { height: 100%; }
@@ -26,7 +27,6 @@ body.footer-visible .site-header { transform: translateY(-100%); }
 .desktop-nav .nav-item[aria-current="page"]::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: currentColor; }
 .site-header .nav-item,
 .site-header .mobile-toggle { color: #fff !important; text-decoration: none !important; border: 0; box-shadow: none; mix-blend-mode: normal; }
-.site-header .logo { mix-blend-mode: normal; }
 .site-header .nav-en,
 .site-header .nav-ja { color: #fff !important; mix-blend-mode: normal; }
 .desktop-nav .nav-item[aria-current="page"]::after { display: none; }

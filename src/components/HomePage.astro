@@ -36,7 +36,7 @@ const rabbitHref = getPageHref(locale, "rabbit");
           <a class="home-project-image" href={realCopyHref} aria-label={copy.realCopyLinkLabel}><OptimizedImage src={realCopy} alt={copy.realCopyImageAlt} /></a>
           <div class="home-project-content">
             <span class="home-label">{copy.exhibitionLabel}</span>
-            <h3><a href={realCopyHref}>REAL_copy</a></h3>
+            <h2><a href={realCopyHref}>REAL_copy</a></h2>
             <a class="home-project-link" href={realCopyHref}>
               <svg width="24" height="24" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.314L69.657 197.657a8 8 0 0 1-11.314-11.314L172.686 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8Z" /></svg>
               <span>{copy.viewMore}</span>
@@ -46,7 +46,7 @@ const rabbitHref = getPageHref(locale, "rabbit");
         <article class="home-project">
           <div class="home-project-content">
             <span class="home-label">{copy.exhibitionLabel}</span>
-            <h3><a href={jijitsuHref} hreflang={locale}>jijitsu</a></h3>
+            <h2><a href={jijitsuHref} hreflang={locale}>jijitsu</a></h2>
             <a class="home-project-link" href={jijitsuHref} hreflang={locale}>
               <svg width="24" height="24" viewBox="0 0 256 256" aria-hidden="true"><path fill="currentColor" d="M200 64v104a8 8 0 0 1-16 0V83.314L69.657 197.657a8 8 0 0 1-11.314-11.314L172.686 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8Z" /></svg>
               <span>{copy.viewMore}</span>
@@ -60,14 +60,14 @@ const rabbitHref = getPageHref(locale, "rabbit");
           <a class="home-project-image" href={rabbitHref} hreflang={locale} aria-label={copy.rabbitLinkLabel}><OptimizedImage src={rabbit} alt={copy.rabbitImageAlt} /></a>
         <div class="home-project-content">
           <span class="home-label">{copy.mediaArtLabel}</span>
-          <h3><a href={rabbitHref} hreflang={locale}>rabbit, habbit, kubid</a></h3>
+          <h2><a href={rabbitHref} hreflang={locale}>rabbit, habbit, kubid</a></h2>
         </div>
       </article>
       <article class="home-project" id="home-video-game" aria-label={copy.comingSoonLabel}>
         <div class="home-project-image" aria-hidden="true"><OptimizedImage src={whenThumbnail} alt="" /></div>
         <div class="home-project-content">
           <span class="home-label">{copy.videoGameLabel}</span>
-          <h3>{copy.comingSoon}</h3>
+          <p class="home-project-title">{copy.comingSoon}</p>
         </div>
       </article>
       </div>

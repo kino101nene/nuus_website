@@ -22,7 +22,7 @@ export const rabbitCopy: Record<Locale, RabbitCopy> = {
   ja: {
     title: "rabbit, habbit, kubid",
     seoTitle: "rabbit, habbit, kubid — Nuus",
-    description: "jijitsuの来場者と映画の世界が交わる映像作品。",
+    description: "USAGIたちの言語を通じた世界の再構築を描く映像作品「rabbit, habbit, kubid」。",
     heroVideoAlt: "rabbit, habbit, kubidのループ映像",
     heroParagraphs: [
       { before: "映画、「rabbit, habbit, kubid」ではUSAGIの言語＝世界の再構築のプロセスが描かれる。USAGIたちの紡ぐ言葉は単なるコミュニケーンツールではなく、世界そのものを形づくる枠組みである。" }
@@ -34,7 +34,7 @@ export const rabbitCopy: Record<Locale, RabbitCopy> = {
       { before: "侵入者たちが荒らしていったこの空間は、USAGIたちの映画「rabbit, habbit, kubid」に登場する場所であり、彼らの棲家である。" }
     ],
     filmVideoAltPrefix: "rabbit, habbit, kubid — 映像断片",
-    rabbitBehindAlt: "映像を眺めるうさぎたちの後ろ姿",
+    rabbitBehindAlt: "白い服とウサギ耳の二人がベッドに座る後ろ姿",
     nextKicker: "他の作品",
     nextAction: "Check now",
     nextLinkLabel: "REAL_copy プロジェクトを見る"
@@ -43,7 +43,7 @@ export const rabbitCopy: Record<Locale, RabbitCopy> = {
   en: {
     title: "rabbit, habbit, kubid",
     seoTitle: "rabbit, habbit, kubid | Nuus",
-    description: "A film where visitors to jijitsu meet the world of rabbit, habbit, kubid.",
+    description: "rabbit, habbit, kubid is a film about how the USAGI reconstruct their world through language.",
     heroVideoAlt: "Looping film from rabbit, habbit, kubid",
     heroParagraphs: [
       { before: "The film \"rabbit, habbit, kubid\" explores how the USAGI reconstruct their world through language." },
@@ -56,7 +56,7 @@ export const rabbitCopy: Record<Locale, RabbitCopy> = {
       { before: "Intruders have left this space in disarray. It is a setting in the USAGI film rabbit, habbit, kubid, and the place they call home." }
     ],
     filmVideoAltPrefix: "rabbit, habbit, kubid film fragment",
-    rabbitBehindAlt: "The rabbits seen from behind as they watch a film",
+    rabbitBehindAlt: "Two figures in white with rabbit ears seen from behind on a bed",
     nextKicker: "Other work",
     nextAction: "Check now",
     nextLinkLabel: "View the REAL_copy project"

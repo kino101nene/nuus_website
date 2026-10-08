@@ -14,7 +14,7 @@ type JijitsuCopy = {
   wantedParagraphs: readonly string[];
   dreamParagraphs: readonly string[];
   wantedImageAltPrefix: string;
-  dreamImageAltPrefix: string;
+  dreamImageAlts: readonly [string, string, string, string];
   conceptHeading: string;
   conceptParagraphs: readonly SegmentedParagraph[];
   nextKicker: string;
@@ -27,7 +27,7 @@ export const jijitsuCopy: Record<Locale, JijitsuCopy> = {
     title: "jijitsu",
     seoTitle: "jijitsu — Nuus",
     description: "USAGIたちの住処を辿る体験型展示、jijitsu。",
-    roomImageAlt: "jijitsuの部屋",
+    roomImageAlt: "ロフトとキッチンのある部屋に置かれた植物と白い布で覆われた物体",
     heroParagraphs: [
       { before: "このこじんまりとした空間には、キッチン、トイレ、ロフトが備わり、一見すると誰でも住めそうなアパートの一室のように見える。しかし、部屋の半分には白い布で覆われた土台のようなものが佇み、まず座る場所が見当たらない。" },
       {
@@ -56,7 +56,12 @@ export const jijitsuCopy: Record<Locale, JijitsuCopy> = {
       "夢とは、語られることで形を成し、共有されることで新たな意味を持つ「Dream Mapping」は、その流動性を可視化する試みである。"
     ],
     wantedImageAltPrefix: "Wanted Criminals —",
-    dreamImageAltPrefix: "Dream Mapping —",
+    dreamImageAlts: [
+      "写真や文字を重ねた三枚の半透明なコラージュ",
+      "部屋を見下ろした写真の手前に並ぶ手書きの封筒",
+      "道路に立つオレンジ色の犬を映した画面",
+      "床に積まれた土と、そばに置かれた小さな箱"
+    ],
     conceptHeading: "自実を考える",
     conceptParagraphs: [
       { before: "来場者は、その空間にあるものを観察し、触れ、試しながら、自分なりの解釈や物語を生み出していく。" },
@@ -76,7 +81,7 @@ export const jijitsuCopy: Record<Locale, JijitsuCopy> = {
     title: "jijitsu",
     seoTitle: "jijitsu | Nuus",
     description: "jijitsu is an experiential installation tracing the home of the USAGI.",
-    roomImageAlt: "The reconstructed room in jijitsu",
+    roomImageAlt: "A room with a loft and kitchen, plants, and objects covered in white cloth",
     heroParagraphs: [
       { before: "This compact room has a kitchen, toilet, and loft. At first glance, it could be an apartment anyone might live in. Yet half the room is occupied by blocks covered in white cloth, and the space doesn't seem designed for comfortable living." },
       {
@@ -106,7 +111,12 @@ export const jijitsuCopy: Record<Locale, JijitsuCopy> = {
       "Dreams take shape when told and change when shared. Dream Mapping makes that fluidity visible."
     ],
     wantedImageAltPrefix: "Wanted Criminals:",
-    dreamImageAltPrefix: "Dream Mapping:",
+    dreamImageAlts: [
+      "Three translucent collages layered over photographs and text",
+      "Handwritten envelopes in front of an overhead photograph of a room",
+      "A screen showing an orange dog standing on a road",
+      "A pile of soil on the floor beside a small box"
+    ],
     conceptHeading: "Reality vs Self-reality",
     conceptParagraphs: [
       { before: "Visitors observe, touch, and test the things in the room, creating their own readings and stories." },

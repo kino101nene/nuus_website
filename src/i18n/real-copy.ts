@@ -10,7 +10,7 @@ type RealCopyCopy = {
   desktopExperience: readonly string[];
   mobileExperience: readonly string[];
   galleryLabel: string;
-  galleryImageAlt: string;
+  galleryImageAlts: readonly [string, string, string, string];
   filmAlt: string;
   conceptImageAlt: string;
   conceptLabel: string;
@@ -44,9 +44,14 @@ export const realCopyCopy = {
       "VRの中にあったものが、少し違う姿で現実にも存在している。"
     ],
     galleryLabel: "REAL_copy 映像・展示記録",
-    galleryImageAlt: "REAL_copy 展示記録",
+    galleryImageAlts: [
+      "木の壁と中央に穴のある箱が置かれたREAL_copyの展示室",
+      "木のテーブルに並ぶバナナ、皿、フォークの造形物",
+      "コンクリートの床に積まれた木屑",
+      "網入りガラスの窓に貼られた二枚の印刷物"
+    ],
     filmAlt: "REAL_copy — プロジェクト映像",
-    conceptImageAlt: "REAL_copyのルームオーバービュー",
+    conceptImageAlt: "木の箱、テーブル、椅子、白黒模様の壁があるREAL_copyの展示室",
     conceptLabel: "五感を分解する",
     concept: [
       "REAL_copy は、VRと現実を重ね合わせ、その境界を曖昧にするインスタレーションである。",
@@ -82,9 +87,14 @@ export const realCopyCopy = {
       "Were they always there?"
     ],
     galleryLabel: "REAL_copy film and exhibition documentation",
-    galleryImageAlt: "REAL_copy exhibition photograph",
+    galleryImageAlts: [
+      "REAL_copy installation room with a wooden wall and a box with a hole",
+      "Sculpted banana, plate, and fork arranged on a wooden table",
+      "A pile of wood shavings on a concrete floor",
+      "Two printed images attached to a wired-glass window"
+    ],
     filmAlt: "REAL_copy project film",
-    conceptImageAlt: "Overview of the REAL_copy installation space",
+    conceptImageAlt: "REAL_copy installation room with a wooden box, table, chair, and black-and-white wall markings",
     conceptLabel: "Separating the senses",
     concept: [
       "REAL_copy overlays VR and physical space, blurring the boundary between them.",
